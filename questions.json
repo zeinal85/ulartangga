@@ -1,0 +1,91 @@
+[
+    {
+        "id": "q_privasi_data",
+        "question": "Apa yang dimaksud dengan 'privasi data' dalam etika digital?",
+        "type": "multiple_choice",
+        "options": [
+            "Hak untuk membagikan semua data pribadi",
+            "Hak untuk mengontrol informasi pribadi seseorang",
+            "Kewajiban untuk memberikan data kepada perusahaan",
+            "Tidak ada yang perlu disembunyikan"
+        ],
+        "answer": "Hak untuk mengontrol informasi pribadi seseorang",
+        "feedback": "Tepat sekali! Privasi data adalah tentang kontrol individu atas informasinya."
+    },
+    {
+        "id": "q_jejak_digital",
+        "question": "Benar atau Salah: 'Jejak digital' mengacu pada semua data yang kita tinggalkan saat online dan bisa dihapus sepenuhnya.",
+        "type": "true_false",
+        "options": ["Benar", "Salah"],
+        "answer": "Salah",
+        "feedback": "Sayang sekali! Jejak digital memang semua data online, tetapi sulit atau bahkan tidak mungkin dihapus sepenuhnya."
+    },
+    {
+        "id": "q_cyberbullying",
+        "question": "Bagaimana cara terbaik menghadapi 'cyberbullying'?",
+        "type": "text_input",
+        "answer": "Blokir, laporkan, dan cari dukungan dari orang dewasa", 
+        "feedback": "Itu adalah langkah yang tepat! Melaporkan dan mencari bantuan sangat penting."
+    },
+    {
+        "id": "q_hoax",
+        "question": "Apa bahaya utama dari penyebaran berita 'hoax'?",
+        "type": "multiple_choice",
+        "options": [
+            "Membuat orang terhibur",
+            "Menciptakan kebingungan dan konflik",
+            "Meningkatkan kecepatan internet",
+            "Menghemat biaya berita"
+        ],
+        "answer": "Menciptakan kebingungan dan konflik",
+        "feedback": "Benar! Hoax dapat merusak kepercayaan dan memicu perpecahan."
+    },
+    {
+        "id": "q_hak_cipta",
+        "question": "Mengapa penting untuk menghormati 'hak cipta' saat menggunakan konten dari internet?",
+        "type": "text_input",
+        "answer": "Untuk menghargai karya orang lain dan mencegah pelanggaran hukum",
+        "feedback": "Ya, itu inti dari hak cipta! Menghargai kreativitas adalah etika digital yang penting."
+    },
+    {
+        "id": "q_oversharing",
+        "question": "Benar atau Salah: 'Oversharing' di media sosial selalu aman dan tidak memiliki dampak negatif.",
+        "type": "true_false",
+        "options": ["Benar", "Salah"],
+        "answer": "Salah",
+        "feedback": "Tidak tepat! Oversharing bisa berakibat pada privasi dan keamanan pribadi."
+    },
+    {
+        "id": "q_etika_komentar",
+        "question": "Bagaimana seharusnya etika kita dalam berkomentar di platform digital?",
+        "type": "multiple_choice",
+        "options": [
+            "Bebas berkata apa saja",
+            "Menggunakan bahasa sopan dan menghargai perbedaan",
+            "Selalu memprovokasi",
+            "Mengabaikan orang lain"
+        ],
+        "answer": "Menggunakan bahasa sopan dan menghargai perbedaan",
+        "feedback": "Setuju! Kesopanan adalah kunci interaksi digital yang sehat."
+    },
+    {
+        "id": "q_phishing",
+        "question": "Apa tujuan utama dari serangan 'phishing'?",
+        "type": "text_input",
+        "answer": "Mencuri informasi pribadi atau kredensial",
+        "feedback": "Betul sekali! Phishing bertujuan untuk menipu Anda agar mengungkapkan data sensitif."
+    },
+    {
+        "id": "q_toleransi_digital",
+        "question": "Mengapa sikap toleransi penting dalam interaksi online?",
+        "type": "multiple_choice",
+        "options": [
+            "Agar terlihat baik",
+            "Menciptakan lingkungan yang positif dan inklusif",
+            "Meningkatkan jumlah teman",
+            "Tidak ada alasan khusus"
+        ],
+        "answer": "Menciptakan lingkungan yang positif dan inklusif",
+        "feedback": "Tepat! Toleransi membantu membangun komunitas online yang harmonis."
+    }
+]
