@@ -477,9 +477,17 @@
             <button id="submit-answer-btn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 shadow-md">
                 Submit Jawaban
             </button>
-            <p id="feedback-text" class="text-base sm:text-lg font-semibold mt-4"></p>
-            <button id="continue-game-btn" class="bg-green-500 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus="ring-green-300 transition-transform hover:scale-105 mt-4 hidden">
-                Lanjutkan Permainan
+            <!-- feedbackText dan continueGameBtn dipindahkan ke modal baru -->
+        </div>
+    </div>
+
+    <!-- Modal BARU untuk Feedback Pertanyaan -->
+    <div id="feedback-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="feedback-title" class="text-xl sm:text-2xl font-bold text-slate-800 mb-4"></h2>
+            <p id="feedback-message" class="text-base sm:text-lg text-slate-700 mb-6"></p>
+            <button id="close-feedback-btn" class="bg-blue-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-transform hover:scale-105">
+                Oke, Lanjutkan
             </button>
         </div>
     </div>

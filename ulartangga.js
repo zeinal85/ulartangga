@@ -28,18 +28,27 @@ let ethicsMessages = { ladders: [], snakes: [] }; // Inisialisasi sebagai objek 
 const materialConfigs = {
     'literasi_digital': {
         name: 'Literasi Digital',
-        questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
-        ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
+        //questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
+        //ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/c89e79fedc82e926c0f7af87781a1dd4d1fcdfcf/questions_etika.json',
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
+
     },
     'sejarah': {
         name: 'Sejarah',
-        questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
-        ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
+        //questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
+        //ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/335a9858ec9eb005ea6aaef6a0ae6204227dc394/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/9677f8fc278fe51d7b5654fe99bd485b449d8c78/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+
     },
-    'sains': {
-	name: 'Sains',
-	questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
-	ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
+	'sains': {
+		name: 'Sains',
+		//questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
+		//ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/6204328a3c721dd0ab20af708fee010c6b7de0e2/questions_sains.json',
+		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
+
     },
     // Tambahkan materi lain di sini sesuai kebutuhan
 };
@@ -103,8 +112,15 @@ const questionText = document.getElementById('question-text');
 const questionOptions = document.getElementById('question-options');
 const questionInput = document.getElementById('question-input');
 const submitAnswerBtn = document.getElementById('submit-answer-btn');
-const feedbackText = document.getElementById('feedback-text');
-const continueGameBtn = document.getElementById('continue-game-btn');
+// feedbackText dan continueGameBtn DIPINDAHKAN ke modal baru
+// const feedbackText = document.getElementById('feedback-text');
+// const continueGameBtn = document.getElementById('continue-game-btn');
+
+// Referensi elemen modal feedback BARU
+const feedbackModal = document.getElementById('feedback-modal');
+const feedbackTitle = document.getElementById('feedback-title');
+const feedbackMessage = document.getElementById('feedback-message');
+const closeFeedbackBtn = document.getElementById('close-feedback-btn');
 
 // Referensi elemen modal pesan etika digital baru
 const ethicsMessageModal = document.getElementById('ethics-message-modal');
@@ -164,8 +180,14 @@ async function initGame() {
     winnerModal.classList.remove('show'); // Sembunyikan modal pemenang
     questionModal.classList.remove('show'); // Sembunyikan modal pertanyaan
     ethicsMessageModal.classList.remove('show'); // Pastikan modal etika juga tersembunyi
+    feedbackModal.classList.remove('show'); // Pastikan modal feedback juga tersembunyi
     diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">🎲</span>`;
     updateDiceUI(); // Panggil ini untuk menampilkan UI dadu yang benar saat inisialisasi
+
+    // Fokus ke papan permainan setelah memulai game dengan sedikit delay
+    setTimeout(() => {
+        gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 50); // Delay 50ms untuk memastikan elemen sudah dirender
 }
 
 /**
@@ -630,8 +652,8 @@ function showQuestionModal(questionData) {
     questionText.textContent = questionData.question;
     questionOptions.innerHTML = '';
     questionInput.value = '';
-    feedbackText.textContent = '';
-    continueGameBtn.classList.add('hidden');
+    // feedbackText.textContent = ''; // Dipindahkan ke modal feedback
+    // continueGameBtn.classList.add('hidden'); // Dipindahkan ke modal feedback
     submitAnswerBtn.classList.remove('hidden');
 
     if (questionData.type === 'text_input') {
@@ -689,6 +711,7 @@ submitAnswerBtn.addEventListener('click', async () => {
     }
 
     let isCorrect = false;
+    let feedbackMessageText = "";
 
     // Logika pemeriksaan jawaban yang diperbarui
     if (currentQuestion.type === 'text_input') {
@@ -696,9 +719,6 @@ submitAnswerBtn.addEventListener('click', async () => {
         if (Array.isArray(currentQuestion.answer)) {
             const normalizedUserAnswer = userAnswer.toLowerCase();
             isCorrect = currentQuestion.answer.some(ans => ans.toLowerCase() === normalizedUserAnswer);
-            // Anda juga bisa menambahkan logika yang lebih kompleks di sini
-            // Misalnya: memecah jawaban pengguna menjadi kata kunci dan memeriksa apakah
-            // semua kata kunci yang diharapkan ada dalam jawaban, dll.
         } else {
             isCorrect = userAnswer.toLowerCase() === currentQuestion.answer.toLowerCase();
         }
@@ -725,59 +745,94 @@ submitAnswerBtn.addEventListener('click', async () => {
     }
 
     if (isCorrect) {
-        feedbackText.textContent = "Benar! " + (currentQuestion.feedback || "") + " Anda maju 1 langkah!";
-        feedbackText.classList.remove('text-red-500');
-        feedbackText.classList.add('text-green-600');
+        feedbackMessageText = "Benar! " + (currentQuestion.feedback || "") + " Anda maju 1 langkah!";
         pendingQuestionMoveSteps = 1; // Simpan langkah maju
     } else {
-        feedbackText.textContent = `Salah. Jawaban yang benar adalah: ${Array.isArray(currentQuestion.answer) ? currentQuestion.answer.join(" / ") : currentQuestion.answer}. ` + (currentQuestion.feedback || "") + " Anda mundur 1 langkah!";
-        feedbackText.classList.remove('text-green-600');
-        feedbackText.classList.add('text-red-500');
+        feedbackMessageText = `Salah. Jawaban yang benar adalah: ${Array.isArray(currentQuestion.answer) ? currentQuestion.answer.join(" / ") : currentQuestion.answer}. ` + (currentQuestion.feedback || "") + " Anda mundur 1 langkah!";
         pendingQuestionMoveSteps = -1; // Simpan langkah mundur
     }
 
     submitAnswerBtn.classList.add('hidden');
-    continueGameBtn.classList.remove('hidden');
+    // continueGameBtn.classList.remove('hidden'); // Dipindahkan ke modal feedback
     questionInput.disabled = true;
     document.querySelectorAll('input[name="question-option"]').forEach(input => input.disabled = true);
+
+    // TUTUP MODAL PERTANYAAN, LALU TAMPILKAN MODAL FEEDBACK
+    questionModal.classList.remove('show');
+    await showFeedbackModal(isCorrect ? "Jawaban Benar!" : "Jawaban Salah!", feedbackMessageText, pendingQuestionMoveSteps);
 });
 
+// continueGameBtn.addEventListener('click', async () => { /* Logic ini sekarang ada di showFeedbackModal */ });
+
+
+// --- FUNGSI MODAL FEEDBACK PERTANYAAN BARU ---
 /**
- * Melanjutkan permainan setelah pertanyaan dijawab dan memicu pergerakan bidak.
+ * Menampilkan modal feedback setelah pertanyaan dijawab.
+ * @param {string} title - Judul feedback (misal: "Jawaban Benar!" atau "Jawaban Salah!").
+ * @param {string} message - Detail pesan feedback.
+ * @param {number} moveSteps - Jumlah langkah yang akan diambil setelah feedback (positif untuk maju, negatif untuk mundur).
  */
-continueGameBtn.addEventListener('click', async () => {
-    questionModal.classList.remove('show'); // Modal ditutup
-    waitingForAnswer = false;
+async function showFeedbackModal(title, message, moveSteps) {
+    feedbackTitle.textContent = title;
+    feedbackMessage.textContent = message;
 
-    // Lakukan pergerakan bidak berdasarkan pendingQuestionMoveSteps setelah modal tertutup
-    if (pendingQuestionMoveSteps !== 0) {
-        let newPosition = playerPositions[currentPlayer] + pendingQuestionMoveSteps;
-        // Pastikan posisi tidak melebihi BOARD_SIZE atau kurang dari 0
-        playerPositions[currentPlayer] = Math.min(Math.max(newPosition, 0), BOARD_SIZE);
-        updatePlayerPositionUI(currentPlayer); // Update posisi visual
-        pendingQuestionMoveSteps = 0; // Reset langkah tertunda
-        await new Promise(resolve => setTimeout(resolve, 500)); // Beri jeda singkat untuk animasi bidak
+    if (moveSteps > 0) {
+        feedbackTitle.classList.remove('text-red-500');
+        feedbackTitle.classList.add('text-green-600');
+        feedbackMessage.classList.remove('text-red-500');
+        feedbackMessage.classList.add('text-green-600');
+    } else if (moveSteps < 0) {
+        feedbackTitle.classList.remove('text-green-600');
+        feedbackTitle.classList.add('text-red-500');
+        feedbackMessage.classList.remove('text-green-600');
+        feedbackMessage.classList.add('text-red-500');
+    } else {
+        feedbackTitle.classList.remove('text-green-600', 'text-red-500');
+        feedbackMessage.classList.remove('text-green-600', 'text-red-500');
+        feedbackTitle.classList.add('text-slate-800'); // Warna default
+        feedbackMessage.classList.add('text-slate-700'); // Warna default
     }
-    
-    // Reset elemen modal
-    questionInput.value = '';
-    questionInput.disabled = false;
-    questionOptions.innerHTML = '';
-    feedbackText.textContent = '';
-    currentQuestionData = null; // Reset data pertanyaan setelah digunakan
 
-    // Jika hasil dadu terakhir bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
-    if (lastDiceRollResult !== 6 || consecutiveSixes >= 3) {
-        switchPlayer();
-        consecutiveSixes = 0; // Reset penghitung 6 untuk pemain berikutnya
-        lastPlayerMoved = null; // Reset setelah giliran beralih atau selesai
-        lastDiceRollResult = null; // Reset hasil dadu terakhir
-    } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
-        infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
-        turnInfo.textContent = "Silakan kocok dadu lagi.";
-    }
-    updateDiceUI(); // Aktifkan tombol dadu kembali sesuai tipe, yang juga akan mengelola visibilitas tombol batal
-});
+    feedbackModal.classList.add('show');
+    waitingForAnswer = true; // Tetap anggap sedang menunggu jawaban hingga modal feedback ditutup
+    cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal saat modal aktif
+
+    return new Promise(resolve => {
+        closeFeedbackBtn.onclick = async () => {
+            feedbackModal.classList.remove('show');
+            waitingForAnswer = false; // Lanjutkan permainan
+
+            // Lakukan pergerakan bidak berdasarkan pendingQuestionMoveSteps setelah modal tertutup
+            if (moveSteps !== 0) {
+                let newPosition = playerPositions[currentPlayer] + moveSteps;
+                // Pastikan posisi tidak melebihi BOARD_SIZE atau kurang dari 0
+                playerPositions[currentPlayer] = Math.min(Math.max(newPosition, 0), BOARD_SIZE);
+                updatePlayerPositionUI(currentPlayer); // Update posisi visual
+                await new Promise(resolveMove => setTimeout(resolveMove, 500)); // Beri jeda singkat untuk animasi bidak
+            }
+            
+            // Reset elemen modal pertanyaan
+            questionInput.value = '';
+            questionInput.disabled = false;
+            questionOptions.innerHTML = '';
+            currentQuestionData = null; // Reset data pertanyaan setelah digunakan
+
+            // Jika hasil dadu terakhir bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
+            if (lastDiceRollResult !== 6 || consecutiveSixes >= 3) {
+                switchPlayer();
+                consecutiveSixes = 0; // Reset penghitung 6 untuk pemain berikutnya
+                lastPlayerMoved = null; // Reset setelah giliran beralih atau selesai
+                lastDiceRollResult = null; // Reset hasil dadu terakhir
+            } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
+                infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
+                turnInfo.textContent = "Silakan kocok dadu lagi.";
+            }
+            updateDiceUI(); // Aktifkan tombol dadu kembali sesuai tipe, yang juga akan mengelola visibilitas tombol batal
+            resolve();
+        };
+    });
+}
+
 
 // --- FUNGSI MODAL PESAN ETIKA DIGITAL BARU ---
 /**
@@ -880,7 +935,7 @@ async function loadGameContent(materialKey) {
 
         // cellQuestionMap tidak lagi diisi dengan pertanyaan tetap
         // Pertanyaan akan dipilih acak saat pemain mendarat di triggerCell.
-        cellQuestionMap = {}; // Ini tetap dideklarasikan tapi tidak digunakan untuk pemetaan statis.
+        let cellQuestionMap = {}; // Ini tetap dideklarasikan tapi tidak digunakan untuk pemetaan statis.
 
         console.log(`Bank Soal (${config.name}) Dimuat:`, questionBank);
         console.log("Peta Sel Pertanyaan (tidak lagi statis):", cellQuestionMap);
@@ -933,6 +988,10 @@ function toggleFullscreen() {
             document.msExitFullscreen();
         }
     }
+    // Setelah permintaan fullscreen (baik masuk atau keluar), fokus ke papan permainan dengan sedikit delay
+    setTimeout(() => {
+        gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 50); // Delay 50ms untuk memastikan elemen sudah dirender
 }
 
 // --- EVENT LISTENERS GLOBAL ---
@@ -998,7 +1057,7 @@ function initSetupScreen() {
     for (const key in materialConfigs) {
         const option = document.createElement('option');
         option.value = key;
-        option.textContent = materialConfigs[key].name;
+        option.textContent = materialConfigs[key].name; 
         materialSelect.appendChild(option);
     }
     // Set opsi yang dipilih ke materi default atau yang terakhir dipilih
