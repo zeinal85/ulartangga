@@ -19,6 +19,11 @@
             touch-action: manipulation;
             background-color: #f0f4f8; /* General background color */
             padding: 0; /* Remove default padding on body for mobile */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Adjusting body padding for larger screens */
@@ -48,6 +53,7 @@
             overflow: hidden; /* Important for maintaining rounded corners */
             position: relative; /* For piece placement */
             width: 100%; /* Ensure board takes full width of its parent */
+            height: 100%; /* Ensure board takes full height of its parent */
             max-width: 100%; /* Ensure it doesn't exceed container width */
         }
 
@@ -353,52 +359,63 @@
         }
 
         /* --- NEW: LANDSCAPE ORIENTATION STYLES FOR MOBILE/TABLET --- */
-        /* Apply desktop-like layout for screens up to 1023px (i.e., not large desktop)
-           when in landscape orientation. */
+        /* This media query targets screens with max-width of 1023px (mobile/tablet)
+           when they are in landscape orientation. */
         @media (max-width: 1023px) and (orientation: landscape) {
             body {
-                padding: 0.5rem; /* Slightly reduced padding to maximize space */
+                padding: 0.5rem; /* Add a little padding to the edges */
+                overflow: hidden; /* Prevent scrolling if content overflows */
             }
 
             .main-game-wrapper {
-                flex-direction: row; /* Change to side-by-side layout */
-                gap: 1rem; /* Moderate gap between board and controls */
-                padding: 0.5rem; /* Add padding to the wrapper */
-                max-width: 100vw; /* Allow it to take full viewport width on landscape */
-                height: 95vh; /* Take most of the viewport height */
-                align-items: center; /* Center items vertically in row layout */
-                justify-content: center; /* Center items horizontally */
-                overflow: hidden; /* Hide overflow to prevent scrolling */
+                flex-direction: row; /* Layout board and controls side-by-side */
+                gap: 1rem; /* Space between board and controls */
+                padding: 0.5rem; /* Internal padding for the wrapper */
+                width: 100%; /* Take full width of body */
+                height: calc(100vh - 2rem); /* Take most of the viewport height (adjust -2rem for header/footer) */
+                max-width: 100vw; /* Ensure it uses full viewport width */
+                align-items: center; /* Vertically center content */
+                justify-content: center; /* Horizontally center content */
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Re-add shadow for landscape */
+                background-color: white; /* Re-add background for landscape */
+                border-radius: 1rem; /* Re-add border-radius for landscape */
             }
 
             .board-column {
-                flex: 2; /* Allocate more space to the board */
-                padding: 0.2rem; /* Reduce padding slightly */
-                width: auto; /* Let flex control width */
-                height: 100%; /* Take full height of wrapper */
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                flex: 2; /* Allocate more space to the board (e.g., 2/3 of available space) */
+                padding: 0.2rem; /* Minimal padding around the board */
+                width: auto; /* Let flex determine width */
+                height: 100%; /* Take full height of main-game-wrapper */
+                display: flex; /* Use flex to center content inside */
+                align-items: center; /* Center game-container vertically */
+                justify-content: center; /* Center game-container horizontally */
             }
             #game-container {
-                max-height: 100%; /* Limit board height to fit vertical space */
-                width: auto; /* Let width adjust based on height and aspect-ratio */
-                height: 100%; /* Occupy available height */
+                /* Ensure game-container maintains aspect ratio and fits within board-column */
+                width: 100%; /* Fill available width in board-column */
+                height: auto; /* Let height adjust based on aspect ratio */
+                max-height: 100%; /* Crucial: prevent it from exceeding board-column's height */
+            }
+            /* Explicitly ensure #game-board fills its container */
+            #game-board {
+                width: 100%;
+                height: 100%;
             }
 
 
             .control-column {
-                flex: 1; /* Allocate less space to controls */
+                flex: 1; /* Allocate less space to controls (e.g., 1/3 of available space) */
                 padding: 0.5rem; /* Adjust padding for controls */
                 min-width: 150px; /* Ensure minimum width for controls */
                 max-width: 35vw; /* Max width for controls in landscape */
-                height: 100%; /* Take full height of wrapper */
+                height: 100%; /* Take full height of main-game-wrapper */
                 display: flex;
-                flex-direction: column;
-                justify-content: space-between; /* Distribute content */
+                flex-direction: column; /* Stack controls vertically */
+                justify-content: space-between; /* Distribute controls top to bottom */
+                overflow-y: auto; /* Allow vertical scrolling if controls exceed height */
             }
 
-            /* Further adjustments for smaller elements in control panel for better fit */
+            /* Adjustments for smaller elements in control panel for better fit */
             #info-panel {
                 padding: 0.5rem; /* Smaller padding for info panel */
             }
@@ -430,8 +447,9 @@
                 font-size: 0.75rem;
                 margin-bottom: 0.2rem;
             }
+            /* Reduce general margins for elements within control-column */
             .control-column .mb-4, .control-column .mb-6, .control-column .my-4 {
-                margin-bottom: 0.5rem !important; /* Reduce general margins */
+                margin-bottom: 0.5rem !important;
                 margin-top: 0.5rem !important;
             }
             .control-column label {
