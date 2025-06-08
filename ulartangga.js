@@ -8,6 +8,9 @@ const snakesAndLaddersMap = {
     36: 4, 34: 13, 67: 36, 83: 45, 61: 42, 74: 53, 94: 87 // Ular
 };
 
+// Variabel triggerCells yang sekarang berada di bagian konfigurasi global
+const triggerCells = [3, 7, 11, 15, 18, 22, 25, 30, 32, 35, 40, 45, 48, 50, 55, 58, 60, 65, 70, 72, 79, 80, 85, 90, 92, 95, 98];
+
 const playerColors = ['bg-red-700', 'bg-blue-700', 'bg-green-700', 'bg-yellow-700'];
 const additionalPlayerColors = ['bg-purple-700', 'bg-orange-700'];
 
@@ -34,9 +37,16 @@ const ETHICS_URL = './pesan.json';
 let playerPositions;
 let currentPlayer;
 let gameActive;
-let hasRolled6;
 let diceType = 'digital'; // Default ke dadu digital
 let waitingForAnswer = false; // State baru untuk menunggu jawaban pertanyaan
+let consecutiveSixes = 0; // State baru: Menghitung angka 6 berturut-turut
+
+// State baru untuk fitur "Batalkan"
+let previousPlayerPosition = Array(4).fill(0); // Menyimpan posisi pemain sebelumnya per pemain
+let lastPlayerMoved = null; // Menyimpan indeks pemain yang terakhir bergerak sebelum gerakan
+let lastDiceRollResult = null; // Menyimpan hasil dadu terakhir yang menggerakkan pemain
+let actionInProgress = false; // Mencegah interaksi saat animasi atau modal aktif
+
 
 // --- REFERENSI ELEMEN DOM ---
 
@@ -72,6 +82,10 @@ const ethicsMessageModal = document.getElementById('ethics-message-modal');
 const ethicsMessageText = document.getElementById('ethics-message-text');
 const closeEthicsMessageBtn = document.getElementById('close-ethics-message-btn');
 
+// Referensi elemen baru: Bagian jumlah pemain dan tombol batal
+const playerCountSection = document.getElementById('player-count-section');
+const cancelRollBtn = document.getElementById('cancel-roll-btn');
+
 
 // --- FUNGSI UTAMA PERMAINAN ---
 
@@ -83,13 +97,20 @@ function initGame() {
     playerPositions = Array(PLAYER_COUNT).fill(0); // Posisi 0 = start
     currentPlayer = 0;
     gameActive = true;
-    hasRolled6 = false;
     waitingForAnswer = false; // Pastikan ini direset
+    consecutiveSixes = 0; // Reset penghitung angka 6
+
+    // Reset state untuk fitur "Batalkan"
+    previousPlayerPosition = Array(PLAYER_COUNT).fill(0);
+    lastPlayerMoved = null;
+    lastDiceRollResult = null;
+    actionInProgress = false;
+
 
     // Bersihkan dan buat papan permainan
     board.innerHTML = '';
     playerPiecesContainer.innerHTML = '';
-    createBoard();
+    createBoard(); // Pastikan createBoard dipanggil untuk membuat papan dan indikator
     createPlayerPieces();
     drawSnakesAndLadders();
 
@@ -104,6 +125,10 @@ function initGame() {
     ethicsMessageModal.classList.remove('show'); // Pastikan modal etika juga tersembunyi
     diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">🎲</span>`;
     updateDiceUI(); // Panggil ini untuk menampilkan UI dadu yang benar saat inisialisasi
+
+    // Tampilkan kembali bagian jumlah pemain saat game diinisialisasi ulang
+    playerCountSection.classList.remove('hidden');
+    cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal saat inisialisasi
 }
 
 /**
@@ -117,6 +142,16 @@ function createBoard() {
         cell.classList.add('cell');
         cell.id = `cell-${i}`;
         cell.dataset.number = i;
+
+        // Tambahkan indikator visual untuk sel pertanyaan
+        if (triggerCells.includes(i)) {
+            cell.classList.add('question-cell-indicator'); // Class baru untuk styling
+            const questionIcon = document.createElement('span');
+            questionIcon.textContent = '❓'; // Emoji tanda tanya
+            questionIcon.classList.add('absolute', 'top-1', 'left-1', 'text-xl', 'opacity-75'); // Gaya dasar Tailwind
+            cell.appendChild(questionIcon);
+        }
+
         cells.push(cell);
     }
 
@@ -168,7 +203,12 @@ function drawSnakesAndLadders() {
  * Event handler saat tombol "Kocok Dadu" ditekan (untuk dadu digital).
  */
 async function handleRollDiceDigital() {
-    if (!gameActive || waitingForAnswer) return;
+    if (!gameActive || waitingForAnswer || actionInProgress) return;
+    actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
+
+    // Sembunyikan bagian jumlah pemain saat dadu dikocok
+    playerCountSection.classList.add('hidden');
+    cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan tombol batal untuk dadu digital
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
@@ -184,39 +224,67 @@ async function handleRollDiceDigital() {
 
     infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat ${diceResult}`;
 
-    hasRolled6 = diceResult === 6;
+    // Simpan state sebelum bergerak untuk fitur "Batalkan"
+    lastPlayerMoved = currentPlayer;
+    previousPlayerPosition[currentPlayer] = playerPositions[currentPlayer];
+    lastDiceRollResult = diceResult; // Simpan hasil dadu terakhir
+
+    // Logika angka 6 berturut-turut
+    if (diceResult === 6) {
+        consecutiveSixes++;
+    } else {
+        consecutiveSixes = 0; // Reset jika bukan 6
+    }
 
     await movePlayer(diceResult);
 
-    if (!gameActive) return;
+    if (!gameActive) {
+        actionInProgress = false; // Reset flag
+        return;
+    }
 
     if (cellQuestionMap[playerPositions[currentPlayer]]) {
         waitingForAnswer = true;
         disableDiceButtons();
+        cancelRollBtn.classList.add('hidden'); // Pastikan batal tersembunyi jika ada pertanyaan
         const questionId = cellQuestionMap[playerPositions[currentPlayer]];
         showQuestionModal(questionBank[questionId]);
     } else {
-        if (!hasRolled6) {
+        // Jika hasil dadu bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
+        if (diceResult !== 6 || consecutiveSixes >= 3) {
             switchPlayer();
-        } else {
-            infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi!`;
+            consecutiveSixes = 0; // Reset penghitung untuk pemain berikutnya
+            updateDiceUI(); // Re-enable dice buttons for the new player
+            updateTurnInfo();
+        } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
+            infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
             turnInfo.textContent = "Silakan kocok dadu lagi.";
+            rollDiceBtn.disabled = false; // Biarkan tombol dadu digital aktif
         }
-        rollDiceBtn.disabled = false;
+        // Tombol batal tidak akan muncul di mode digital, jadi tidak perlu penyesuaian di sini.
     }
+    actionInProgress = false; // Reset flag
 }
 
 /**
  * Event handler saat tombol "Submit Hasil Dadu" ditekan (untuk dadu fisik).
  */
 async function handleSubmitPhysicalRoll() {
-    if (!gameActive || waitingForAnswer) return;
+    if (!gameActive || waitingForAnswer || actionInProgress) return;
+    actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
+
+    playerCountSection.classList.add('hidden');
+    // Tombol batal seharusnya sudah terlihat karena di mode fisik (diatur di updateDiceUI)
 
     const diceResult = parseInt(physicalDiceResultInput.value, 10);
 
+    // Validasi input: Pastikan angka antara 1 dan 6.
     if (isNaN(diceResult) || diceResult < 1 || diceResult > 6) {
         displayMessage("Input Tidak Valid!", "Hasil dadu harus angka antara 1 dan 6.");
-        return;
+        physicalDiceResultInput.disabled = false; // Biarkan input aktif agar bisa dikoreksi
+        submitPhysicalRollBtn.disabled = false; // Biarkan submit aktif
+        actionInProgress = false; // Reset flag
+        return; // Hentikan proses, pemain harus mengoreksi input
     }
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -225,34 +293,55 @@ async function handleSubmitPhysicalRoll() {
 
     infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} memasukkan ${diceResult}`;
 
-    hasRolled6 = diceResult === 6;
+    // Simpan state sebelum bergerak untuk fitur "Batalkan"
+    lastPlayerMoved = currentPlayer;
+    previousPlayerPosition[currentPlayer] = playerPositions[currentPlayer];
+    lastDiceRollResult = diceResult; // Simpan hasil dadu terakhir
 
-    disableDiceButtons();
+    // Logika angka 6 berturut-turut
+    if (diceResult === 6) {
+        consecutiveSixes++;
+    } else {
+        consecutiveSixes = 0; // Reset jika bukan 6
+    }
 
-    await movePlayer(diceResult);
+    disableDiceButtons(); // Nonaktifkan tombol dadu setelah submit, tombol batal tidak terpengaruh
 
-    if (!gameActive) return;
+    await movePlayer(diceResult); // Pindahkan bidak
+
+    if (!gameActive) {
+        actionInProgress = false; // Reset flag
+        return;
+    }
 
     if (cellQuestionMap[playerPositions[currentPlayer]]) {
         waitingForAnswer = true;
-        disableDiceButtons();
+        disableDiceButtons(); // nonaktifkan tombol dadu dan submit
+        cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal jika ada pertanyaan
         const questionId = cellQuestionMap[playerPositions[currentPlayer]];
         showQuestionModal(questionBank[questionId]);
     } else {
-        if (!hasRolled6) {
+        // Jika hasil dadu bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
+        if (diceResult !== 6 || consecutiveSixes >= 3) {
             switchPlayer();
-        } else {
-            infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi!`;
+            consecutiveSixes = 0; // Reset penghitung untuk pemain berikutnya
+            updateDiceUI(); // Re-enable dice buttons for the new player
+            updateTurnInfo();
+        } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
+            infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
             turnInfo.textContent = "Silakan masukkan hasil dadu lagi.";
+            physicalDiceResultInput.disabled = false;
+            submitPhysicalRollBtn.disabled = false;
+            physicalDiceResultInput.value = '';
+            // Tombol batal tetap terlihat karena sudah diatur oleh updateDiceUI()
         }
-        physicalDiceResultInput.disabled = false;
-        submitPhysicalRollBtn.disabled = false;
-        physicalDiceResultInput.value = '';
     }
+    actionInProgress = false; // Reset flag
 }
 
 /**
  * Fungsi untuk menonaktifkan semua tombol dan input dadu.
+ * Tombol 'Batalkan' tidak dinonaktifkan oleh fungsi ini.
  */
 function disableDiceButtons() {
     rollDiceBtn.disabled = true;
@@ -270,7 +359,11 @@ async function movePlayer(steps) {
 
     if (targetPosition > BOARD_SIZE) {
         displayMessage("Angka Terlalu Besar!", "Hasil dadu harus pas 100!");
-        updateDiceUI();
+        // Jika langkah tidak valid, batalkan penyimpanan state untuk "Batalkan"
+        lastPlayerMoved = null;
+        previousPlayerPosition[currentPlayer] = 0; // Reset ke default
+        lastDiceRollResult = null;
+        updateDiceUI(); // Mengaktifkan kembali input dadu fisik/digital
         return;
     }
 
@@ -323,9 +416,8 @@ function switchPlayer() {
 function endGame() {
     gameActive = false;
     disableDiceButtons();
-    winnerText.textContent = `Pemain ${currentPlayer + 1} Menang!`;
-
     winnerModal.classList.add('show');
+    winnerText.textContent = `Pemain ${currentPlayer + 1} Menang!`;
 }
 
 /**
@@ -358,11 +450,26 @@ function displayMessage(title, message) {
 function updateTurnInfo() {
     infoPanelTitle.textContent = `Giliran Pemain ${currentPlayer + 1}`;
     if (!waitingForAnswer) {
-        turnInfo.textContent = `Silakan ${diceType === 'digital' ? 'kocok dadu' : 'masukkan hasil dadu fisik'}.`;
-    } else {
+        let dicePrompt = '';
+        if (diceType === 'digital') {
+            dicePrompt = 'kocok dadu';
+            cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan di mode digital
+        } else {
+            dicePrompt = 'masukkan hasil dadu fisik';
+            // Tampilkan tombol batal hanya jika ada langkah sebelumnya yang bisa dibatalkan
+            if (lastPlayerMoved !== null) {
+                cancelRollBtn.classList.remove('hidden');
+            } else {
+                cancelRollBtn.classList.add('hidden');
+            }
+        }
+        turnInfo.textContent = `Silakan ${dicePrompt}.`;
+    } else { // waitingForAnswer is true (modal sedang aktif)
         turnInfo.textContent = "Jawab pertanyaan untuk melanjutkan!";
+        cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan jika modal aktif
     }
 }
+
 
 /**
  * Memperbarui posisi visual SEMUA bidak (dipakai saat inisialisasi).
@@ -431,12 +538,19 @@ function updateDiceUI() {
         rollDiceBtn.classList.remove('hidden');
         rollDiceBtn.disabled = false;
         physicalDiceInputContainer.classList.add('hidden');
-    } else {
+        cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal di mode digital
+    } else { // diceType is 'physical'
         rollDiceBtn.classList.add('hidden');
         physicalDiceInputContainer.classList.remove('hidden');
         physicalDiceResultInput.value = '';
         physicalDiceResultInput.disabled = false;
         submitPhysicalRollBtn.disabled = false;
+        // Tampilkan tombol batal hanya jika ada langkah sebelumnya yang bisa dibatalkan
+        if (lastPlayerMoved !== null) {
+            cancelRollBtn.classList.remove('hidden');
+        } else {
+            cancelRollBtn.classList.add('hidden');
+        }
     }
 }
 
@@ -478,13 +592,14 @@ function showQuestionModal(questionData) {
 
     questionModal.classList.add('show');
     updateTurnInfo();
-    disableDiceButtons();
+    disableDiceButtons(); // Nonaktifkan tombol dadu/submit
+    cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal saat modal aktif
 }
 
 /**
  * Menangani submit jawaban pertanyaan.
  */
-submitAnswerBtn.addEventListener('click', async () => { // Make function async to use await
+submitAnswerBtn.addEventListener('click', async () => {
     const currentQuestionId = cellQuestionMap[playerPositions[currentPlayer]];
     const currentQuestion = questionBank[currentQuestionId];
     let userAnswer;
@@ -547,13 +662,17 @@ continueGameBtn.addEventListener('click', () => {
     questionOptions.innerHTML = '';
     feedbackText.textContent = '';
 
-    if (!hasRolled6) {
+    // Jika hasil dadu terakhir bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
+    if (lastDiceRollResult !== 6 || consecutiveSixes >= 3) {
         switchPlayer();
-    } else {
-        infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi!`;
+        consecutiveSixes = 0; // Reset penghitung 6 untuk pemain berikutnya
+        lastPlayerMoved = null; // Reset setelah giliran beralih atau selesai
+        lastDiceRollResult = null; // Reset hasil dadu terakhir
+    } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
+        infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
         turnInfo.textContent = "Silakan kocok dadu lagi.";
     }
-    updateDiceUI();
+    updateDiceUI(); // Aktifkan tombol dadu kembali sesuai tipe, yang juga akan mengelola visibilitas tombol batal
 });
 
 // --- FUNGSI MODAL PESAN ETIKA DIGITAL BARU ---
@@ -565,14 +684,48 @@ async function showEthicsMessageModal(message) {
     ethicsMessageText.textContent = message;
     ethicsMessageModal.classList.add('show');
     waitingForAnswer = true; // Menghentikan permainan sementara
+    cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan tombol batal saat modal etika muncul
 
     return new Promise(resolve => {
         closeEthicsMessageBtn.onclick = () => {
             ethicsMessageModal.classList.remove('show');
             waitingForAnswer = false; // Lanjutkan permainan
+            updateDiceUI(); // Perbarui UI dadu (termasuk tombol batal) setelah modal ditutup
             resolve();
         };
     });
+}
+
+// --- FUNGSI BARU UNTUK TOMBOL "BATALKAN" ---
+async function handleCancelRoll() {
+    // Memeriksa apakah game aktif, tidak sedang menunggu jawaban, ada langkah yang bisa dibatalkan, dan tidak ada aksi lain berlangsung
+    if (!gameActive || waitingForAnswer || lastPlayerMoved === null || actionInProgress) {
+        return;
+    }
+    actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
+
+    // Tampilkan pesan pembatalan
+    infoPanelTitle.textContent = `Pembatalan Gerakan!`;
+    turnInfo.textContent = `Pemain ${lastPlayerMoved + 1} kembali ke posisi sebelumnya.`;
+
+    // Kembalikan posisi pemain yang terakhir bergerak
+    playerPositions[lastPlayerMoved] = previousPlayerPosition[lastPlayerMoved];
+    updatePlayerPositionUI(lastPlayerMoved);
+
+    // Beri jeda singkat untuk melihat pergerakan kembali
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Kembalikan giliran ke pemain yang langkahnya dibatalkan
+    currentPlayer = lastPlayerMoved;
+    consecutiveSixes = 0; // Reset consecutiveSixes karena langkah dibatalkan
+
+    // Reset state untuk fitur "Batalkan"
+    lastPlayerMoved = null; // Reset agar tidak bisa dibatalkan lagi
+    lastDiceRollResult = null; // Reset hasil dadu terakhir setelah dibatalkan
+
+    updateTurnInfo(); // Perbarui informasi giliran
+    updateDiceUI(); // Aktifkan kembali tombol dadu dan kelola visibilitas tombol batal
+    actionInProgress = false; // Reset flag
 }
 
 
@@ -580,7 +733,7 @@ async function showEthicsMessageModal(message) {
 /**
  * Memuat pertanyaan dan pesan etika digital dari URL eksternal dan menginisialisasi game.
  */
-async function loadGameContent() { // Fungsi diubah nama dari loadQuestions
+async function loadGameContent() {
     infoPanelTitle.textContent = "Memuat Konten Game...";
     turnInfo.textContent = "Mohon tunggu (bank soal & etika digital dari database)..."; // Pesan loading diperbarui
     disableDiceButtons(); // Nonaktifkan tombol saat memuat
@@ -608,12 +761,9 @@ async function loadGameContent() { // Fungsi diubah nama dari loadQuestions
         ethicsMessages.snakes = ethicsData.snakes;
 
         cellQuestionMap = {};
-        if (questionsArray.length > 0) {
+        if (questionsArray.length > 0) { // Hanya isi cellQuestionMap jika ada pertanyaan yang dimuat
             let questionIndex = 0;
-            // Daftar sel pemicu. Anda bisa mengatur ini secara dinamis
-            // atau mengaturnya secara hardcode sesuai kebutuhan Anda.
-            const triggerCells = [3, 7, 11, 15, 18, 22, 25, 30, 32, 35, 40, 45, 48, 50, 55, 58, 60, 65, 70, 72, 79, 80, 85, 90, 92, 95, 98];
-
+            // Menggunakan triggerCells yang sudah dideklarasikan di bagian konfigurasi global di atas
             triggerCells.forEach(cellNum => {
                 if (questionsArray[questionIndex] && questionBank[questionsArray[questionIndex].id]) {
                     cellQuestionMap[cellNum] = questionsArray[questionIndex].id;
@@ -635,7 +785,7 @@ async function loadGameContent() { // Fungsi diubah nama dari loadQuestions
         disableDiceButtons();
 
         infoPanelTitle.textContent = "Gagal Memuat Game!";
-        turnInfo.textContent = "Game tidak dapat dimulai. Tidak dapat memuat konten game (pertanyaan atau pesan etika) dari database. Periksa URL Anda atau koneksi internet.";
+        turnInfo.textContent = "Game tidak dapat dimulai karena konten gagal dimuat dari database. Periksa URL Anda atau koneksi internet.";
         displayMessage("Error Fatal!", "Game tidak dapat dimulai karena konten gagal dimuat dari database. Periksa URL Anda atau koneksi internet.");
     }
 }
@@ -645,6 +795,7 @@ rollDiceBtn.addEventListener('click', handleRollDiceDigital);
 submitPhysicalRollBtn.addEventListener('click', handleSubmitPhysicalRoll);
 restartBtn.addEventListener('click', initGame);
 playAgainBtn.addEventListener('click', initGame);
+cancelRollBtn.addEventListener('click', handleCancelRoll); // Tambahkan event listener untuk tombol batal
 
 setPlayersBtn.addEventListener('click', () => {
     const desiredPlayers = parseInt(playerCountInput.value, 10);
@@ -669,4 +820,4 @@ window.addEventListener('resize', () => {
 });
 
 // MULAI MEMUAT SOAL SAAT HALAMAN DIMUAT
-document.addEventListener('DOMContentLoaded', loadGameContent); // Fungsi diubah nama
+document.addEventListener('DOMContentLoaded', loadGameContent);
