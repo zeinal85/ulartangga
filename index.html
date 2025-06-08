@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Using box-sizing: border-box for all elements so padding and border do not add to element size */
+        /* Menggunakan box-sizing: border-box untuk semua elemen agar padding dan border tidak menambah ukuran elemen */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -17,24 +17,19 @@
         body {
             font-family: 'Inter', sans-serif;
             touch-action: manipulation;
-            background-color: #f0f4f8; /* General background color */
-            padding: 0; /* Remove default padding on body for mobile */
-            min-height: 100vh; /* Ensure body takes full viewport height */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background-color: #f0f4f8; /* Warna latar belakang umum */
+            padding: 0; /* Menghilangkan padding pada body secara default (mobile) */
         }
 
-        /* Adjusting body padding for larger screens */
+        /* Menyesuaikan padding body untuk layar yang lebih besar */
         @media (min-width: 640px) { /* sm breakpoint */
             body {
-                padding: 1rem; /* Add padding for sm screens and above */
+                padding: 1rem; /* Tambahkan padding untuk layar sm ke atas */
             }
         }
         @media (min-width: 1024px) { /* lg breakpoint */
             body {
-                padding: 2rem; /* Add padding for lg screens and above */
+                padding: 2rem; /* Tambahkan padding untuk layar lg ke atas */
             }
         }
         
@@ -44,24 +39,23 @@
             grid-template-rows: repeat(10, 1fr);
             border: 4px solid #94A3B8;
             aspect-ratio: 1 / 1;
-            background-image: url('ulartangga.jpeg'); /* Ensure this image is in the same folder */
+            background-image: url('ulartangga.jpeg'); /* Pastikan gambar ini ada di folder yang sama */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            border-radius: 15px; /* Keep rounded corners */
-            overflow: hidden; /* Important for maintaining rounded corners */
-            position: relative; /* For piece placement */
-            width: 100%; /* Ensure board takes full width of its parent */
-            height: 100%; /* Ensure board takes full height of its parent */
-            max-width: 100%; /* Ensure it doesn't exceed container width */
+            border-radius: 15px; /* Tetap pertahankan sudut membulat */
+            overflow: hidden; /* Penting untuk menjaga sudut membulat */
+            position: relative; /* Untuk penempatan bidak */
+            width: 100%; /* Memastikan papan mengambil lebar penuh dari parent-nya */
+            max-width: 100%; /* Memastikan tidak melebihi lebar kontainer */
         }
 
         .cell {
             display: flex;
             justify-content: flex-end;
             align-items: flex-start;
-            font-size: 0.75rem; /* Default font size for mobile */
+            font-size: 0.75rem; /* Ukuran font default untuk mobile */
             font-weight: 600;
             color: #64748b;
             padding: 2px;
@@ -71,7 +65,7 @@
             background-color: transparent; 
         }
 
-        /* Responsiveness for cell numbers */
+        /* Responsivitas untuk nomor sel */
         @media (min-width: 480px) { /* Extra small devices / small mobile */
             .cell {
                 font-size: 0.75rem; /* text-xs */
@@ -108,7 +102,7 @@
             border: 2px solid white;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
             transform-origin: center center;
-            font-size: 0.9rem; /* Default piece font size for mobile */
+            font-size: 0.9rem; /* Ukuran font bidak default untuk mobile */
         }
 
         @media (max-width: 768px) {
@@ -116,7 +110,7 @@
                 font-size: 0.7rem;
             }
         }
-        /* Add responsiveness for piece size */
+        /* Tambahkan responsivitas untuk ukuran bidak */
         @media (min-width: 640px) { /* sm */
             .player-piece {
                 width: 30px;
@@ -185,7 +179,7 @@
             transform: scale(0.95);
             transition: transform 0.3s ease;
             max-width: 500px;
-            width: 95%; /* Flexible width for modal */
+            width: 95%; /* Fleksibel width untuk modal */
         }
         .modal.show .modal-content {
             transform: scale(1);
@@ -229,73 +223,73 @@
             }
         }
 
-        /* Adjusting main layout */
+        /* Menyesuaikan layout utama */
         .main-game-wrapper {
             display: flex;
             flex-direction: column; /* Stacked by default on mobile */
-            gap: 0; /* Remove gap on mobile */
-            width: 100%; /* Ensure full width on mobile */
-            max-width: 100%; /* Ensure it doesn't exceed width */
-            margin: auto; /* Center */
-            /* Remove default padding from this div for mobile */
+            gap: 0; /* Menghilangkan gap di mobile */
+            width: 100%; /* Memastikan lebar penuh di mobile */
+            max-width: 100%; /* Memastikan tidak melebihi lebar */
+            margin: auto; /* Pusatkan */
+            /* Menghapus padding default dari div ini untuk mobile */
             padding: 0; 
-            border-radius: 0; /* Remove border-radius for full-width display */
-            box-shadow: none; /* Remove shadow for full-width display */
-            background-color: transparent; /* Remove white background for full width */
+            border-radius: 0; /* Menghilangkan border-radius untuk tampilan tanpa margin di tepi layar */
+            box-shadow: none; /* Menghilangkan shadow untuk tampilan tanpa margin di tepi layar */
+            background-color: transparent; /* Menghilangkan warna latar belakang putih untuk full width */
         }
 
         @media (min-width: 640px) { /* sm breakpoint */
             .main-game-wrapper {
-                padding: 1rem; /* Add padding and style for tablet and up */
+                padding: 1rem; /* Tambahkan padding dan style untuk tablet ke atas */
                 border-radius: 1rem;
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
                 background-color: white;
-                max-width: 768px; /* Example max-width for tablet */
+                max-width: 768px; /* Contoh max-width untuk tablet */
             }
         }
         @media (min-width: 1024px) { /* lg breakpoint for desktop layout */
             .main-game-wrapper {
                 flex-direction: row; /* Two columns on desktop */
-                gap: 2rem; /* Gap between columns on desktop */
-                width: 90vw; /* Take 90% of viewport width on desktop */
-                max-width: none; /* Remove max-width to allow 90vw stretch */
-                padding: 2rem; /* Padding on desktop */
+                gap: 2rem; /* Jarak antar kolom di desktop */
+                width: 90vw; /* Mengambil 90% dari lebar viewport di desktop */
+                max-width: none; /* Hapus max-width agar bisa membentang 90vw */
+                padding: 2rem; /* Padding di desktop */
             }
         }
 
-        /* Adjust column width for mobile to give board more space */
+        /* Sesuaikan lebar kolom untuk mobile agar papan mendapat ruang lebih */
         .board-column {
             width: 100%;
-            padding: 0; /* Remove padding on board-column by default (mobile) */
+            padding: 0; /* Menghilangkan padding pada board-column secara default (mobile) */
         }
         @media (min-width: 640px) { /* sm */
             .board-column {
-                padding: 1rem; /* Add padding for sm screens and above */
+                padding: 1rem; /* Tambahkan padding untuk layar sm ke atas */
             }
         }
         @media (min-width: 1024px) { /* lg */
             .board-column {
-                flex: 3; /* Board will be 3 times wider than control panel on desktop */
-                padding: 1.5rem; /* Padding on desktop */
+                flex: 3; /* Papan akan 3 kali lebih lebar dari kontrol panel di desktop */
+                padding: 1.5rem; /* Padding di desktop */
             }
         }
 
         .control-column {
             width: 100%;
-            padding: 1rem; /* Default padding */
+            padding: 1rem; /* Padding default */
         }
         @media (min-width: 1024px) { /* lg */
-            flex: 1; /* Control panel will be 1 part of total 4 parts on desktop */
+            flex: 1; /* Kontrol panel akan 1 bagian dari total 4 bagian di desktop */
         }
 
-        /* Adjustments for game-container to always fill available space */
+        /* Penyesuaian untuk game-container agar selalu mengisi ruang yang tersedia */
         #game-container {
             width: 100%;
-            height: auto; /* Let height adjust aspect ratio */
-            display: block; /* Ensure it takes full width */
+            height: auto; /* Biarkan tinggi menyesuaikan aspek rasio */
+            display: block; /* Memastikan mengambil lebar penuh */
         }
 
-        /* Ensure responsive modal elements */
+        /* Memastikan elemen-elemen di modal responsif */
         .modal-content h2, .modal-content p {
             font-size: 1rem; /* Default font size for mobile modals */
         }
@@ -316,24 +310,24 @@
             }
         }
 
-        /* General adjustments for buttons inside modals */
+        /* Penyesuaian umum untuk tombol di dalam modal */
         .modal-content button {
             padding: 0.75rem 1.5rem; /* py-3 px-6 */
         }
-        @media (max-width: 639px) { /* For small mobile, slightly reduce button padding */
+        @media (max-width: 639px) { /* Untuk ukuran hp kecil, sedikit perkecil padding tombol */
             .modal-content button {
                 padding: 0.625rem 1.25rem; /* py-2.5 px-5 */
             }
         }
 
-        /* Adjustments for input and buttons in control-column */
+        /* Penyesuaian untuk input dan tombol di control-column */
         #player-count-input, #physical-dice-result, .control-column button {
-            font-size: 1rem; /* Standard font size */
-            padding: 0.75rem 1rem; /* Standard padding */
+            font-size: 1rem; /* Ukuran font standar */
+            padding: 0.75rem 1rem; /* Padding standar */
         }
-        @media (max-width: 639px) { /* For small mobile */
+        @media (max-width: 639px) { /* Untuk ukuran hp kecil */
             #player-count-input, #physical-dice-result {
-                padding: 0.5rem 0.75rem; /* Slightly reduce padding */
+                padding: 0.5rem 0.75rem; /* Sedikit perkecil padding */
                 font-size: 0.9rem;
             }
             .control-column button {
@@ -357,150 +351,13 @@
                 font-size: 0.75rem; /* text-xs */
             }
         }
-
-        /* --- NEW: LANDSCAPE ORIENTATION STYLES FOR MOBILE/TABLET --- */
-        /* This media query targets screens with max-width of 1023px (mobile/tablet)
-           when they are in landscape orientation. */
-        @media (max-width: 1023px) and (orientation: landscape) {
-            body {
-                padding: 0.5rem; /* Add a little padding to the edges */
-                overflow: hidden; /* Prevent scrolling if content overflows */
-                /* Remove flex properties from body in landscape to let main-game-wrapper handle layout */
-                display: block; 
-                flex-direction: initial;
-                align-items: initial;
-                justify-content: initial;
-            }
-
-            .main-game-wrapper {
-                flex-direction: row; /* Layout board and controls side-by-side */
-                gap: 1rem; /* Space between board and controls */
-                padding: 0.5rem; /* Internal padding for the wrapper */
-                width: 100%; /* Take full width of body */
-                /* height: calc(100vh - 2rem); */ /* Re-evaluate height, simpler is often better with flex */
-                height: auto; /* Let content dictate height, but flex items will stretch */
-                min-height: calc(100vh - 2rem); /* Ensure minimum height */
-                max-width: 100vw; /* Ensure it uses full viewport width */
-                align-items: flex-start; /* Align items to the top in row layout (important for scrolling) */
-                justify-content: center; /* Horizontally center content */
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Re-add shadow for landscape */
-                background-color: white; /* Re-add background for landscape */
-                border-radius: 1rem; /* Re-add border-radius for landscape */
-                margin: 0.5rem auto; /* Center the wrapper horizontally with some margin */
-            }
-
-            .board-column {
-                flex: 2; /* Allocate more space to the board (e.g., 2/3 of available space) */
-                padding: 0.2rem; /* Minimal padding around the board */
-                width: auto; /* Let flex determine width */
-                height: 100%; /* Take full height of main-game-wrapper */
-                display: flex; /* Use flex to center content inside */
-                align-items: center; /* Center game-container vertically */
-                justify-content: center; /* Center game-container horizontally */
-            }
-            #game-container {
-                width: 100%; /* Fill available width in board-column */
-                height: auto; /* Let height adjust based on aspect ratio */
-                max-height: 100%; /* Crucial: prevent it from exceeding board-column's height */
-            }
-            /* Explicitly ensure #game-board fills its container */
-            #game-board {
-                width: 100%;
-                height: 100%;
-                max-height: 100%; /* Ensure the board itself respects height constraints */
-            }
-
-
-            .control-column {
-                flex: 1; /* Allocate less space to controls (e.g., 1/3 of available space) */
-                padding: 0.5rem; /* Adjust padding for controls */
-                min-width: 180px; /* Ensure a minimum width for controls */
-                max-width: 35vw; /* Max width for controls in landscape */
-                height: 100%; /* Take full height of main-game-wrapper */
-                display: flex;
-                flex-direction: column; /* Stack controls vertically */
-                justify-content: flex-start; /* Align items to start, let overflow handle rest */
-                overflow-y: auto; /* Allow vertical scrolling if controls exceed height */
-            }
-
-            /* Adjustments for smaller elements in control panel for better fit */
-            #info-panel {
-                padding: 0.5rem; /* Smaller padding for info panel */
-            }
-            #info-panel h2 {
-                font-size: 0.8rem; /* Smaller font for tighter space */
-            }
-            #info-panel p {
-                font-size: 0.65rem; /* Even smaller font */
-            }
-
-            #dice-face {
-                width: 50px; /* Even smaller dice */
-                height: 50px;
-                margin-top: 0.5rem; /* Adjust margin */
-                margin-bottom: 0.5rem;
-            }
-            #dice-face span {
-                font-size: 1.8rem; /* Smaller dice number */
-            }
-
-            /* Adjust button padding and font for smaller landscape screens */
-            .control-column button {
-                padding: 0.4rem 0.6rem; /* Even smaller padding for buttons */
-                font-size: 0.75rem; /* Smaller font for buttons */
-                margin-bottom: 0.2rem; /* Reduce space between buttons */
-            }
-            #player-count-input-setup, #physical-dice-result {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.75rem;
-                margin-bottom: 0.2rem;
-            }
-            /* Reduce general margins for elements within control-column */
-            .control-column .mb-4, .control-column .mb-6, .control-column .my-4 {
-                margin-bottom: 0.5rem !important;
-                margin-top: 0.5rem !important;
-            }
-            .control-column label {
-                font-size: 0.7rem; /* Smaller label font */
-                margin-bottom: 0.1rem;
-            }
-            .control-column input[type="radio"] + span {
-                font-size: 0.7rem; /* Smaller radio label font */
-            }
-
-            /* Modal adjustments for landscape */
-            .modal-content {
-                padding: 1.5rem; /* Reduce modal padding */
-            }
-            .modal-content h2 {
-                font-size: 1.2rem; /* Smaller modal title */
-            }
-            .modal-content p {
-                font-size: 0.9rem; /* Smaller modal text */
-            }
-            .modal-options label {
-                padding: 0.5rem; /* Smaller modal option padding */
-                margin-bottom: 0.5rem;
-                font-size: 0.9rem;
-            }
-            .modal-options input + span {
-                font-size: 0.9rem;
-            }
-            .modal-content button {
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
-            }
-            #feedback-text {
-                font-size: 0.85rem;
-            }
-        }
     </style>
 </head>
 <body class="bg-slate-100 flex flex-col items-center justify-center min-h-screen">
 
     <h1 class="text-2xl font-bold text-slate-700 text-center mb-4 mt-4 sm:text-3xl md:text-4xl">Game Ular Tangga - Jelajah Ilmu</h1>
 
-    <!-- Game Setup Screen (Initial) -->
+    <!-- Layar Pengaturan Game (Awal) -->
     <div id="game-setup-screen" class="bg-white rounded-3xl shadow-xl w-full mx-auto p-6 md:p-8 max-w-md text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-6">Atur Permainan Baru</h2>
         
@@ -513,7 +370,7 @@
         <div class="mb-8">
             <label for="material-select" class="block text-slate-700 text-sm font-bold mb-2">Pilih Materi Pelajaran:</label>
             <select id="material-select" class="w-full max-w-xs p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-150 ease-in-out text-center">
-                <!-- Options will be populated by JavaScript -->
+                <!-- Opsi akan diisi oleh JavaScript -->
             </select>
         </div>
 
@@ -523,9 +380,9 @@
         </button>
     </div>
 
-    <!-- Main Game Screen (Initially Hidden) -->
+    <!-- Layar Utama Game (Tersembunyi Awalnya) -->
     <div id="main-game-screen" class="bg-white rounded-3xl shadow-xl w-full mx-auto flex flex-col lg:flex-row lg:gap-4 items-center lg:items-start main-game-wrapper hidden">
-        <!-- Game Board Column -->
+        <!-- Kolom Papan Permainan -->
         <div class="w-full lg:w-2/3 lg:p-6 board-column">
             <div id="game-container" class="relative w-full aspect-square max-w-full mx-auto">
                 <div id="game-board"></div>
@@ -534,7 +391,7 @@
             </div>
         </div>
 
-        <!-- Control Column -->
+        <!-- Kolom Kontrol -->
         <div class="w-full lg:w-1/3 bg-gray-50 rounded-2xl shadow-inner p-6 mt-4 lg:mt-8 control-column">
             <div class="mb-4 sm:mb-6">
                 <div id="info-panel" class="text-center bg-slate-200 p-3 rounded-lg mb-4">
@@ -542,7 +399,7 @@
                     <p id="turn-info" class="text-sm text-slate-600 leading-tight">Atur jumlah pemain dan pilih materi.</p>
                 </div>
                 
-                <!-- Dice Type Selection (Moved to main game screen) -->
+                <!-- Pilihan Tipe Dadu (Dipindahkan ke layar utama game) -->
                 <div class="mb-4 text-center">
                     <label class="block text-slate-700 text-sm font-bold mb-2">Pilih Tipe Dadu:</label>
                     <div class="flex items-center justify-center space-x-4">
@@ -565,12 +422,12 @@
                     </div>
                 </div>
                 
-                <!-- Button for Digital Dice -->
+                <!-- Tombol untuk Dadu Digital -->
                 <button id="roll-dice-btn" class="w-full max-w-xs bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 shadow-md mb-2">
                     Kocok Dadu
                 </button>
 
-                <!-- Input for Physical Dice (hidden by default) -->
+                <!-- Input untuk Dadu Fisik (tersembunyi secara default) -->
                 <div id="physical-dice-input-container" class="hidden w-full max-w-xs flex flex-col items-center">
                     <label for="physical-dice-result" class="block text-slate-700 text-sm font-bold mb-2">Masukkan Hasil Dadu Fisik (1-6):</label>
                     <input type="number" id="physical-dice-result" min="1" max="6" 
@@ -579,7 +436,7 @@
                             class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition-all duration-300 shadow-md mb-2">
                         Submit Hasil Dadu
                     </button>
-                    <!-- Cancel Button which will always appear in physical dice mode -->
+                    <!-- Tombol Batalkan yang akan selalu muncul di mode dadu fisik -->
                     <button id="cancel-roll-btn" 
                             class="w-full bg-red-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 shadow-md hidden">
                         Batalkan
@@ -597,7 +454,7 @@
         </div>
     </div>
 
-    <!-- Winner Modal -->
+    <!-- Modal untuk Pemenang -->
     <div id="winner-modal" class="modal">
         <div class="modal-content">
             <h2 id="winner-text" class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 mb-4"></h2>
@@ -608,25 +465,25 @@
         </div>
     </div>
 
-    <!-- Question Modal -->
+    <!-- Modal untuk Pertanyaan -->
     <div id="question-modal" class="modal">
         <div class="modal-content">
             <h2 id="question-text" class="text-xl sm:text-2xl font-bold text-slate-800 mb-4"></h2>
             <div id="question-options" class="modal-options text-left text-base sm:text-lg w-full">
-                <!-- Answer options will be loaded here -->
+                <!-- Pilihan jawaban akan dimuat di sini -->
             </div>
             <input type="text" id="question-input" class="w-full p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 hidden text-base sm:text-lg" placeholder="Ketik jawaban Anda...">
             <button id="submit-answer-btn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 shadow-md">
                 Submit Jawaban
             </button>
             <p id="feedback-text" class="text-base sm:text-lg font-semibold mt-4"></p>
-            <button id="continue-game-btn" class="bg-green-500 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform hover:scale-105 mt-4 hidden">
+            <button id="continue-game-btn" class="bg-green-500 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus="ring-green-300 transition-transform hover:scale-105 mt-4 hidden">
                 Lanjutkan Permainan
             </button>
         </div>
     </div>
 
-    <!-- Digital Ethics Message Modal -->
+    <!-- Modal untuk Pesan Jelajah Ilmu -->
     <div id="ethics-message-modal" class="modal">
         <div class="modal-content">
             <h2 id="ethics-message-title" class="text-xl sm:text-2xl font-bold text-slate-800 mb-4">Pesan Jelajah Ilmu!</h2>
@@ -637,7 +494,7 @@
         </div>
     </div>
 
-    <!-- Load external JavaScript file -->
+    <!-- Memuat file JavaScript eksternal -->
     <script src="ulartangga.js" defer></script> 
 
     <!-- Copyright notice -->
