@@ -25,13 +25,36 @@ let cellQuestionMap = {}; // Variabel ini tetap dideklarasikan tapi tidak diguna
 let ethicsMessages = { ladders: [], snakes: [] }; // Inisialisasi sebagai objek kosong yang akan diisi
 
 // =====================================================================
-// Menggunakan URL Gist GitHub untuk pertanyaan dan pesan etika.
-// Pastikan URL ini dapat diakses publik.
+// Konfigurasi URL untuk berbagai materi pelajaran.
+// Anda perlu mengganti placeholder URL 'YOUR_USERNAME', 'YOUR_REPO_ID'
+// dengan Gist GitHub Anda sendiri jika Anda menambahkan materi baru.
 // =====================================================================
-const QUESTIONS_URL = './questions.json';
-//'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/f9646e3bc3d8559b1802026abd7ef60c58e9dded/questions.json';
-const ETHICS_URL = './pesan.json';
-//'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/42de164222a875d339ef83e648509a4042a43d59/pesan.json';
+const materialConfigs = {
+    'literasi_digital': {
+        name: 'Literasi Digital',
+        questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/c89e79fedc82e926c0f7af87781a1dd4d1fcdfcf/questions_etika.json',
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
+    },
+    'sejarah': {
+        name: 'Sejarah',
+        questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/335a9858ec9eb005ea6aaef6a0ae6204227dc394/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/9677f8fc278fe51d7b5654fe99bd485b449d8c78/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+    },
+	'sains': {
+		name: 'Sains',
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/6204328a3c721dd0ab20af708fee010c6b7de0e2/questions_sains.json',
+		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
+    },
+    // Tambahkan materi lain di sini sesuai kebutuhan
+    // 'sains': {
+    //     name: 'Sains',
+    //     questions_url: 'URL_GIST_PERTANYAAN_SAINS',
+    //     ethics_url: 'URL_GIST_PESAN_SAINS'
+    // },
+};
+
+// State untuk materi yang sedang dipilih. Default ke 'literasi_digital'.
+let selectedMaterialKey = 'literasi_digital';
 
 
 // State (kondisi) permainan
@@ -66,8 +89,17 @@ const infoPanelTitle = document.querySelector('#info-panel h2');
 const winnerModal = document.getElementById('winner-modal');
 const winnerText = document.getElementById('winner-text');
 const playAgainBtn = document.getElementById('play-again-btn');
-const playerCountInput = document.getElementById('player-count-input');
-const setPlayersBtn = document.getElementById('set-players-btn');
+
+// Referensi elemen UI pengaturan awal
+const playerCountInputSetup = document.getElementById('player-count-input-setup'); // Input jumlah pemain di layar setup
+const materialSelect = document.getElementById('material-select'); // Dropdown pilihan materi
+const startGameBtn = document.getElementById('start-game-btn'); // Tombol "Mulai Permainan"
+
+// Referensi untuk mengelola visibilitas layar
+const gameSetupScreen = document.getElementById('game-setup-screen');
+const mainGameScreen = document.getElementById('main-game-screen');
+
+
 const gameContainer = document.getElementById('game-container');
 const diceTypeRadios = document.querySelectorAll('input[name="dice-type"]');
 const physicalDiceInputContainer = document.getElementById('physical-dice-input-container');
@@ -89,7 +121,7 @@ const ethicsMessageText = document.getElementById('ethics-message-text');
 const closeEthicsMessageBtn = document.getElementById('close-ethics-message-btn');
 
 // Referensi elemen baru: Bagian jumlah pemain dan tombol batal
-const playerCountSection = document.getElementById('player-count-section');
+// playerCountSection tidak lagi digunakan secara langsung, diganti oleh gameSetupScreen
 const cancelRollBtn = document.getElementById('cancel-roll-btn');
 
 // Referensi elemen tombol fullscreen
@@ -100,8 +132,13 @@ const fullscreenBtn = document.getElementById('fullscreen-btn');
 
 /**
  * Menginisialisasi atau memulai ulang permainan.
+ * Kini juga memuat konten game berdasarkan materi yang dipilih.
  */
-function initGame() {
+async function initGame() {
+    // Sembunyikan layar setup, tampilkan layar utama game
+    gameSetupScreen.classList.add('hidden');
+    mainGameScreen.classList.remove('hidden');
+
     // Reset state permainan
     playerPositions = Array(PLAYER_COUNT).fill(0); // Posisi 0 = start
     currentPlayer = 0;
@@ -136,9 +173,8 @@ function initGame() {
     diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">🎲</span>`;
     updateDiceUI(); // Panggil ini untuk menampilkan UI dadu yang benar saat inisialisasi
 
-    // Tampilkan kembali bagian jumlah pemain saat game diinisialisasi ulang
-    playerCountSection.classList.remove('hidden');
-    // Tombol batal disembunyikan via updateDiceUI() karena lastPlayerMoved = null
+    // PENTING: Memuat konten game setelah pengaturan pemain dan materi dipilih
+    await loadGameContent(selectedMaterialKey);
 }
 
 /**
@@ -216,8 +252,8 @@ async function handleRollDiceDigital() {
     if (!gameActive || waitingForAnswer || actionInProgress) return;
     actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
 
-    // Sembunyikan bagian jumlah pemain saat dadu dikocok
-    playerCountSection.classList.add('hidden');
+    // Sembunyikan bagian jumlah pemain saat dadu dikocok (sudah di gameSetupScreen)
+    // playerCountSection.classList.add('hidden'); // Ini sudah tidak perlu di sini
     cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan tombol batal untuk dadu digital
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -296,7 +332,8 @@ async function handleSubmitPhysicalRoll() {
     if (!gameActive || waitingForAnswer || actionInProgress) return;
     actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
 
-    playerCountSection.classList.add('hidden');
+    // Sembunyikan bagian jumlah pemain saat dadu dikocok (sudah di gameSetupScreen)
+    // playerCountSection.classList.add('hidden'); // Ini sudah tidak perlu di sini
     // Tombol batal seharusnya sudah terlihat karena di mode fisik (diatur di updateDiceUI)
 
     const diceResult = parseInt(physicalDiceResultInput.value, 10);
@@ -714,12 +751,10 @@ submitAnswerBtn.addEventListener('click', async () => {
         pendingQuestionMoveSteps = -1; // Simpan langkah mundur
     }
 
-    // --- Tidak ada jeda waktu di sini ---
-
     submitAnswerBtn.classList.add('hidden');
     continueGameBtn.classList.remove('hidden');
     questionInput.disabled = true;
-    document.querySelectorAll('input[name="question-option"]').forEach(radio => radio.disabled = true);
+    document.querySelectorAll('input[name="question-option"]').forEach(input => input.disabled = true);
 });
 
 /**
@@ -815,18 +850,31 @@ async function handleCancelRoll() {
 
 // --- FUNGSI MEMUAT KONTEN GAME DARI URL EKSTERNAL ---
 /**
- * Memuat pertanyaan dan pesan etika digital dari URL eksternal dan menginisialisasi game.
+ * Memuat pertanyaan dan pesan etika digital dari URL eksternal berdasarkan materi yang dipilih.
+ * @param {string} materialKey - Kunci materi yang dipilih dari materialConfigs.
  */
-async function loadGameContent() {
-    infoPanelTitle.textContent = "Memuat Konten Game...";
-    turnInfo.textContent = "Mohon tunggu (bank soal & etika digital dari database)..."; // Pesan loading diperbarui
-    disableDiceButtons(); // Nonaktifkan tombol saat memuat
+async function loadGameContent(materialKey) {
+    const config = materialConfigs[materialKey];
+    if (!config) {
+        console.error(`ERROR: Konfigurasi materi '${materialKey}' tidak ditemukan.`);
+        displayMessage("Error Konfigurasi!", `Materi '${materialKey}' tidak ditemukan. Mohon pilih materi yang valid.`);
+        gameActive = false;
+        disableDiceButtons();
+        // Kembali ke layar setup jika ada error konfigurasi
+        mainGameScreen.classList.add('hidden');
+        gameSetupScreen.classList.remove('hidden');
+        return;
+    }
+
+    infoPanelTitle.textContent = `Memuat Konten ${config.name}...`;
+    turnInfo.textContent = "Mohon tunggu (bank soal & etika digital dari database)...";
+    disableDiceButtons();
 
     try {
-        // Mencoba memuat pertanyaan dari GitHub Gist
-        const questionsResponse = await fetch(QUESTIONS_URL);
+        // Mencoba memuat pertanyaan
+        const questionsResponse = await fetch(config.questions_url);
         if (!questionsResponse.ok) {
-            throw new Error(`HTTP error! status: ${questionsResponse.status} for questions.`);
+            throw new Error(`HTTP error! status: ${questionsResponse.status} for questions from ${config.questions_url}.`);
         }
         const questionsArray = await questionsResponse.json();
 
@@ -835,10 +883,10 @@ async function loadGameContent() {
             questionBank[q.id] = q;
         });
 
-        // Mencoba memuat pesan etika digital dari GitHub Gist
-        const ethicsResponse = await fetch(ETHICS_URL);
+        // Mencoba memuat pesan etika digital
+        const ethicsResponse = await fetch(config.ethics_url);
         if (!ethicsResponse.ok) {
-            throw new Error(`HTTP error! status: ${ethicsResponse.status} for ethics messages.`);
+            throw new Error(`HTTP error! status: ${ethicsResponse.status} for ethics messages from ${config.ethics_url}.`);
         }
         const ethicsData = await ethicsResponse.json();
         ethicsMessages.ladders = ethicsData.ladders;
@@ -848,11 +896,15 @@ async function loadGameContent() {
         // Pertanyaan akan dipilih acak saat pemain mendarat di triggerCell.
         cellQuestionMap = {}; // Ini tetap dideklarasikan tapi tidak digunakan untuk pemetaan statis.
 
-        console.log("Bank Soal Dimuat dari database:", questionBank);
+        console.log(`Bank Soal (${config.name}) Dimuat:`, questionBank);
         console.log("Peta Sel Pertanyaan (tidak lagi statis):", cellQuestionMap);
-        console.log("Pesan Etika Digital Dimuat:", ethicsMessages);
-        initGame();
-        displayMessage("Siap Bermain!", "Konten game berhasil dimuat dari database."); // Pesan diperbarui
+        console.log(`Pesan Etika Digital (${config.name}) Dimuat:`, ethicsMessages);
+        
+        // Setelah berhasil memuat, perbarui info panel dan enable buttons
+        displayMessage("Siap Bermain!", `Game dengan materi ${config.name} siap dimulai.`);
+        rollDiceBtn.disabled = false;
+        physicalDiceResultInput.disabled = false;
+        submitPhysicalRollBtn.disabled = false;
 
     } catch (error) {
         console.error("Gagal memuat konten game:", error);
@@ -861,8 +913,11 @@ async function loadGameContent() {
         disableDiceButtons();
 
         infoPanelTitle.textContent = "Gagal Memuat Game!";
-        turnInfo.textContent = "Game tidak dapat dimulai karena konten gagal dimuat dari database. Periksa URL Anda atau koneksi internet.";
-        displayMessage("Error Fatal!", "Game tidak dapat dimulai karena konten gagal dimuat dari database. Periksa URL Anda atau koneksi internet.");
+        turnInfo.textContent = `Game tidak dapat dimulai karena konten gagal dimuat dari database untuk materi ${config.name}. Periksa URL Anda atau koneksi internet.`;
+        displayMessage("Error Fatal!", `Game tidak dapat dimulai karena konten gagal dimuat dari database untuk materi ${config.name}. Periksa URL Anda atau koneksi internet.`);
+        // Kembali ke layar setup jika ada error loading
+        mainGameScreen.classList.add('hidden');
+        gameSetupScreen.classList.remove('hidden');
     }
 }
 
@@ -900,16 +955,35 @@ function toggleFullscreen() {
 // --- EVENT LISTENERS GLOBAL ---
 rollDiceBtn.addEventListener('click', handleRollDiceDigital);
 submitPhysicalRollBtn.addEventListener('click', handleSubmitPhysicalRoll);
-restartBtn.addEventListener('click', initGame);
-playAgainBtn.addEventListener('click', initGame);
 cancelRollBtn.addEventListener('click', handleCancelRoll); // Tambahkan event listener untuk tombol batal
 fullscreenBtn.addEventListener('click', toggleFullscreen); // Event listener untuk tombol fullscreen baru
 
-setPlayersBtn.addEventListener('click', () => {
-    const desiredPlayers = parseInt(playerCountInput.value, 10);
+// Event listener untuk tombol Restart
+restartBtn.addEventListener('click', () => {
+    // Ketika restart, kembali ke layar setup
+    mainGameScreen.classList.add('hidden');
+    gameSetupScreen.classList.remove('hidden');
+    initSetupScreen(); // Panggil fungsi untuk menginisialisasi ulang setup screen
+});
+
+// Event listener untuk tombol Play Again
+playAgainBtn.addEventListener('click', () => {
+    // Ketika play again, kembali ke layar setup
+    winnerModal.classList.remove('show');
+    mainGameScreen.classList.add('hidden');
+    gameSetupScreen.classList.remove('hidden');
+    initSetupScreen(); // Panggil fungsi untuk menginisialisasi ulang setup screen
+});
+
+// Event listener untuk tombol "Mulai Permainan" di layar setup
+startGameBtn.addEventListener('click', () => {
+    const desiredPlayers = parseInt(playerCountInputSetup.value, 10); // Ambil dari input layar setup
+    const selectedMaterial = materialSelect.value; // Dapatkan nilai materi yang dipilih
+
     if (!isNaN(desiredPlayers) && desiredPlayers >= 2 && desiredPlayers <= 4) {
         PLAYER_COUNT = desiredPlayers;
-        initGame();
+        selectedMaterialKey = selectedMaterial; // Simpan materi yang dipilih
+        initGame(); // Memulai game dengan pengaturan baru
     } else {
         displayMessage("Input Tidak Valid!", "Jumlah pemain harus antara 2 dan 4.");
     }
@@ -927,5 +1001,33 @@ window.addEventListener('resize', () => {
     updateAllPlayerPositionsUI();
 });
 
-// MULAI MEMUAT SOAL SAAT HALAMAN DIMUAT
-document.addEventListener('DOMContentLoaded', loadGameContent);
+/**
+ * Fungsi untuk menginisialisasi layar setup game.
+ * Dipanggil saat halaman dimuat dan saat game dimulai ulang/dimainkan lagi.
+ */
+function initSetupScreen() {
+    // Pastikan layar setup terlihat dan layar game tersembunyi
+    gameSetupScreen.classList.remove('hidden');
+    mainGameScreen.classList.add('hidden');
+
+    // Mengisi opsi dropdown materi
+    materialSelect.innerHTML = ''; // Bersihkan opsi yang ada
+    for (const key in materialConfigs) {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = materialConfigs[key].name;
+        materialSelect.appendChild(option);
+    }
+    // Set opsi yang dipilih ke materi default atau yang terakhir dipilih
+    materialSelect.value = selectedMaterialKey; 
+
+    // Reset input jumlah pemain ke nilai default
+    playerCountInputSetup.value = 2;
+
+    // Reset info panel di layar game (jika terlihat)
+    infoPanelTitle.textContent = "Siap Bermain!";
+    turnInfo.textContent = "Atur jumlah pemain dan pilih materi.";
+}
+
+// Inisialisasi layar setup saat DOM dimuat
+document.addEventListener('DOMContentLoaded', initSetupScreen);
