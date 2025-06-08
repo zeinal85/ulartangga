@@ -357,54 +357,115 @@
            when in landscape orientation. */
         @media (max-width: 1023px) and (orientation: landscape) {
             body {
-                padding: 1rem; /* Ensure some padding when in landscape */
+                padding: 0.5rem; /* Slightly reduced padding to maximize space */
             }
 
             .main-game-wrapper {
                 flex-direction: row; /* Change to side-by-side layout */
-                gap: 1.5rem; /* Moderate gap between board and controls */
-                padding: 1rem; /* Add padding to the wrapper */
-                max-width: 95vw; /* Allow it to take more width on landscape */
-                align-items: flex-start; /* Align items to the top in row layout */
+                gap: 1rem; /* Moderate gap between board and controls */
+                padding: 0.5rem; /* Add padding to the wrapper */
+                max-width: 100vw; /* Allow it to take full viewport width on landscape */
+                height: 95vh; /* Take most of the viewport height */
+                align-items: center; /* Center items vertically in row layout */
+                justify-content: center; /* Center items horizontally */
+                overflow: hidden; /* Hide overflow to prevent scrolling */
             }
 
             .board-column {
                 flex: 2; /* Allocate more space to the board */
-                padding: 0.5rem; /* Reduce padding slightly */
-                max-width: 65vw; /* Max width for board in landscape */
+                padding: 0.2rem; /* Reduce padding slightly */
+                width: auto; /* Let flex control width */
+                height: 100%; /* Take full height of wrapper */
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
+            #game-container {
+                max-height: 100%; /* Limit board height to fit vertical space */
+                width: auto; /* Let width adjust based on height and aspect-ratio */
+                height: 100%; /* Occupy available height */
+            }
+
 
             .control-column {
                 flex: 1; /* Allocate less space to controls */
-                padding: 0.75rem; /* Adjust padding for controls */
-                min-width: 180px; /* Ensure minimum width for controls */
-                max-width: 30vw; /* Max width for controls in landscape */
+                padding: 0.5rem; /* Adjust padding for controls */
+                min-width: 150px; /* Ensure minimum width for controls */
+                max-width: 35vw; /* Max width for controls in landscape */
+                height: 100%; /* Take full height of wrapper */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between; /* Distribute content */
             }
 
             /* Further adjustments for smaller elements in control panel for better fit */
+            #info-panel {
+                padding: 0.5rem; /* Smaller padding for info panel */
+            }
             #info-panel h2 {
-                font-size: 0.9rem; /* Smaller font for tighter space */
+                font-size: 0.8rem; /* Smaller font for tighter space */
             }
             #info-panel p {
-                font-size: 0.7rem; /* Even smaller font */
+                font-size: 0.65rem; /* Even smaller font */
             }
 
             #dice-face {
-                width: 60px; /* Smaller dice */
-                height: 60px;
+                width: 50px; /* Even smaller dice */
+                height: 50px;
+                margin-top: 0.5rem; /* Adjust margin */
+                margin-bottom: 0.5rem;
             }
             #dice-face span {
-                font-size: 2rem; /* Smaller dice number */
+                font-size: 1.8rem; /* Smaller dice number */
             }
 
             /* Adjust button padding and font for smaller landscape screens */
             .control-column button {
-                padding: 0.5rem 0.75rem; /* Smaller padding for buttons */
-                font-size: 0.8rem;
+                padding: 0.4rem 0.6rem; /* Even smaller padding for buttons */
+                font-size: 0.75rem; /* Smaller font for buttons */
+                margin-bottom: 0.2rem; /* Reduce space between buttons */
             }
             #player-count-input-setup, #physical-dice-result {
-                padding: 0.4rem 0.6rem;
+                padding: 0.3rem 0.5rem;
+                font-size: 0.75rem;
+                margin-bottom: 0.2rem;
+            }
+            .control-column .mb-4, .control-column .mb-6, .control-column .my-4 {
+                margin-bottom: 0.5rem !important; /* Reduce general margins */
+                margin-top: 0.5rem !important;
+            }
+            .control-column label {
+                font-size: 0.7rem; /* Smaller label font */
+                margin-bottom: 0.1rem;
+            }
+            .control-column input[type="radio"] + span {
+                font-size: 0.7rem; /* Smaller radio label font */
+            }
+
+            /* Modal adjustments for landscape */
+            .modal-content {
+                padding: 1.5rem; /* Reduce modal padding */
+            }
+            .modal-content h2 {
+                font-size: 1.2rem; /* Smaller modal title */
+            }
+            .modal-content p {
+                font-size: 0.9rem; /* Smaller modal text */
+            }
+            .modal-options label {
+                padding: 0.5rem; /* Smaller modal option padding */
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+            }
+            .modal-options input + span {
+                font-size: 0.9rem;
+            }
+            .modal-content button {
+                padding: 0.6rem 1rem;
                 font-size: 0.8rem;
+            }
+            #feedback-text {
+                font-size: 0.85rem;
             }
         }
     </style>
