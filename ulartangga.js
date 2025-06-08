@@ -4,12 +4,12 @@ const BOARD_SIZE = 100;
 let PLAYER_COUNT = 2;
 
 const snakesAndLaddersMap = {
-    2: 38, 6: 27, 29: 50, 41: 60, 51: 89, 66: 75, // Tangga
+    2: 38, 6: 27, 29: 50, 41: 60, 51: 92, 66: 86, // Tangga
     36: 4, 34: 13, 67: 36, 83: 45, 61: 42, 74: 53, 94: 87 // Ular
 };
 
 // Variabel triggerCells yang sekarang berada di bagian konfigurasi global
-const triggerCells = [3, 7, 11, 15, 18, 22, 25, 30, 32, 35, 40, 45, 48, 50, 55, 58, 60, 65, 70, 72, 79, 80, 85, 90, 92, 95, 98];
+const triggerCells = [3, 5, 7, 9, 11, 15, 21, 23, 25, 31, 39, 43, 44, 47, 48, 49, 54, 58, 65, 75, 77, 79, 80, 85, 88, 89, 91, 95, 96, 97, 98];
 
 const playerColors = ['bg-red-700', 'bg-blue-700', 'bg-green-700', 'bg-yellow-700'];
 const additionalPlayerColors = ['bg-purple-700', 'bg-orange-700'];
