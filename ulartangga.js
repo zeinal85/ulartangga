@@ -76,6 +76,19 @@ let pendingQuestionMoveSteps = 0;
 // Variabel untuk menyimpan data pertanyaan saat ini yang sedang ditampilkan di modal
 let currentQuestionData = null;
 
+// Objek Tone.js untuk efek suara langkah
+const stepSynth = new Tone.Synth({
+    oscillator: {
+        type: "sine"
+    },
+    envelope: {
+        attack: 0.001,
+        decay: 0.1,
+        sustain: 0.01,
+        release: 0.1
+    }
+}).toDestination();
+
 
 // --- REFERENSI ELEMEN DOM ---
 
@@ -138,10 +151,23 @@ const fullscreenBtn = document.getElementById('fullscreen-btn');
 // --- FUNGSI UTAMA PERMAINAN ---
 
 /**
+ * Fungsi untuk memainkan suara langkah bidak.
+ */
+function playMoveSound() {
+    stepSynth.triggerAttackRelease("C5", "8n"); // Mainkan nada C5 singkat
+}
+
+/**
  * Menginisialisasi atau memulai ulang permainan.
  * Kini juga memuat konten game berdasarkan materi yang dipilih.
  */
 async function initGame() {
+    // Memulai Tone.js audio context pada interaksi pertama
+    if (Tone.context.state !== 'running') {
+        await Tone.start();
+        console.log("Audio context dimulai.");
+    }
+
     // Sembunyikan layar setup, tampilkan layar utama game
     gameSetupScreen.classList.add('hidden');
     mainGameScreen.classList.remove('hidden');
@@ -265,6 +291,12 @@ async function handleRollDiceDigital() {
     if (!gameActive || waitingForAnswer || actionInProgress) return;
     actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
 
+    // Memulai Tone.js audio context pada interaksi pertama
+    if (Tone.context.state !== 'running') {
+        await Tone.start();
+        console.log("Audio context dimulai dari rollDiceBtn.");
+    }
+
     cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan tombol batal untuk dadu digital
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -342,6 +374,12 @@ async function handleRollDiceDigital() {
 async function handleSubmitPhysicalRoll() {
     if (!gameActive || waitingForAnswer || actionInProgress) return;
     actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
+
+    // Memulai Tone.js audio context pada interaksi pertama
+    if (Tone.context.state !== 'running') {
+        await Tone.start();
+        console.log("Audio context dimulai dari submitPhysicalRollBtn.");
+    }
 
     const diceResult = parseInt(physicalDiceResultInput.value, 10);
 
@@ -451,6 +489,7 @@ async function movePlayer(steps) {
         currentPos++;
         playerPositions[currentPlayer] = currentPos;
         updatePlayerPositionUI(currentPlayer);
+        playMoveSound(); // Mainkan suara setiap kali bidak bergerak satu langkah
         await new Promise(resolve => setTimeout(resolve, 200));
         if (currentPos === BOARD_SIZE) break;
     }
@@ -1018,7 +1057,13 @@ playAgainBtn.addEventListener('click', () => {
 });
 
 // Event listener untuk tombol "Mulai Permainan" di layar setup
-startGameBtn.addEventListener('click', () => {
+startGameBtn.addEventListener('click', async () => {
+    // Memulai Tone.js audio context pada interaksi pertama
+    if (Tone.context.state !== 'running') {
+        await Tone.start();
+        console.log("Audio context dimulai dari startGameBtn.");
+    }
+
     const desiredPlayers = parseInt(playerCountInputSetup.value, 10); // Ambil dari input layar setup
     const selectedMaterial = materialSelect.value; // Dapatkan nilai materi yang dipilih
 
