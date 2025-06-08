@@ -1,0 +1,697 @@
+[
+  {
+    "id": "q_sejarah_001",
+    "question": "Peradaban kuno yang terkenal dengan pembangunan piramida raksasa adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Peradaban Mesopotamia",
+      "Peradaban Lembah Indus",
+      "Peradaban Mesir Kuno",
+      "Peradaban Romawi"
+    ],
+    "answer": "Peradaban Mesir Kuno",
+    "feedback": "Tepat! Piramida Giza adalah salah satu keajaiban dunia kuno."
+  },
+  {
+    "id": "q_sejarah_002",
+    "question": "Siapakah tokoh yang memproklamasikan kemerdekaan Indonesia pada tanggal 17 Agustus 1945?",
+    "type": "text_input",
+    "answer": "Soekarno",
+    "feedback": "Benar! Bersama Mohammad Hatta, beliau membacakan teks proklamasi."
+  },
+  {
+    "id": "q_sejarah_003",
+    "question": "Peristiwa penting yang menandai berakhirnya Perang Dunia II adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Serangan Pearl Harbor",
+      "Invasi Normandia",
+      "Bom atom di Hiroshima dan Nagasaki",
+      "Perjanjian Versailles"
+    ],
+    "answer": "Bom atom di Hiroshima dan Nagasaki",
+    "feedback": "Ya, peristiwa ini memaksa Jepang menyerah dan mengakhiri perang."
+  },
+  {
+    "id": "q_sejarah_004",
+    "question": "Apa nama kerajaan maritim terbesar di Nusantara pada abad ke-7 hingga ke-13 Masehi?",
+    "type": "text_input",
+    "answer": "Sriwijaya",
+    "feedback": "Tepat! Sriwijaya menguasai jalur perdagangan maritim di Asia Tenggara."
+  },
+  {
+    "id": "q_sejarah_005",
+    "question": "Siapakah penjelajah samudra yang pertama kali berhasil mengelilingi dunia?",
+    "type": "multiple_choice",
+    "options": [
+      "Christopher Columbus",
+      "Vasco da Gama",
+      "Ferdinand Magellan",
+      "James Cook"
+    ],
+    "answer": "Ferdinand Magellan",
+    "feedback": "Benar! Meskipun Magellan meninggal di tengah perjalanan, ekspedisinya berhasil mengelilingi bumi."
+  },
+  {
+    "id": "q_sejarah_006",
+    "question": "Revolusi Industri dimulai di negara...",
+    "type": "text_input",
+    "answer": "Inggris",
+    "feedback": "Tepat! Dimulai pada abad ke-18 dengan penemuan mesin uap."
+  },
+  {
+    "id": "q_sejarah_007",
+    "question": "Deklarasi Kemerdekaan Amerika Serikat ditandatangani pada tahun...",
+    "type": "multiple_choice",
+    "options": [
+      "1776",
+      "1783",
+      "1800",
+      "1812"
+    ],
+    "answer": "1776",
+    "feedback": "Ya, tanggal 4 Juli 1776 adalah hari kemerdekaan AS."
+  },
+  {
+    "id": "q_sejarah_008",
+    "question": "Apa nama tembok pertahanan raksasa yang dibangun di Tiongkok kuno?",
+    "type": "text_input",
+    "answer": "Tembok Besar Tiongkok",
+    "feedback": "Benar! Dibangun untuk melindungi dari invasi bangsa nomaden."
+  },
+  {
+    "id": "q_sejarah_009",
+    "question": "Organisasi PBB (Perserikatan Bangsa-Bangsa) didirikan setelah Perang Dunia...",
+    "type": "multiple_choice",
+    "options": [
+      "I",
+      "II",
+      "Dingin",
+      "Vietnam"
+    ],
+    "answer": "II",
+    "feedback": "Tepat! PBB didirikan untuk menjaga perdamaian dunia."
+  },
+  {
+    "id": "q_sejarah_010",
+    "question": "Sistem pemerintahan yang dihapuskan di Prancis pada Revolusi Prancis adalah...",
+    "type": "text_input",
+    "answer": "Monarki Absolut",
+    "feedback": "Ya, digantikan dengan republik."
+  },
+  {
+    "id": "q_sejarah_011",
+    "question": "Perjanjian yang mengakhiri Perang Dunia I adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Perjanjian Paris",
+      "Perjanjian Potsdam",
+      "Perjanjian Versailles",
+      "Perjanjian Trianon"
+    ],
+    "answer": "Perjanjian Versailles",
+    "feedback": "Benar! Ditandatangani pada tahun 1919."
+  },
+  {
+    "id": "q_sejarah_012",
+    "question": "Siapakah pemimpin Nazi Jerman selama Perang Dunia II?",
+    "type": "text_input",
+    "answer": "Adolf Hitler",
+    "feedback": "Tepat! Beliau adalah Führer dan Kanselir Jerman."
+  },
+  {
+    "id": "q_sejarah_013",
+    "question": "Julukan untuk periode sejarah Eropa dari abad ke-5 hingga ke-15 Masehi adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Abad Pencerahan",
+      "Abad Kegelapan",
+      "Renaisans",
+      "Abad Modern"
+    ],
+    "answer": "Abad Pertengahan",
+    "feedback": "Istilah 'Abad Kegelapan' sering digunakan untuk bagian awal Abad Pertengahan."
+  },
+  {
+    "id": "q_sejarah_014",
+    "question": "Peristiwa jatuhnya Bastille pada tahun 1789 menandai dimulainya...",
+    "type": "text_input",
+    "answer": "Revolusi Prancis",
+    "feedback": "Ya, penyerbuan Bastille adalah simbol perlawanan rakyat."
+  },
+  {
+    "id": "q_sejarah_015",
+    "question": "Siapakah pemimpin Uni Soviet selama Perang Dunia II?",
+    "type": "multiple_choice",
+    "options": [
+      "Vladimir Lenin",
+      "Nikita Khrushchev",
+      "Joseph Stalin",
+      "Mikhail Gorbachev"
+    ],
+    "answer": "Joseph Stalin",
+    "feedback": "Benar! Beliau memimpin Uni Soviet menuju kemenangan dalam perang."
+  },
+  {
+    "id": "q_sejarah_016",
+    "question": "Apa nama ibu kota Kekaisaran Romawi Timur (Bizantium)?",
+    "type": "text_input",
+    "answer": "Konstantinopel",
+    "feedback": "Tepat! Sekarang dikenal sebagai Istanbul, Turki."
+  },
+  {
+    "id": "q_sejarah_017",
+    "question": "Perang Candu terjadi antara Tiongkok dan negara...",
+    "type": "multiple_choice",
+    "options": [
+      "Jepang",
+      "Inggris",
+      "Amerika Serikat",
+      "Rusia"
+    ],
+    "answer": "Inggris",
+    "feedback": "Ya, terjadi pada pertengahan abad ke-19 terkait perdagangan opium."
+  },
+  {
+    "id": "q_sejarah_018",
+    "question": "Siapakah tokoh yang terkenal dengan reformasi gereja Protestan di Jerman?",
+    "type": "text_input",
+    "answer": "Martin Luther",
+    "feedback": "Benar! Beliau memicu Reformasi Protestan dengan 95 Tesisnya."
+  },
+  {
+    "id": "q_sejarah_019",
+    "question": "Peradaban kuno yang mengembangkan sistem tulisan hieroglif adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Peradaban Sumeria",
+      "Peradaban Babilonia",
+      "Peradaban Mesir Kuno",
+      "Peradaban Yunani Kuno"
+    ],
+    "answer": "Peradaban Mesir Kuno",
+    "feedback": "Tepat! Hieroglif adalah sistem tulisan gambar yang kompleks."
+  },
+  {
+    "id": "q_sejarah_020",
+    "question": "Apa nama organisasi yang didirikan oleh Ir. Soekarno pada tahun 1927 untuk mencapai kemerdekaan Indonesia?",
+    "type": "text_input",
+    "answer": "Partai Nasional Indonesia (PNI)",
+    "feedback": "Ya, PNI adalah salah satu partai politik pergerakan nasional yang penting."
+  },
+  {
+    "id": "q_sejarah_021",
+    "question": "Tanggal berapa Hari Pahlawan Nasional diperingati di Indonesia?",
+    "type": "multiple_choice",
+    "options": [
+      "10 November",
+      "28 Oktober",
+      "17 Agustus",
+      "2 Mei"
+    ],
+    "answer": "10 November",
+    "feedback": "Tepat! Untuk memperingati Pertempuran Surabaya."
+  },
+  {
+    "id": "q_sejarah_022",
+    "question": "Siapakah pendiri Kekaisaran Mongol?",
+    "type": "text_input",
+    "answer": "Genghis Khan",
+    "feedback": "Benar! Beliau adalah salah satu penakluk terbesar dalam sejarah."
+  },
+  {
+    "id": "q_sejarah_023",
+    "question": "Peristiwa Reformasi Protestan dimulai pada abad ke-...",
+    "type": "multiple_choice",
+    "options": [
+      "14",
+      "15",
+      "16",
+      "17"
+    ],
+    "answer": "16",
+    "feedback": "Ya, dimulai pada awal abad ke-16 dengan Martin Luther."
+  },
+  {
+    "id": "q_sejarah_024",
+    "question": "Apa nama kota yang menjadi pusat Kekaisaran Inca kuno?",
+    "type": "text_input",
+    "answer": "Cusco",
+    "feedback": "Tepat! Terletak di pegunungan Andes, Peru."
+  },
+  {
+    "id": "q_sejarah_025",
+    "question": "Perang Salib adalah serangkaian konflik antara kaum Kristen Eropa dan umat Islam untuk menguasai...",
+    "type": "multiple_choice",
+    "options": [
+      "Roma",
+      "Konstantinopel",
+      "Yerusalem",
+      "Athena"
+    ],
+    "answer": "Yerusalem",
+    "feedback": "Benar! Perebutan Tanah Suci adalah motif utama Perang Salib."
+  },
+  {
+    "id": "q_sejarah_026",
+    "question": "Siapakah penemu mesin uap yang menjadi pendorong Revolusi Industri?",
+    "type": "text_input",
+    "answer": "James Watt",
+    "feedback": "Ya, penemuan James Watt sangat vital."
+  },
+  {
+    "id": "q_sejarah_027",
+    "question": "Pada masa penjajahan Belanda, organisasi Sarekat Islam awalnya didirikan sebagai...",
+    "type": "multiple_choice",
+    "options": [
+      "Partai politik",
+      "Organisasi keagamaan",
+      "Perkumpulan dagang",
+      "Gerakan pemuda"
+    ],
+    "answer": "Perkumpulan dagang",
+    "feedback": "Tepat! Awalnya bernama Sarekat Dagang Islam."
+  },
+  {
+    "id": "q_sejarah_028",
+    "question": "Perang Dunia I dimulai pada tahun...",
+    "type": "text_input",
+    "answer": "1914",
+    "feedback": "Benar! Dipicu oleh pembunuhan Archduke Franz Ferdinand."
+  },
+  {
+    "id": "q_sejarah_029",
+    "question": "Sistem feodalisme banyak diterapkan pada periode sejarah...",
+    "type": "multiple_choice",
+    "options": [
+      "Yunani Kuno",
+      "Romawi Kuno",
+      "Abad Pertengahan Eropa",
+      "Renaisans"
+    ],
+    "answer": "Abad Pertengahan Eropa",
+    "feedback": "Ya, feodalisme adalah sistem sosial-politik dominan saat itu."
+  },
+  {
+    "id": "q_sejarah_030",
+    "question": "Siapakah tokoh yang memimpin Gerakan Non-Blok bersama Soekarno dan Tito?",
+    "type": "text_input",
+    "answer": "Jawaharlal Nehru",
+    "feedback": "Tepat! Nehru dari India, Nasser dari Mesir, dan Nkrumah dari Ghana juga merupakan pendiri."
+  },
+  {
+    "id": "q_sejarah_031",
+    "question": "Invasi Jerman ke Polandia pada tahun 1939 memicu dimulainya Perang Dunia...",
+    "type": "text_input",
+    "answer": "II",
+    "feedback": "Benar! Invasi ini menyebabkan Inggris dan Prancis menyatakan perang."
+  },
+  {
+    "id": "q_sejarah_032",
+    "question": "Perjanjian Linggarjati ditandatangani antara Indonesia dan...",
+    "type": "multiple_choice",
+    "options": [
+      "Jepang",
+      "Inggris",
+      "Belanda",
+      "Amerika Serikat"
+    ],
+    "answer": "Belanda",
+    "feedback": "Tepat! Salah satu perjanjian penting dalam perjuangan kemerdekaan Indonesia."
+  },
+  {
+    "id": "q_sejarah_033",
+    "question": "Apa nama jalur perdagangan kuno yang menghubungkan Tiongkok dengan Eropa?",
+    "type": "text_input",
+    "answer": "Jalur Sutra",
+    "feedback": "Ya, jalur ini memfasilitasi pertukaran barang dan budaya."
+  },
+  {
+    "id": "q_sejarah_034",
+    "question": "Siapakah penulis buku 'Das Kapital' yang mengkritik sistem kapitalisme?",
+    "type": "multiple_choice",
+    "options": [
+      "Adam Smith",
+      "John Locke",
+      "Karl Marx",
+      "Max Weber"
+    ],
+    "answer": "Karl Marx",
+    "feedback": "Benar! 'Das Kapital' adalah karya fundamental dalam teori komunisme."
+  },
+  {
+    "id": "q_sejarah_035",
+    "question": "Peristiwa Pemberontakan Boxer terjadi di negara...",
+    "type": "text_input",
+    "answer": "Tiongkok",
+    "feedback": "Tepat! Pemberontakan anti-asing dan anti-Kristen pada akhir abad ke-19."
+  },
+  {
+    "id": "q_sejarah_036",
+    "question": "Apa nama kota kuno yang hancur akibat letusan Gunung Vesuvius?",
+    "type": "multiple_choice",
+    "options": [
+      "Troy",
+      "Pompeii",
+      "Babilonia",
+      "Athena"
+    ],
+    "answer": "Pompeii",
+    "feedback": "Ya, Pompeii dan Herculaneum terkubur oleh abu vulkanik."
+  },
+  {
+    "id": "q_sejarah_037",
+    "question": "Siapakah tokoh yang dikenal sebagai 'Bapak Sejarah'?",
+    "type": "text_input",
+    "answer": "Herodotus",
+    "feedback": "Benar! Herodotus adalah sejarawan Yunani kuno."
+  },
+  {
+    "id": "q_sejarah_038",
+    "question": "Gerakan Zionisme bertujuan untuk mendirikan negara bagi bangsa...",
+    "type": "multiple_choice",
+    "options": [
+      "Palestina",
+      "Arab",
+      "Yahudi",
+      "Kurdi"
+    ],
+    "answer": "Yahudi",
+    "feedback": "Tepat! Gerakan ini mengarah pada pembentukan negara Israel."
+  },
+  {
+    "id": "q_sejarah_039",
+    "question": "Apa nama ibu kota Kekaisaran Ottoman?",
+    "type": "text_input",
+    "answer": "Istanbul (sebelumnya Konstantinopel)",
+    "feedback": "Ya, setelah penaklukan oleh Mehmet II."
+  },
+  {
+    "id": "q_sejarah_040",
+    "question": "Siapakah penemu benua Amerika?",
+    "type": "multiple_choice",
+    "options": [
+      "Ferdinand Magellan",
+      "Vasco da Gama",
+      "Christopher Columbus",
+      "Marco Polo"
+    ],
+    "answer": "Christopher Columbus",
+    "feedback": "Benar! Meskipun Viking mungkin tiba lebih dulu, Columbus yang membuka jalan bagi penjelajahan Eropa."
+  },
+  {
+    "id": "q_sejarah_041",
+    "question": "Piagam Magna Carta ditandatangani di Inggris pada tahun...",
+    "type": "text_input",
+    "answer": "1215",
+    "feedback": "Tepat! Merupakan dokumen penting dalam sejarah hak asasi manusia."
+  },
+  {
+    "id": "q_sejarah_042",
+    "question": "Peristiwa Rengasdengklok terjadi sebelum proklamasi kemerdekaan untuk...",
+    "type": "multiple_choice",
+    "options": [
+      "Menyusun teks proklamasi",
+      "Mendesak Soekarno-Hatta untuk segera memproklamirkan kemerdekaan",
+      "Merumuskan dasar negara",
+      "Menyusun kabinet pertama"
+    ],
+    "answer": "Mendesak Soekarno-Hatta untuk segera memproklamirkan kemerdekaan",
+    "feedback": "Ya, oleh golongan muda."
+  },
+  {
+    "id": "q_sejarah_043",
+    "question": "Perang Dingin adalah konflik ideologi antara blok Barat (dipimpin AS) dan blok Timur (dipimpin Uni Soviet). Benar atau Salah?",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Benar",
+    "feedback": "Tepat! Perang Dingin berlangsung selama beberapa dekade setelah PD II."
+  },
+  {
+    "id": "q_sejarah_044",
+    "question": "Siapakah Kaisar Romawi pertama?",
+    "type": "text_input",
+    "answer": "Augustus",
+    "feedback": "Benar! Sebelumnya dikenal sebagai Octavianus."
+  },
+  {
+    "id": "q_sejarah_045",
+    "question": "Apa nama tugu peringatan proklamasi kemerdekaan Indonesia di Jakarta?",
+    "type": "multiple_choice",
+    "options": [
+      "Tugu Tani",
+      "Tugu Proklamasi",
+      "Monumen Nasional (Monas)",
+      "Tugu Selamat Datang"
+    ],
+    "answer": "Tugu Proklamasi",
+    "feedback": "Ya, di Jalan Proklamasi, Jakarta Pusat."
+  },
+  {
+    "id": "q_sejarah_046",
+    "question": "Pencetus teori evolusi melalui seleksi alam adalah...",
+    "type": "text_input",
+    "answer": "Charles Darwin",
+    "feedback": "Benar! Dengan bukunya 'On the Origin of Species'."
+  },
+  {
+    "id": "q_sejarah_047",
+    "question": "Revolusi Kebudayaan adalah peristiwa penting yang terjadi di negara...",
+    "type": "multiple_choice",
+    "options": [
+      "Rusia",
+      "Tiongkok",
+      "Vietnam",
+      "Korea Utara"
+    ],
+    "answer": "Tiongkok",
+    "feedback": "Tepat! Dipimpin oleh Mao Zedong."
+  },
+  {
+    "id": "q_sejarah_048",
+    "question": "Apa nama perjanjian yang mengakhiri Perang Vietnam?",
+    "type": "text_input",
+    "answer": "Perjanjian Damai Paris (Paris Peace Accords)",
+    "feedback": "Benar! Ditandatangani pada tahun 1973."
+  },
+  {
+    "id": "q_sejarah_049",
+    "question": "Peristiwa Serangan 11 September (9/11) terjadi di negara...",
+    "type": "multiple_choice",
+    "options": [
+      "Inggris",
+      "Amerika Serikat",
+      "Israel",
+      "Arab Saudi"
+    ],
+    "answer": "Amerika Serikat",
+    "feedback": "Ya, serangan teroris terhadap World Trade Center dan Pentagon."
+  },
+  {
+    "id": "q_sejarah_050",
+    "question": "Siapakah tokoh yang memimpin Revolusi Bolshevik di Rusia?",
+    "type": "text_input",
+    "answer": "Vladimir Lenin",
+    "feedback": "Benar! Beliau adalah pemimpin utama Revolusi Oktober 1917."
+  },
+  {
+    "id": "q_sejarah_051",
+    "question": "Apa nama patung raksasa yang merupakan salah satu keajaiban dunia kuno di Rhodes?",
+    "type": "text_input",
+    "answer": "Kolosus Rhodes",
+    "feedback": "Tepat! Patung dewa Helios yang sangat besar."
+  },
+  {
+    "id": "q_sejarah_052",
+    "question": "Peristiwa Demosi Pluto dari status planet menjadi planet kerdil terjadi pada tahun...",
+    "type": "multiple_choice",
+    "options": [
+      "1999",
+      "2006",
+      "2010",
+      "2015"
+    ],
+    "answer": "2006",
+    "feedback": "Ya, keputusan ini dikeluarkan oleh International Astronomical Union (IAU)."
+  },
+  {
+    "id": "q_sejarah_053",
+    "question": "Apa nama organisasi yang dibentuk pada tahun 1967 untuk kerjasama ekonomi dan politik di Asia Tenggara?",
+    "type": "text_input",
+    "answer": "ASEAN (Association of Southeast Asian Nations)",
+    "feedback": "Benar! ASEAN adalah organisasi regional yang penting."
+  },
+  {
+    "id": "q_sejarah_054",
+    "question": "Pembangunan Tembok Berlin dimulai pada tahun...",
+    "type": "multiple_choice",
+    "options": [
+      "1945",
+      "1961",
+      "1970",
+      "1989"
+    ],
+    "answer": "1961",
+    "feedback": "Tepat! Dibangun oleh Jerman Timur untuk mencegah warganya melarikan diri ke Barat."
+  },
+  {
+    "id": "q_sejarah_055",
+    "question": "Siapakah tokoh yang memimpin perjuangan kemerdekaan India tanpa kekerasan?",
+    "type": "text_input",
+    "answer": "Mahatma Gandhi",
+    "feedback": "Benar! Beliau adalah salah satu ikon gerakan non-kekerasan dunia."
+  },
+  {
+    "id": "q_sejarah_056",
+    "question": "Peristiwa Sumpah Pemuda di Indonesia terjadi pada tanggal...",
+    "type": "multiple_choice",
+    "options": [
+      "20 Mei 1908",
+      "28 Oktober 1928",
+      "17 Agustus 1945",
+      "2 Mei 1949"
+    ],
+    "answer": "28 Oktober 1928",
+    "feedback": "Ya, momen penting persatuan pemuda Indonesia."
+  },
+  {
+    "id": "q_sejarah_057",
+    "question": "Apa nama jalur pelayaran yang menghubungkan Laut Mediterania dengan Laut Merah?",
+    "type": "text_input",
+    "answer": "Terusan Suez",
+    "feedback": "Tepat! Dibuka pada tahun 1869, mempersingkat jalur pelayaran."
+  },
+  {
+    "id": "q_sejarah_058",
+    "question": "Peristiwa jatuhnya Tembok Berlin pada tahun 1989 menandai berakhirnya...",
+    "type": "multiple_choice",
+    "options": [
+      "Perang Dunia II",
+      "Perang Dingin",
+      "Revolusi Rusia",
+      "Uni Soviet"
+    ],
+    "answer": "Perang Dingin",
+    "feedback": "Benar! Menjadi simbol berakhirnya Perang Dingin dan penyatuan Jerman."
+  },
+  {
+    "id": "q_sejarah_059",
+    "question": "Siapakah tokoh yang menulis 'The Communist Manifesto' bersama Karl Marx?",
+    "type": "text_input",
+    "answer": "Friedrich Engels",
+    "feedback": "Ya, keduanya adalah pendiri Marxisme."
+  },
+  {
+    "id": "q_sejarah_060",
+    "question": "Peradaban kuno yang terkenal dengan sistem irigasi 'Subak' adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Peradaban Jawa Kuno",
+      "Peradaban Bali Kuno",
+      "Peradaban Sumeria",
+      "Peradaban Inca"
+    ],
+    "answer": "Peradaban Bali Kuno",
+    "feedback": "Tepat! Subak adalah sistem irigasi tradisional yang diakui UNESCO."
+  },
+  {
+    "id": "q_sejarah_061",
+    "question": "Perang Dunia I melibatkan dua aliansi utama, yaitu Triple Entente dan...",
+    "type": "text_input",
+    "answer": "Triple Alliance (atau Blok Sentral)",
+    "feedback": "Benar! Triple Entente terdiri dari Inggris, Prancis, dan Rusia."
+  },
+  {
+    "id": "q_sejarah_062",
+    "question": "Apa nama perjanjian yang mengakhiri Perang Dunia II di Pasifik?",
+    "type": "multiple_choice",
+    "options": [
+      "Perjanjian San Francisco",
+      "Perjanjian Potsdam",
+      "Perjanjian Yalta",
+      "Akta Kapitulasi Jepang"
+    ],
+    "answer": "Akta Kapitulasi Jepang",
+    "feedback": "Ya, ditandatangani di atas kapal USS Missouri."
+  },
+  {
+    "id": "q_sejarah_063",
+    "question": "Peristiwa G30S/PKI di Indonesia terjadi pada tahun...",
+    "type": "text_input",
+    "answer": "1965",
+    "feedback": "Benar! Peristiwa penting dalam sejarah Indonesia modern."
+  },
+  {
+    "id": "q_sejarah_064",
+    "question": "Siapakah penjelajah samudra yang pertama kali mencapai India melalui Tanjung Harapan?",
+    "type": "multiple_choice",
+    "options": [
+      "Christopher Columbus",
+      "Vasco da Gama",
+      "Ferdinand Magellan",
+      "Bartolomeu Dias"
+    ],
+    "answer": "Vasco da Gama",
+    "feedback": "Tepat! Membuka jalur laut langsung dari Eropa ke Asia."
+  },
+  {
+    "id": "q_sejarah_065",
+    "question": "Peradaban Mesopotamia berkembang di antara dua sungai besar, yaitu Sungai Tigris dan Sungai...",
+    "type": "text_input",
+    "answer": "Eufrat",
+    "feedback": "Benar! Dikenal sebagai 'Tanah di antara dua sungai'."
+  },
+  {
+    "id": "q_sejarah_066",
+    "question": "Siapakah yang dikenal sebagai 'Bapak Proklamator' Indonesia?",
+    "type": "text_input",
+    "answer": "Soekarno",
+    "feedback": "Ya, beliau adalah Presiden pertama Indonesia."
+  },
+  {
+    "id": "q_sejarah_067",
+    "question": "Apa nama ibu kota Kekaisaran Romawi Barat sebelum keruntuhannya?",
+    "type": "multiple_choice",
+    "options": [
+      "Athena",
+      "Roma",
+      "Konstantinopel",
+      "Alexandria"
+    ],
+    "answer": "Roma",
+    "feedback": "Tepat! Keruntuhan Roma pada 476 M sering dianggap sebagai akhir Abad Kuno."
+  },
+  {
+    "id": "q_sejarah_068",
+    "question": "Peristiwa 'Tembok Berlin' melambangkan perpecahan antara Jerman Barat dan Jerman Timur yang berideologi...",
+    "type": "multiple_choice",
+    "options": [
+      "Kapitalisme dan Sosialisme",
+      "Demokrasi dan Feodalisme",
+      "Monarki dan Republik",
+      "Theokrasi dan Sekulerisme"
+    ],
+    "answer": "Kapitalisme dan Sosialisme",
+    "feedback": "Ya, Jerman Barat adalah kapitalis dan Jerman Timur adalah sosialis-komunis."
+  },
+  {
+    "id": "q_sejarah_069",
+    "question": "Siapakah pendiri agama Buddha?",
+    "type": "text_input",
+    "answer": "Siddhartha Gautama",
+    "feedback": "Benar! Dikenal juga sebagai Buddha."
+  },
+  {
+    "id": "q_sejarah_070",
+    "question": "Peristiwa 'Perang Opium' terjadi pada abad ke-...",
+    "type": "multiple_choice",
+    "options": [
+      "17",
+      "18",
+      "19",
+      "20"
+    ],
+    "answer": "19",
+    "feedback": "Tepat! Terjadi pada pertengahan abad ke-19 antara Tiongkok dan Inggris."
+  }
+]

@@ -1,0 +1,840 @@
+[
+  {
+    "id": "q_fotosintesis_01",
+    "question": "Apa fungsi utama dari klorofil pada tumbuhan?",
+    "type": "multiple_choice",
+    "options": [
+      "Menyerap air dari tanah",
+      "Melindungi tumbuhan dari hama",
+      "Melakukan fotosintesis",
+      "Mengatur suhu tumbuhan"
+    ],
+    "answer": "Melakukan fotosintesis",
+    "feedback": "Tepat sekali! Klorofil adalah pigmen hijau yang sangat penting untuk proses fotosintesis pada tumbuhan."
+  },
+  {
+    "id": "q_planet_01",
+    "question": "Planet manakah yang dikenal sebagai 'Planet Merah'?",
+    "type": "multiple_choice",
+    "options": [
+      "Venus",
+      "Mars",
+      "Jupiter",
+      "Saturnus"
+    ],
+    "answer": "Mars",
+    "feedback": "Benar! Mars mendapatkan julukan 'Planet Merah' karena permukaannya yang kaya akan oksida besi."
+  },
+  {
+    "id": "q_bahan_bakar_fosil_01",
+    "question": "Bahan bakar fosil terbentuk dari sisa-sisa organisme hidup yang terkubur jutaan tahun lalu di bawah tekanan dan panas tinggi. Contoh bahan bakar fosil adalah...",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Tenaga surya",
+      "Angin",
+      "Batu bara",
+      "Air"
+    ],
+    "answer": ["Batu bara"],
+    "feedback": "Tepat sekali! Batu bara adalah salah satu jenis bahan bakar fosil utama, selain minyak bumi dan gas alam."
+  },
+  {
+    "id": "q_atmosfer_01",
+    "question": "Apa nama gas yang paling melimpah di atmosfer Bumi?",
+    "type": "text_input",
+    "answer": "Nitrogen",
+    "feedback": "Benar! Nitrogen menyusun sekitar 78% dari atmosfer Bumi."
+  },
+  {
+    "id": "q_siklus_air_01",
+    "question": "Proses di mana air berubah menjadi uap air dan naik ke atmosfer disebut...",
+    "type": "text_input",
+    "answer": "Evaporasi",
+    "feedback": "Tepat! Evaporasi atau penguapan adalah bagian penting dari siklus air."
+  },
+  {
+    "id": "q_energi_terbarukan_01",
+    "question": "Energi yang berasal dari sumber daya alam yang dapat diperbaharui secara alami dan terus-menerus disebut energi...",
+    "type": "multiple_choice",
+    "options": [
+      "Fosil",
+      "Nuklir",
+      "Terbarukan",
+      "Konvensional"
+    ],
+    "answer": "Terbarukan",
+    "feedback": "Ya, energi terbarukan seperti surya, angin, dan hidro adalah kunci masa depan."
+  },
+  {
+    "id": "q_gravitasi_01",
+    "question": "Siapakah ilmuwan yang terkenal dengan teori gravitasi universal?",
+    "type": "text_input",
+    "answer": "Isaac Newton",
+    "feedback": "Benar! Sir Isaac Newton adalah ilmuwan yang merumuskan hukum gravitasi universal."
+  },
+  {
+    "id": "q_zat_cair_01",
+    "question": "Manakah dari berikut ini yang merupakan sifat-sifat zat cair?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Memiliki bentuk tetap",
+      "Volume tetap",
+      "Bentuk berubah sesuai wadah",
+      "Tidak dapat dimampatkan"
+    ],
+    "answer": ["Volume tetap", "Bentuk berubah sesuai wadah"],
+    "feedback": "Tepat! Zat cair mempertahankan volume tetapi bentuknya mengikuti wadah."
+  },
+  {
+    "id": "q_rantai_makanan_01",
+    "question": "Apa yang dimaksud dengan 'produsen' dalam rantai makanan?",
+    "type": "multiple_choice",
+    "options": [
+      "Organisme yang memakan organisme lain",
+      "Organisme yang menghasilkan makanannya sendiri (misalnya tumbuhan)",
+      "Organisme yang menguraikan sisa-sisa makhluk hidup",
+      "Organisme yang tidak membutuhkan makanan"
+    ],
+    "answer": "Organisme yang menghasilkan makanannya sendiri (misalnya tumbuhan)",
+    "feedback": "Benar! Produsen adalah dasar dari setiap rantai makanan."
+  },
+  {
+    "id": "q_suhu_01",
+    "question": "Benar atau Salah: Titik didih air adalah 0 derajat Celsius.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Salah! Titik didih air adalah 100 derajat Celsius (pada tekanan atmosfer standar)."
+  },
+  {
+    "id": "q_sel_01",
+    "question": "Unit dasar penyusun semua makhluk hidup adalah...",
+    "type": "text_input",
+    "answer": "Sel",
+    "feedback": "Benar! Sel adalah unit struktural dan fungsional terkecil dari kehidupan."
+  },
+  {
+    "id": "q_daur_ulang_01",
+    "question": "Mengapa daur ulang penting untuk lingkungan?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Mengurangi jumlah sampah di TPA",
+      "Menghemat sumber daya alam",
+      "Membuat produk baru lebih mahal",
+      "Mengurangi polusi"
+    ],
+    "answer": ["Mengurangi jumlah sampah di TPA", "Menghemat sumber daya alam", "Mengurangi polusi"],
+    "feedback": "Daur ulang adalah praktik yang sangat baik untuk menjaga keberlanjutan lingkungan."
+  },
+  {
+    "id": "q_asam_basa_01",
+    "question": "Zat yang memiliki pH kurang dari 7 disebut...",
+    "type": "multiple_choice",
+    "options": [
+      "Basa",
+      "Netral",
+      "Asam",
+      "Garam"
+    ],
+    "answer": "Asam",
+    "feedback": "Tepat! Asam memiliki pH di bawah 7, sedangkan basa di atas 7."
+  },
+  {
+    "id": "q_tata_surya_01",
+    "question": "Urutan planet dari yang terdekat ke Matahari adalah Merkurius, Venus, Bumi, Mars, Jupiter, Saturnus, Uranus, dan Neptune. Benar atau Salah?",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Benar",
+    "feedback": "Tepat! Itu adalah urutan yang benar dari planet-planet di tata surya kita."
+  },
+  {
+    "id": "q_oksigen_01",
+    "question": "Gas yang sangat penting untuk pernapasan makhluk hidup dan dihasilkan oleh tumbuhan melalui fotosintesis adalah...",
+    "type": "text_input",
+    "answer": "Oksigen",
+    "feedback": "Benar! Oksigen sangat vital untuk kehidupan di Bumi."
+  },
+  {
+    "id": "q_magnet_01",
+    "question": "Apa saja benda-benda yang dapat ditarik oleh magnet?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Kayu",
+      "Besi",
+      "Nikel",
+      "Aluminium"
+    ],
+    "answer": ["Besi", "Nikel"],
+    "feedback": "Besi dan nikel adalah contoh bahan feromagnetik yang kuat ditarik magnet."
+  },
+  {
+    "id": "q_gelombang_suara_01",
+    "question": "Gelombang suara membutuhkan medium untuk merambat. Benar atau Salah?",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Benar",
+    "feedback": "Ya, gelombang suara adalah gelombang mekanik, sehingga membutuhkan medium (padat, cair, atau gas) untuk merambat."
+  },
+  {
+    "id": "q_ekosistem_01",
+    "question": "Kumpulan dari makhluk hidup dan komponen tak hidup yang saling berinteraksi di suatu area disebut...",
+    "type": "text_input",
+    "answer": "Ekosistem",
+    "feedback": "Tepat! Ekosistem menunjukkan hubungan kompleks antara organisme dan lingkungannya."
+  },
+  {
+    "id": "q_lapisan_bumi_01",
+    "question": "Sebutkan minimal dua lapisan utama penyusun Bumi dari dalam ke luar.",
+    "type": "text_input",
+    "answer": "Inti dalam, inti luar, mantel, kerak",
+    "feedback": "Sangat bagus! Memahami lapisan Bumi membantu kita memahami geologi planet ini."
+  },
+  {
+    "id": "q_siklus_hidup_01",
+    "question": "Apa yang dimaksud dengan 'metamorfosis' pada hewan?",
+    "type": "multiple_choice",
+    "options": [
+      "Proses pertumbuhan tanpa perubahan bentuk",
+      "Perubahan bentuk yang signifikan dalam siklus hidup hewan",
+      "Perilaku migrasi hewan",
+      "Proses adaptasi hewan terhadap lingkungan"
+    ],
+    "answer": "Perubahan bentuk yang signifikan dalam siklus hidup hewan",
+    "feedback": "Betul sekali! Metamorfosis adalah perubahan bentuk yang mencolok, seperti pada kupu-kupu atau katak."
+  },
+  {
+    "id": "q_energi_kinetik_01",
+    "question": "Energi yang dimiliki suatu benda karena gerakannya disebut energi...",
+    "type": "text_input",
+    "answer": "Kinetik",
+    "feedback": "Tepat! Semakin cepat benda bergerak, semakin besar energi kinetiknya."
+  },
+  {
+    "id": "q_cahaya_01",
+    "question": "Manakah dari pernyataan berikut yang benar tentang cahaya?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Cahaya dapat merambat di ruang hampa.",
+      "Cahaya adalah gelombang longitudinal.",
+      "Kecepatan cahaya lebih cepat dari kecepatan suara.",
+      "Cahaya tidak dapat dibiaskan."
+    ],
+    "answer": ["Cahaya dapat merambat di ruang hampa.", "Kecepatan cahaya lebih cepat dari kecepatan suara."],
+    "feedback": "Cahaya adalah gelombang elektromagnetik dan merupakan fenomena yang sangat menarik!"
+  },
+  {
+    "id": "q_oksidasi_01",
+    "question": "Proses kimia di mana suatu zat kehilangan elektron disebut...",
+    "type": "text_input",
+    "answer": "Oksidasi",
+    "feedback": "Benar! Oksidasi sering terjadi bersamaan dengan reduksi."
+  },
+  {
+    "id": "q_tumbuhan_berbunga_01",
+    "question": "Bagian tumbuhan yang berfungsi sebagai alat perkembangbiakan adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Akar",
+      "Batang",
+      "Daun",
+      "Bunga"
+    ],
+    "answer": "Bunga",
+    "feedback": "Tepat! Bunga mengandung organ reproduksi tumbuhan."
+  },
+  {
+    "id": "q_listrik_01",
+    "question": "Satuan standar untuk mengukur kuat arus listrik adalah...",
+    "type": "text_input",
+    "answer": "Ampere",
+    "feedback": "Benar! Ampere (A) adalah satuan dasar SI untuk kuat arus listrik."
+  },
+  {
+    "id": "q_iklim_01",
+    "question": "Benar atau Salah: Cuaca dan iklim adalah dua istilah yang sama.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Salah! Cuaca adalah kondisi atmosfer dalam waktu singkat, sedangkan iklim adalah rata-rata cuaca dalam jangka panjang."
+  },
+  {
+    "id": "q_reaksi_kimia_01",
+    "question": "Proses di mana satu atau lebih zat diubah menjadi zat baru disebut...",
+    "type": "text_input",
+    "answer": "Reaksi kimia",
+    "feedback": "Tepat! Reaksi kimia melibatkan pemutusan dan pembentukan ikatan kimia."
+  },
+  {
+    "id": "q_dna_01",
+    "question": "Apa kepanjangan dari DNA?",
+    "type": "text_input",
+    "answer": "Deoxyribonucleic acid",
+    "feedback": "Benar! DNA adalah materi genetik yang membawa instruksi untuk perkembangan dan fungsi semua organisme hidup."
+  },
+  {
+    "id": "q_volume_01",
+    "question": "Satuan standar untuk mengukur volume cairan adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Gram",
+      "Meter",
+      "Liter",
+      "Kilogram"
+    ],
+    "answer": "Liter",
+    "feedback": "Tepat! Liter (L) adalah satuan volume yang umum digunakan untuk cairan."
+  },
+  {
+    "id": "q_efek_rumah_kaca_01",
+    "question": "Gas-gas seperti karbon dioksida dan metana yang memerangkap panas di atmosfer Bumi sehingga menyebabkan peningkatan suhu global disebut gas...",
+    "type": "text_input",
+    "answer": "Rumah kaca",
+    "feedback": "Benar! Peningkatan konsentrasi gas rumah kaca berkontribusi pada perubahan iklim."
+  },
+  {
+    "id": "q_jaringan_tumbuhan_01",
+    "question": "Jaringan pada tumbuhan yang berfungsi mengangkut air dan mineral dari akar ke seluruh bagian tumbuhan adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Floem",
+      "Xilem",
+      "Epidermis",
+      "Kambium"
+    ],
+    "answer": "Xilem",
+    "feedback": "Tepat! Xilem adalah sistem 'pipa' pada tumbuhan untuk transportasi air."
+  },
+  {
+    "id": "q_suara_01",
+    "question": "Apakah suara dapat merambat di ruang hampa udara?",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Salah! Suara membutuhkan medium untuk merambat, tidak seperti cahaya."
+  },
+  {
+    "id": "q_reaksi_fotosintesis_01",
+    "question": "Apa produk utama dari proses fotosintesis?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Air",
+      "Oksigen",
+      "Karbon dioksida",
+      "Glukosa (gula)"
+    ],
+    "answer": ["Oksigen", "Glukosa (gula)"],
+    "feedback": "Fotosintesis menghasilkan makanan (glukosa) dan oksigen yang vital bagi kehidupan."
+  },
+  {
+    "id": "q_ikatan_kimia_01",
+    "question": "Gaya tarik antara atom-atom yang menyatukannya dalam molekul disebut...",
+    "type": "text_input",
+    "answer": "Ikatan kimia",
+    "feedback": "Benar! Ikatan kimia adalah dasar dari semua senyawa."
+  },
+  {
+    "id": "q_gerhana_01",
+    "question": "Gerhana matahari terjadi ketika...",
+    "type": "multiple_choice",
+    "options": [
+      "Bumi berada di antara Matahari dan Bulan",
+      "Bulan berada di antara Matahari dan Bumi",
+      "Matahari berada di antara Bulan dan Bumi",
+      "Tidak ada kaitan antara posisi ketiganya"
+    ],
+    "answer": "Bulan berada di antara Matahari dan Bumi",
+    "feedback": "Tepat! Bulan menutupi cahaya Matahari yang menuju Bumi."
+  },
+  {
+    "id": "q_mikroorganisme_01",
+    "question": "Organisme yang terlalu kecil untuk dilihat dengan mata telanjang dan membutuhkan mikroskop disebut...",
+    "type": "text_input",
+    "answer": "Mikroorganisme",
+    "feedback": "Benar! Contohnya adalah bakteri, virus, dan protozoa."
+  },
+  {
+    "id": "q_energi_potensial_01",
+    "question": "Energi yang dimiliki suatu benda karena posisi atau keadaannya (misalnya ketinggian) disebut energi...",
+    "type": "text_input",
+    "answer": "Potensial",
+    "feedback": "Tepat! Semakin tinggi benda, semakin besar energi potensial gravitasinya."
+  },
+  {
+    "id": "q_konduktor_01",
+    "question": "Benda yang dapat menghantarkan panas dan listrik dengan baik disebut...",
+    "type": "multiple_choice",
+    "options": [
+      "Isolator",
+      "Konduktor",
+      "Semikonduktor",
+      "Resistor"
+    ],
+    "answer": "Konduktor",
+    "feedback": "Ya, logam seperti tembaga dan aluminium adalah konduktor yang baik."
+  },
+  {
+    "id": "q_lapisan_atmosfer_01",
+    "question": "Lapisan atmosfer Bumi tempat sebagian besar fenomena cuaca terjadi adalah...",
+    "type": "text_input",
+    "answer": "Troposfer",
+    "feedback": "Benar! Troposfer adalah lapisan terendah dan paling padat dari atmosfer."
+  },
+  {
+    "id": "q_evolusi_01",
+    "question": "Siapakah ilmuwan yang mengemukakan teori evolusi melalui seleksi alam?",
+    "type": "text_input",
+    "answer": "Charles Darwin",
+    "feedback": "Tepat! Charles Darwin adalah salah satu tokoh paling berpengaruh dalam ilmu biologi."
+  },
+  {
+    "id": "q_reaksi_redoks_01",
+    "question": "Proses di mana suatu zat memperoleh elektron disebut...",
+    "type": "text_input",
+    "answer": "Reduksi",
+    "feedback": "Benar! Reduksi adalah kebalikan dari oksidasi."
+  },
+  {
+    "id": "q_tekanan_01",
+    "question": "Gaya per satuan luas disebut...",
+    "type": "text_input",
+    "answer": "Tekanan",
+    "feedback": "Tepat! Tekanan sering diukur dalam Pascal (Pa) atau N/m²."
+  },
+  {
+    "id": "q_reproduksi_01",
+    "question": "Proses biologis di mana organisme baru diproduksi dari induknya disebut...",
+    "type": "text_input",
+    "answer": "Reproduksi",
+    "feedback": "Benar! Reproduksi adalah ciri dasar kehidupan."
+  },
+  {
+    "id": "q_larutan_01",
+    "question": "Campuran homogen antara dua atau lebih zat di mana zat terlarut tersebar merata dalam pelarut disebut...",
+    "type": "text_input",
+    "answer": "Larutan",
+    "feedback": "Tepat! Contohnya adalah air garam atau gula dalam air."
+  },
+  {
+    "id": "q_peredaran_darah_01",
+    "question": "Pembuluh darah yang membawa darah kaya oksigen dari jantung ke seluruh tubuh adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Vena",
+      "Arteri",
+      "Kapiler",
+      "Limfa"
+    ],
+    "answer": "Arteri",
+    "feedback": "Benar! Arteri adalah pembuluh darah yang kuat dan elastis."
+  },
+  {
+    "id": "q_fotosintesis_persamaan_01",
+    "question": "Karbon dioksida + Air + Cahaya Matahari → ... + Oksigen",
+    "type": "text_input",
+    "answer": "Glukosa",
+    "feedback": "Benar! Glukosa adalah gula yang dihasilkan sebagai makanan tumbuhan."
+  },
+  {
+    "id": "q_konveksi_01",
+    "question": "Perpindahan panas melalui pergerakan fluida (cair atau gas) disebut...",
+    "type": "text_input",
+    "answer": "Konveksi",
+    "feedback": "Tepat! Contohnya adalah air mendidih atau pergerakan udara di atmosfer."
+  },
+  {
+    "id": "q_jenis_batuan_01",
+    "question": "Batuan yang terbentuk dari pendinginan dan pembekuan magma atau lava disebut batuan...",
+    "type": "multiple_choice",
+    "options": [
+      "Sedimen",
+      "Metamorf",
+      "Beku",
+      "Kapur"
+    ],
+    "answer": "Beku",
+    "feedback": "Ya, contoh batuan beku adalah granit dan basal."
+  },
+  {
+    "id": "q_penyakit_01",
+    "question": "Penyakit yang disebabkan oleh virus yang menyerang sistem kekebalan tubuh manusia adalah...",
+    "type": "text_input",
+    "answer": "AIDS",
+    "feedback": "Benar! AIDS (Acquired Immuno Deficiency Syndrome) disebabkan oleh virus HIV."
+  },
+  {
+    "id": "q_reaksi_nuklir_01",
+    "question": "Proses penggabungan dua inti atom ringan menjadi inti atom yang lebih berat disebut...",
+    "type": "text_input",
+    "answer": "Fusi nuklir",
+    "feedback": "Tepat! Fusi nuklir adalah proses yang terjadi di Matahari."
+  },
+  {
+    "id": "q_satuan_energi_01",
+    "question": "Satuan standar internasional untuk energi adalah...",
+    "type": "text_input",
+    "answer": "Joule",
+    "feedback": "Benar! Joule (J) adalah satuan yang umum digunakan untuk energi."
+  },
+  {
+    "id": "q_lapisan_ozon_01",
+    "question": "Lapisan atmosfer yang melindungi Bumi dari radiasi ultraviolet berbahaya dari Matahari adalah lapisan...",
+    "type": "text_input",
+    "answer": "Ozon",
+    "feedback": "Tepat! Lapisan ozon sangat penting untuk melindungi kehidupan di Bumi."
+  },
+  {
+    "id": "q_pencernaan_01",
+    "question": "Organ pencernaan yang berfungsi menyerap sebagian besar nutrisi dari makanan adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Kerongkongan",
+      "Lambung",
+      "Usus halus",
+      "Usus besar"
+    ],
+    "answer": "Usus halus",
+    "feedback": "Benar! Usus halus memiliki permukaan yang luas untuk penyerapan nutrisi."
+  },
+  {
+    "id": "q_gaya_gesek_01",
+    "question": "Gaya yang menahan atau menghambat gerakan benda disebut gaya...",
+    "type": "text_input",
+    "answer": "Gesek",
+    "feedback": "Tepat! Gaya gesek selalu berlawanan arah dengan gerakan."
+  },
+  {
+    "id": "q_struktur_sel_01",
+    "question": "Bagian sel yang berfungsi sebagai 'pusat kendali' dan mengandung materi genetik adalah...",
+    "type": "text_input",
+    "answer": "Nukleus",
+    "feedback": "Benar! Nukleus adalah organel penting dalam sel eukariotik."
+  },
+  {
+    "id": "q_unsur_senyawa_01",
+    "question": "Zat murni yang tidak dapat diuraikan lagi menjadi zat yang lebih sederhana melalui reaksi kimia biasa disebut...",
+    "type": "text_input",
+    "answer": "Unsur",
+    "feedback": "Tepat! Contohnya adalah oksigen (O), hidrogen (H), dan emas (Au)."
+  },
+  {
+    "id": "q_iklim_global_01",
+    "question": "Peningkatan suhu rata-rata atmosfer dan lautan Bumi secara bertahap disebut...",
+    "type": "text_input",
+    "answer": "Pemanasan global",
+    "feedback": "Benar! Pemanasan global adalah isu lingkungan yang serius."
+  },
+  {
+    "id": "q_peredaran_darah_kecil_01",
+    "question": "Sebutkan dua organ utama yang terlibat dalam peredaran darah kecil (pulmonal).",
+    "type": "text_input",
+    "answer": "Jantung dan paru-paru",
+    "feedback": "Tepat! Peredaran darah kecil membawa darah dari jantung ke paru-paru dan kembali lagi."
+  },
+  {
+    "id": "q_bunyi_01",
+    "question": "Kualitas bunyi yang ditentukan oleh frekuensinya disebut...",
+    "type": "text_input",
+    "answer": "Nada",
+    "feedback": "Benar! Nada berkaitan dengan tinggi rendahnya bunyi."
+  },
+  {
+    "id": "q_sistem_tata_surya_01",
+    "question": "Planet terbesar di tata surya kita adalah...",
+    "type": "text_input",
+    "answer": "Jupiter",
+    "feedback": "Tepat! Jupiter adalah raksasa gas dengan massa yang sangat besar."
+  },
+  {
+    "id": "q_bioteknologi_01",
+    "question": "Penerapan prinsip-prinsip ilmiah dan teknologi untuk memanipulasi sistem biologis atau organisme hidup untuk menghasilkan produk atau proses tertentu disebut...",
+    "type": "text_input",
+    "answer": "Bioteknologi",
+    "feedback": "Benar! Bioteknologi memiliki banyak aplikasi di bidang medis, pertanian, dan industri."
+  },
+  {
+    "id": "q_energi_panas_01",
+    "question": "Bentuk energi yang berkaitan dengan gerakan acak molekul dalam suatu zat adalah energi...",
+    "type": "text_input",
+    "answer": "Panas",
+    "feedback": "Tepat! Semakin cepat molekul bergerak, semakin tinggi suhunya."
+  },
+  {
+    "id": "q_sistem_saraf_01",
+    "question": "Bagian dari sistem saraf yang bertanggung jawab atas gerakan sadar dan sensorik adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Sistem saraf otonom",
+      "Sistem saraf pusat",
+      "Sistem saraf tepi",
+      "Sistem saraf simpatik"
+    ],
+    "answer": "Sistem saraf pusat",
+    "feedback": "Benar! Sistem saraf pusat terdiri dari otak dan sumsum tulang belakang."
+  },
+  {
+    "id": "q_gaya_dorong_01",
+    "question": "Gaya yang menyebabkan benda bergerak ke depan atau maju disebut gaya...",
+    "type": "text_input",
+    "answer": "Dorong",
+    "feedback": "Tepat! Gaya dorong adalah gaya yang mendorong suatu objek."
+  },
+  {
+    "id": "q_gempa_bumi_01",
+    "question": "Alat yang digunakan untuk mengukur kekuatan gempa bumi disebut...",
+    "type": "text_input",
+    "answer": "Seismograf",
+    "feedback": "Benar! Seismograf merekam gelombang seismik yang dihasilkan oleh gempa."
+  },
+  {
+    "id": "q_fotosintesis_tempat_01",
+    "question": "Proses fotosintesis pada tumbuhan sebagian besar terjadi di bagian...",
+    "type": "multiple_choice",
+    "options": [
+      "Akar",
+      "Batang",
+      "Daun",
+      "Bunga"
+    ],
+    "answer": "Daun",
+    "feedback": "Tepat! Daun mengandung kloroplas, tempat klorofil berada."
+  },
+  {
+    "id": "q_sel_tumbuhan_01",
+    "question": "Bagian sel tumbuhan yang tidak ditemukan pada sel hewan dan berfungsi memberikan kekuatan dan dukungan struktural adalah...",
+    "type": "text_input",
+    "answer": "Dinding sel",
+    "feedback": "Benar! Dinding sel adalah ciri khas sel tumbuhan."
+  },
+  {
+    "id": "q_teori_atom_01",
+    "question": "Siapakah ilmuwan yang pertama kali mengemukakan konsep atom sebagai partikel terkecil yang tidak dapat dibagi lagi?",
+    "type": "text_input",
+    "answer": "Demokritus",
+    "feedback": "Tepat! Meskipun konsepnya telah berkembang, Demokritus adalah yang pertama mengemukakannya."
+  },
+  {
+    "id": "q_polusi_udara_01",
+    "question": "Gas yang dapat menyebabkan hujan asam dan berasal dari emisi kendaraan bermotor dan industri adalah...",
+    "type": "text_input",
+    "answer": "Sulfur dioksida (SO2) atau Nitrogen dioksida (NO2)",
+    "feedback": "Benar! Gas-gas ini bereaksi dengan air di atmosfer membentuk asam."
+  },
+  {
+    "id": "q_organ_01",
+    "question": "Kumpulan jaringan yang bekerja sama untuk melakukan fungsi tertentu disebut...",
+    "type": "text_input",
+    "answer": "Organ",
+    "feedback": "Tepat! Contohnya adalah jantung, paru-paru, atau lambung."
+  },
+  {
+    "id": "q_termometer_01",
+    "question": "Alat yang digunakan untuk mengukur suhu disebut...",
+    "type": "text_input",
+    "answer": "Termometer",
+    "feedback": "Benar! Termometer adalah alat dasar dalam pengukuran suhu."
+  },
+  {
+    "id": "q_rantai_makanan_konsumen_01",
+    "question": "Organisme yang memperoleh energi dengan memakan organisme lain dalam rantai makanan disebut...",
+    "type": "text_input",
+    "answer": "Konsumen",
+    "feedback": "Tepat! Konsumen bisa primer, sekunder, atau tersier."
+  },
+  {
+    "id": "q_fotosintesis_bahan_baku_01",
+    "question": "Apa saja bahan baku yang dibutuhkan tumbuhan untuk melakukan fotosintesis?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Oksigen",
+      "Air",
+      "Karbon dioksida",
+      "Glukosa"
+    ],
+    "answer": ["Air", "Karbon dioksida"],
+    "feedback": "Tepat! Air dan karbon dioksida, bersama cahaya matahari, adalah bahan utama fotosintesis."
+  },
+  {
+    "id": "q_satuan_massa_01",
+    "question": "Satuan standar internasional untuk massa adalah...",
+    "type": "text_input",
+    "answer": "Kilogram",
+    "feedback": "Benar! Kilogram (kg) adalah satuan dasar SI untuk massa."
+  },
+  {
+    "id": "q_planet_terpanas_01",
+    "question": "Planet terpanas di tata surya kita adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Merkurius",
+      "Venus",
+      "Bumi",
+      "Mars"
+    ],
+    "answer": "Venus",
+    "feedback": "Tepat! Meskipun lebih jauh dari Merkurius, efek rumah kaca ekstrem di Venus membuatnya sangat panas."
+  },
+  {
+    "id": "q_virus_01",
+    "question": "Partikel infeksius sangat kecil yang hanya dapat bereplikasi di dalam sel hidup organisme lain disebut...",
+    "type": "text_input",
+    "answer": "Virus",
+    "feedback": "Benar! Virus bukan organisme hidup sepenuhnya karena membutuhkan sel inang untuk bereproduksi."
+  },
+  {
+    "id": "q_sifat_zat_01",
+    "question": "Perubahan wujud zat dari padat menjadi gas tanpa melalui fase cair disebut...",
+    "type": "text_input",
+    "answer": "Menyublim",
+    "feedback": "Tepat! Contohnya adalah es kering (karbon dioksida padat) yang menyublim."
+  },
+  {
+    "id": "q_peredaran_darah_besar_01",
+    "question": "Pembuluh darah yang membawa darah kotor (kurang oksigen) kembali ke jantung adalah...",
+    "type": "multiple_choice",
+    "options": [
+      "Arteri",
+      "Vena",
+      "Aorta",
+      "Kapiler"
+    ],
+    "answer": "Vena",
+    "feedback": "Benar! Vena mengembalikan darah dari seluruh tubuh ke jantung."
+  },
+  {
+    "id": "q_ekosistem_komponen_01",
+    "question": "Sebutkan dua komponen utama penyusun ekosistem.",
+    "type": "text_input",
+    "answer": "Biotik dan Abiotik",
+    "feedback": "Tepat! Biotik adalah komponen hidup, abiotik adalah komponen tak hidup."
+  },
+  {
+    "id": "q_hukum_newton_i_01",
+    "question": "Hukum Newton yang menyatakan bahwa benda akan tetap diam atau bergerak dengan kecepatan konstan kecuali ada gaya yang bekerja padanya disebut Hukum Newton ke...",
+    "type": "text_input",
+    "answer": "Satu",
+    "feedback": "Benar! Hukum inersia atau Hukum Newton I."
+  },
+  {
+    "id": "q_pencemaran_air_01",
+    "question": "Apa dampak negatif dari pembuangan limbah industri langsung ke sungai?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Meningkatkan kualitas air sungai",
+      "Membunuh organisme air",
+      "Mencemari sumber air minum",
+      "Menyebabkan bau tidak sedap"
+    ],
+    "answer": ["Membunuh organisme air", "Mencemari sumber air minum", "Menyebabkan bau tidak sedap"],
+    "feedback": "Pencemaran air memiliki dampak serius pada ekosistem dan kesehatan manusia."
+  },
+  {
+    "id": "q_mikroskop_01",
+    "question": "Alat yang digunakan untuk melihat objek yang sangat kecil (mikroorganisme, sel) yang tidak terlihat oleh mata telanjang adalah...",
+    "type": "text_input",
+    "answer": "Mikroskop",
+    "feedback": "Benar! Mikroskop telah merevolusi studi biologi dan mikrobiologi."
+  },
+  {
+    "id": "q_asam_sulfat_01",
+    "question": "Asam kuat yang sering digunakan dalam industri dan memiliki rumus kimia H2SO4 adalah...",
+    "type": "text_input",
+    "answer": "Asam sulfat",
+    "feedback": "Tepat! Asam sulfat adalah salah satu bahan kimia industri paling penting."
+  },
+  {
+    "id": "q_organel_sel_01",
+    "question": "Bagian sel yang berfungsi sebagai 'pembangkit tenaga' sel karena menghasilkan energi melalui respirasi seluler adalah...",
+    "type": "text_input",
+    "answer": "Mitokondria",
+    "feedback": "Benar! Mitokondria sering disebut 'pabrik energi' sel."
+  },
+  {
+    "id": "q_peredaran_darah_jenis_01",
+    "question": "Sistem peredaran darah pada manusia termasuk jenis sistem peredaran darah...",
+    "type": "multiple_choice",
+    "options": [
+      "Terbuka",
+      "Tertutup",
+      "Sederhana",
+      "Ganda"
+    ],
+    "answer": "Tertutup dan Ganda",
+    "feedback": "Tepat! Darah mengalir dalam pembuluh (tertutup) dan melewati jantung dua kali (ganda)."
+  },
+  {
+    "id": "q_fenomena_optik_01",
+    "question": "Fenomena di mana cahaya membengkok saat melewati medium yang berbeda (misalnya dari udara ke air) disebut...",
+    "type": "text_input",
+    "answer": "Pembiasan",
+    "feedback": "Benar! Pembiasan menyebabkan benda terlihat 'patah' saat dilihat melalui air."
+  },
+  {
+    "id": "q_ekosistem_keseimbangan_01",
+    "question": "Apa yang dapat terjadi jika salah satu spesies dalam ekosistem punah secara tiba-tiba?",
+    "type": "multiple_choice",
+    "options": [
+      "Tidak ada dampak signifikan",
+      "Menyebabkan ketidakseimbangan ekosistem",
+      "Meningkatkan populasi spesies lain secara drastis",
+      "Mempercepat proses fotosintesis"
+    ],
+    "answer": "Menyebabkan ketidakseimbangan ekosistem",
+    "feedback": "Tepat! Setiap spesies memiliki peran penting dalam menjaga keseimbangan ekosistem."
+  },
+  {
+    "id": "q_golongan_darah_01",
+    "question": "Ada berapa jenis golongan darah utama pada manusia (sistem ABO)?",
+    "type": "text_input",
+    "answer": "Empat",
+    "feedback": "Benar! Golongan darah A, B, AB, dan O."
+  },
+  {
+    "id": "q_kimia_dasar_01",
+    "question": "Partikel bermuatan negatif yang mengelilingi inti atom disebut...",
+    "type": "text_input",
+    "answer": "Elektron",
+    "feedback": "Tepat! Elektron adalah salah satu partikel subatomik."
+  },
+  {
+    "id": "q_energi_panas_sumber_01",
+    "question": "Apa sumber utama energi panas di Bumi?",
+    "type": "text_input",
+    "answer": "Matahari",
+    "feedback": "Benar! Matahari adalah sumber energi utama bagi hampir semua kehidupan di Bumi."
+  },
+  {
+    "id": "q_sistem_peredaran_darah_01",
+    "question": "Organ utama dalam sistem peredaran darah yang berfungsi memompa darah ke seluruh tubuh adalah...",
+    "type": "text_input",
+    "answer": "Jantung",
+    "feedback": "Tepat! Jantung adalah otot yang bekerja tanpa henti."
+  },
+  {
+    "id": "q_fisika_dasar_01",
+    "question": "Kemampuan untuk melakukan kerja disebut...",
+    "type": "text_input",
+    "answer": "Energi",
+    "feedback": "Benar! Energi adalah konsep fundamental dalam fisika."
+  },
+  {
+    "id": "q_biologi_dasar_01",
+    "question": "Ilmu yang mempelajari tentang makhluk hidup dan kehidupannya disebut...",
+    "type": "text_input",
+    "answer": "Biologi",
+    "feedback": "Tepat! Biologi adalah cabang ilmu yang sangat luas."
+  },
+  {
+    "id": "q_kimia_organik_01",
+    "question": "Cabang kimia yang mempelajari senyawa-senyawa karbon, terutama yang berasal dari makhluk hidup, adalah kimia...",
+    "type": "text_input",
+    "answer": "Organik",
+    "feedback": "Benar! Kimia organik adalah bidang yang sangat penting dalam kehidupan sehari-hari."
+  },
+  {
+    "id": "q_lapisan_tanah_01",
+    "question": "Lapisan tanah paling atas yang kaya akan humus dan bahan organik, serta paling subur untuk pertumbuhan tanaman, adalah horizon...",
+    "type": "text_input",
+    "answer": "A (atau Topsoil)",
+    "feedback": "Tepat! Horizon A adalah lapisan tanah yang paling penting untuk pertanian."
+  }
+]
