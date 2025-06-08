@@ -41,7 +41,8 @@ const materialConfigs = {
         name: 'Sejarah',
         questions_url: '/soal/questions_sejarah.json';
 	    		//'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/335a9858ec9eb005ea6aaef6a0ae6204227dc394/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
-        ethics_url: '/pesan/pesan_sejarah.json';//'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/9677f8fc278fe51d7b5654fe99bd485b449d8c78/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+        ethics_url: '/pesan/pesan_sejarah.json';
+	    		//'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/9677f8fc278fe51d7b5654fe99bd485b449d8c78/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
     },
     'sains': {
 	name: 'Sains',
