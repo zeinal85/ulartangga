@@ -86,6 +86,9 @@ const closeEthicsMessageBtn = document.getElementById('close-ethics-message-btn'
 const playerCountSection = document.getElementById('player-count-section');
 const cancelRollBtn = document.getElementById('cancel-roll-btn');
 
+// Referensi elemen tombol fullscreen
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+
 
 // --- FUNGSI UTAMA PERMAINAN ---
 
@@ -102,10 +105,9 @@ function initGame() {
 
     // Reset state untuk fitur "Batalkan"
     previousPlayerPosition = Array(PLAYER_COUNT).fill(0);
-    lastPlayerMoved = null;
+    lastPlayerMoved = null; // Ini akan memastikan tombol batal tersembunyi di awal
     lastDiceRollResult = null;
     actionInProgress = false;
-
 
     // Bersihkan dan buat papan permainan
     board.innerHTML = '';
@@ -116,7 +118,7 @@ function initGame() {
 
     // Update UI ke kondisi awal
     updateAllPlayerPositionsUI();
-    updateTurnInfo();
+    updateTurnInfo(); // Ini akan mengontrol visibilitas tombol batal
     rollDiceBtn.disabled = false;
     physicalDiceResultInput.disabled = false;
     submitPhysicalRollBtn.disabled = false;
@@ -128,12 +130,11 @@ function initGame() {
 
     // Tampilkan kembali bagian jumlah pemain saat game diinisialisasi ulang
     playerCountSection.classList.remove('hidden');
-    cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal saat inisialisasi
+    // Tombol batal disembunyikan via updateDiceUI() karena lastPlayerMoved = null
 }
 
 /**
  * Membuat 100 kotak (cell) secara dinamis di papan.
- * Angka 1 di kiri bawah, angka 100 di kiri atas, dalam pola zig-zag.
  */
 function createBoard() {
     const cells = [];
@@ -382,6 +383,13 @@ async function movePlayer(steps) {
         infoPanelTitle.textContent = `Wow, ${action}!`;
         turnInfo.textContent = `Dari ${playerPositions[currentPlayer]} ke ${destination}.`;
 
+        // Logika baru: Jika bidak naik tangga dan posisi sebelumnya adalah 0
+        // (artinya bidak bergerak dari luar papan dan langsung naik tangga)
+        if (isLadder && previousPlayerPosition[currentPlayer] === 0) {
+            console.log(`DEBUG: Player ${currentPlayer + 1} moved from 0 and hit a ladder. Hiding cancel button.`);
+            lastPlayerMoved = null; // Menghilangkan kemampuan untuk membatalkan
+        }
+
         // Pindahkan bidak ke posisi ular/tangga
         playerPositions[currentPlayer] = destination;
         await new Promise(resolve => setTimeout(resolve, 600));
@@ -489,9 +497,10 @@ function updatePlayerPositionUI(playerIndex) {
     const position = playerPositions[playerIndex];
 
     if (position === 0) {
-        piece.style.bottom = '-5%';
-        piece.style.left = `${5 + playerIndex * 8}%`;
-        piece.style.transform = `translate(-50%, -50%)`;
+        // Mengembalikan posisi bidak start ke konfigurasi yang Anda inginkan
+        piece.style.bottom = '-5%'; // Posisi bidak di garis tepi bawah papan
+        piece.style.left = `${5 + playerIndex * 8}%`; // Posisi horizontal bidak
+        piece.style.transform = `translate(-50%, -50%)`; // Memusatkan bidak relatif terhadap posisinya
         return;
     }
 
@@ -525,7 +534,7 @@ function updatePlayerPositionUI(playerIndex) {
 
         piece.style.left = `${finalX}px`;
         piece.style.top = `${finalY}px`;
-        piece.style.transform = `translate(-50%, -50%)`;
+        piece.style.transform = `translate(-50%, -50%)`; // Tetap memusatkan bidak di dalam sel
     }
 }
 
@@ -538,7 +547,7 @@ function updateDiceUI() {
         rollDiceBtn.classList.remove('hidden');
         rollDiceBtn.disabled = false;
         physicalDiceInputContainer.classList.add('hidden');
-        cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal di mode digital
+        cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan di mode digital
     } else { // diceType is 'physical'
         rollDiceBtn.classList.add('hidden');
         physicalDiceInputContainer.classList.remove('hidden');
@@ -790,12 +799,44 @@ async function loadGameContent() {
     }
 }
 
+// --- FUNGSI FULLSCREEN ---
+/**
+ * Mengaktifkan atau menonaktifkan mode layar penuh.
+ */
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        // Jika tidak dalam mode layar penuh, minta layar penuh
+        const element = document.documentElement; // Mengambil elemen <html>
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) { /* Firefox */
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) { /* Chrome, Safari, dan Opera */
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) { /* IE/Edge */
+            element.msRequestFullscreen();
+        }
+    } else {
+        // Jika dalam mode layar penuh, keluar dari layar penuh
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { /* Firefox */
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { /* Chrome, Safari, dan Opera */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE/Edge */
+            document.msExitFullscreen();
+        }
+    }
+}
+
 // --- EVENT LISTENERS GLOBAL ---
 rollDiceBtn.addEventListener('click', handleRollDiceDigital);
 submitPhysicalRollBtn.addEventListener('click', handleSubmitPhysicalRoll);
 restartBtn.addEventListener('click', initGame);
 playAgainBtn.addEventListener('click', initGame);
 cancelRollBtn.addEventListener('click', handleCancelRoll); // Tambahkan event listener untuk tombol batal
+fullscreenBtn.addEventListener('click', toggleFullscreen); // Event listener untuk tombol fullscreen baru
 
 setPlayersBtn.addEventListener('click', () => {
     const desiredPlayers = parseInt(playerCountInput.value, 10);
