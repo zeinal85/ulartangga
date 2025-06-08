@@ -47,9 +47,6 @@ let lastPlayerMoved = null; // Menyimpan indeks pemain yang terakhir bergerak se
 let lastDiceRollResult = null; // Menyimpan hasil dadu terakhir yang menggerakkan pemain
 let actionInProgress = false; // Mencegah interaksi saat animasi atau modal aktif
 
-// Variabel baru untuk menyimpan langkah yang tertunda dari pertanyaan
-let pendingQuestionMoveSteps = 0;
-
 
 // --- REFERENSI ELEMEN DOM ---
 
@@ -111,7 +108,6 @@ function initGame() {
     lastPlayerMoved = null; // Ini akan memastikan tombol batal tersembunyi di awal
     lastDiceRollResult = null;
     actionInProgress = false;
-    pendingQuestionMoveSteps = 0; // Reset langkah tertunda
 
     // Bersihkan dan buat papan permainan
     board.innerHTML = '';
@@ -635,15 +631,28 @@ submitAnswerBtn.addEventListener('click', async () => {
         feedbackText.textContent = "Benar! " + (currentQuestion.feedback || "") + " Anda maju 1 langkah!";
         feedbackText.classList.remove('text-red-500');
         feedbackText.classList.add('text-green-600');
-        pendingQuestionMoveSteps = 1; // Simpan langkah maju
+
+        // Hadiah: Maju 1 langkah
+        let newPosition = playerPositions[currentPlayer] + 1;
+        // Pastikan tidak melebihi BOARD_SIZE
+        playerPositions[currentPlayer] = Math.min(newPosition, BOARD_SIZE);
+        updatePlayerPositionUI(currentPlayer); // Update posisi visual
+
     } else {
         feedbackText.textContent = `Salah. Jawaban yang benar adalah: ${currentQuestion.answer}. ` + (currentQuestion.feedback || "") + " Anda mundur 1 langkah!";
         feedbackText.classList.remove('text-green-600');
         feedbackText.classList.add('text-red-500');
-        pendingQuestionMoveSteps = -1; // Simpan langkah mundur
+
+        // Hukuman: Mundur 1 langkah
+        let newPosition = playerPositions[currentPlayer] - 1;
+        // Pastikan tidak kurang dari 0 (posisi start)
+        playerPositions[currentPlayer] = Math.max(newPosition, 0);
+        updatePlayerPositionUI(currentPlayer); // Update posisi visual
     }
 
-    // Hanya menampilkan feedback dan tombol lanjutkan, bidak belum bergerak
+    // Tambahkan jeda waktu di sini agar pemain sempat membaca umpan balik dan melihat pergerakan
+    await new Promise(resolve => setTimeout(resolve, 1500)); // Jeda 1.5 detik
+
     submitAnswerBtn.classList.add('hidden');
     continueGameBtn.classList.remove('hidden');
     questionInput.disabled = true;
@@ -651,19 +660,9 @@ submitAnswerBtn.addEventListener('click', async () => {
 });
 
 /**
- * Melanjutkan permainan setelah pertanyaan dijawab dan memicu pergerakan bidak.
+ * Melanjutkan permainan setelah pertanyaan dijawab.
  */
-continueGameBtn.addEventListener('click', async () => {
-    // Lakukan pergerakan bidak berdasarkan pendingQuestionMoveSteps
-    if (pendingQuestionMoveSteps !== 0) {
-        let newPosition = playerPositions[currentPlayer] + pendingQuestionMoveSteps;
-        // Pastikan posisi tidak melebihi BOARD_SIZE atau kurang dari 0
-        playerPositions[currentPlayer] = Math.min(Math.max(newPosition, 0), BOARD_SIZE);
-        updatePlayerPositionUI(currentPlayer); // Update posisi visual
-        pendingQuestionMoveSteps = 0; // Reset langkah tertunda
-        await new Promise(resolve => setTimeout(resolve, 500)); // Beri jeda singkat untuk animasi bidak
-    }
-
+continueGameBtn.addEventListener('click', () => {
     questionModal.classList.remove('show');
     waitingForAnswer = false;
 
@@ -758,16 +757,7 @@ async function loadGameContent() {
 
         questionBank = {};
         questionsArray.forEach(q => {
-            q.question = q.question.replace(/\\(u[0-9a-fA-F]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp.substring(1), 16)));
-            if (q.options) {
-                q.options = q.options.map(opt => opt.replace(/\\(u[0-9a-fA-F]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp.substring(1), 16))));
-            }
-            if (q.answer) {
-                q.answer = q.answer.replace(/\\(u[0-9a-fA-F]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp.substring(1), 16)));
-            }
-            if (q.feedback) {
-                q.feedback = q.feedback.replace(/\\(u[0-9a-fA-F]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp.substring(1), 16)));
-            }
+            questionBank[q.id] = q;
         });
 
         // Mencoba memuat pesan etika digital dari GitHub Gist
@@ -776,9 +766,8 @@ async function loadGameContent() {
             throw new Error(`HTTP error! status: ${ethicsResponse.status} for ethics messages.`);
         }
         const ethicsData = await ethicsResponse.json();
-        ethicsMessages.ladders = ethicsData.ladders.map(msg => msg.replace(/\\(u[0-9a-fA-F]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp.substring(1), 16))));
-        ethicsMessages.snakes = ethicsData.snakes.map(msg => msg.replace(/\\(u[0-9a-fA-F]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp.substring(1), 16))));
-
+        ethicsMessages.ladders = ethicsData.ladders;
+        ethicsMessages.snakes = ethicsData.snakes;
 
         cellQuestionMap = {};
         if (questionsArray.length > 0) { // Hanya isi cellQuestionMap jika ada pertanyaan yang dimuat
