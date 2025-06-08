@@ -9,9 +9,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Menggunakan box-sizing: border-box untuk semua elemen agar padding dan border tidak menambah ukuran elemen */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             touch-action: manipulation;
+            background-color: #f0f4f8; /* Warna latar belakang umum */
+            padding: 0; /* Menghilangkan padding pada body secara default (mobile) */
+        }
+
+        /* Menyesuaikan padding body untuk layar yang lebih besar */
+        @media (min-width: 640px) { /* sm breakpoint */
+            body {
+                padding: 1rem; /* Tambahkan padding untuk layar sm ke atas */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            body {
+                padding: 2rem; /* Tambahkan padding untuk layar lg ke atas */
+            }
         }
         
         #game-board {
@@ -20,17 +39,23 @@
             grid-template-rows: repeat(10, 1fr);
             border: 4px solid #94A3B8;
             aspect-ratio: 1 / 1;
-            background-image: url('ulartangga.jpeg');
+            background-image: url('ulartangga.jpeg'); /* Pastikan gambar ini ada di folder yang sama */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-radius: 15px; /* Tetap pertahankan sudut membulat */
+            overflow: hidden; /* Penting untuk menjaga sudut membulat */
+            position: relative; /* Untuk penempatan bidak */
+            width: 100%; /* Memastikan papan mengambil lebar penuh dari parent-nya */
+            max-width: 100%; /* Memastikan tidak melebihi lebar kontainer */
         }
 
         .cell {
             display: flex;
             justify-content: flex-end;
             align-items: flex-start;
-            font-size: 0.75rem;
+            font-size: 0.75rem; /* Ukuran font default untuk mobile */
             font-weight: 600;
             color: #64748b;
             padding: 2px;
@@ -38,6 +63,28 @@
             border: 1px solid #cbd5e1;
             box-sizing: border-box;
             background-color: transparent; 
+        }
+
+        /* Responsivitas untuk nomor sel */
+        @media (min-width: 480px) { /* Extra small devices / small mobile */
+            .cell {
+                font-size: 0.75rem; /* text-xs */
+            }
+        }
+        @media (min-width: 640px) { /* sm (small screens / large mobile) */
+            .cell {
+                font-size: 0.875rem; /* text-sm */
+            }
+        }
+        @media (min-width: 768px) { /* md (medium screens / tablet) */
+            .cell {
+                font-size: 1rem; /* text-base */
+            }
+        }
+        @media (min-width: 1024px) { /* lg (large screens / desktop) */
+            .cell {
+                font-size: 1.125rem; /* text-lg */
+            }
         }
         
         .player-piece {
@@ -55,12 +102,34 @@
             border: 2px solid white;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
             transform-origin: center center;
-            font-size: 0.9rem;
+            font-size: 0.9rem; /* Ukuran font bidak default untuk mobile */
         }
 
         @media (max-width: 768px) {
             .player-piece {
                 font-size: 0.7rem;
+            }
+        }
+        /* Tambahkan responsivitas untuk ukuran bidak */
+        @media (min-width: 640px) { /* sm */
+            .player-piece {
+                width: 30px;
+                height: 30px;
+                font-size: 0.875rem; /* text-sm */
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .player-piece {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem; /* text-base */
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .player-piece {
+                width: 40px;
+                height: 40px;
+                font-size: 1.125rem; /* text-lg */
             }
         }
 
@@ -110,7 +179,7 @@
             transform: scale(0.95);
             transition: transform 0.3s ease;
             max-width: 500px;
-            width: 100%;
+            width: 95%; /* Fleksibel width untuk modal */
         }
         .modal.show .modal-content {
             transform: scale(1);
@@ -131,16 +200,161 @@
             font-weight: bold;
             color: #2563eb;
         }
+
+        /* Responsive styling for the question mark icon */
+        .question-cell-indicator span {
+            position: absolute;
+            top: 2px; /* Small offset from the top */
+            left: 2px; /* Small offset from the left */
+            font-size: 1.2rem; /* Default size for larger screens */
+            opacity: 0.75;
+            /* Adjust size for smaller screens */
+            @media (max-width: 768px) { /* For tablets and smaller */
+                font-size: 1rem;
+            }
+            @media (max-width: 640px) { /* For mobile phones */
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Menyesuaikan layout utama */
+        .main-game-wrapper {
+            display: flex;
+            flex-direction: column; /* Stacked by default on mobile */
+            gap: 0; /* Menghilangkan gap di mobile */
+            width: 100%; /* Memastikan lebar penuh di mobile */
+            max-width: 100%; /* Memastikan tidak melebihi lebar */
+            margin: auto; /* Pusatkan */
+            /* Menghapus padding default dari div ini untuk mobile */
+            padding: 0; 
+            border-radius: 0; /* Menghilangkan border-radius untuk tampilan tanpa margin di tepi layar */
+            box-shadow: none; /* Menghilangkan shadow untuk tampilan tanpa margin di tepi layar */
+            background-color: transparent; /* Menghilangkan warna latar belakang putih untuk full width */
+        }
+
+        @media (min-width: 640px) { /* sm breakpoint */
+            .main-game-wrapper {
+                padding: 1rem; /* Tambahkan padding dan style untuk tablet ke atas */
+                border-radius: 1rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                background-color: white;
+                max-width: 768px; /* Contoh max-width untuk tablet */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint for desktop layout */
+            .main-game-wrapper {
+                flex-direction: row; /* Two columns on desktop */
+                gap: 2rem; /* Jarak antar kolom di desktop */
+                width: 90vw; /* Mengambil 90% dari lebar viewport di desktop */
+                max-width: none; /* Hapus max-width agar bisa membentang 90vw */
+                padding: 2rem; /* Padding di desktop */
+            }
+        }
+
+        /* Sesuaikan lebar kolom untuk mobile agar papan mendapat ruang lebih */
+        .board-column {
+            width: 100%;
+            padding: 0; /* Menghilangkan padding pada board-column secara default (mobile) */
+        }
+        @media (min-width: 640px) { /* sm */
+            .board-column {
+                padding: 1rem; /* Tambahkan padding untuk layar sm ke atas */
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .board-column {
+                flex: 3; /* Papan akan 3 kali lebih lebar dari kontrol panel di desktop */
+                padding: 1.5rem; /* Padding di desktop */
+            }
+        }
+
+        .control-column {
+            width: 100%;
+            padding: 1rem; /* Padding default */
+        }
+        @media (min-width: 1024px) { /* lg */
+            flex: 1; /* Kontrol panel akan 1 bagian dari total 4 bagian di desktop */
+        }
+
+        /* Penyesuaian untuk game-container agar selalu mengisi ruang yang tersedia */
+        #game-container {
+            width: 100%;
+            height: auto; /* Biarkan tinggi menyesuaikan aspek rasio */
+            display: block; /* Memastikan mengambil lebar penuh */
+        }
+
+        /* Memastikan elemen-elemen di modal responsif */
+        .modal-content h2, .modal-content p {
+            font-size: 1rem; /* Default font size for mobile modals */
+        }
+        @media (min-width: 640px) {
+            .modal-content h2 {
+                font-size: 1.5rem; /* sm:text-2xl */
+            }
+            .modal-content p {
+                font-size: 1.125rem; /* sm:text-lg */
+            }
+        }
+        @media (min-width: 768px) {
+            .modal-content h2 {
+                font-size: 1.875rem; /* md:text-3xl */
+            }
+            .modal-content p {
+                font-size: 1.25rem; /* md:text-xl */
+            }
+        }
+
+        /* Penyesuaian umum untuk tombol di dalam modal */
+        .modal-content button {
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+        }
+        @media (max-width: 639px) { /* Untuk ukuran hp kecil, sedikit perkecil padding tombol */
+            .modal-content button {
+                padding: 0.625rem 1.25rem; /* py-2.5 px-5 */
+            }
+        }
+
+        /* Penyesuaian untuk input dan tombol di control-column */
+        #player-count-input, #physical-dice-result, .control-column button {
+            font-size: 1rem; /* Ukuran font standar */
+            padding: 0.75rem 1rem; /* Padding standar */
+        }
+        @media (max-width: 639px) { /* Untuk ukuran hp kecil */
+            #player-count-input, #physical-dice-result {
+                padding: 0.5rem 0.75rem; /* Sedikit perkecil padding */
+                font-size: 0.9rem;
+            }
+            .control-column button {
+                padding: 0.625rem 1rem; /* py-2.5 px-4 */
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Info panel */
+        #info-panel h2 {
+            font-size: 1.125rem; /* text-lg */
+        }
+        #info-panel p {
+            font-size: 0.875rem; /* text-sm */
+        }
+        @media (max-width: 639px) {
+             #info-panel h2 {
+                font-size: 1rem; /* text-base */
+            }
+            #info-panel p {
+                font-size: 0.75rem; /* text-xs */
+            }
+        }
     </style>
 </head>
-<body class="bg-slate-100 flex flex-col items-center justify-center min-h-screen p-4">
+<body class="bg-slate-100 flex flex-col items-center justify-center min-h-screen">
 
-    <h1 class="text-2xl font-bold text-slate-700 text-center mb-6 mt-4">Ular Tangga</h1>
+    <h1 class="text-2xl font-bold text-slate-700 text-center mb-4 mt-4 sm:text-3xl md:text-4xl">Ular Tangga</h1>
 
-    <div class="w-full max-w-5xl mx-auto flex flex-col lg:flex-row gap-4 items-center lg:items-start">
+    <div class="bg-white rounded-3xl shadow-xl w-full mx-auto flex flex-col lg:flex-row lg:gap-4 items-center lg:items-start main-game-wrapper">
         <!-- Kolom Papan Permainan -->
-        <div class="w-full lg:w-2/3 p-6">
-            <div id="game-container" class="relative w-full mx-auto">
+        <div class="w-full lg:w-2/3 lg:p-6 board-column">
+            <div id="game-container" class="relative w-full aspect-square max-w-full mx-auto">
                 <div id="game-board"></div>
                 <div id="snakes-ladders-container"></div>
                 <div id="player-pieces-container"></div>
@@ -148,77 +362,85 @@
         </div>
 
         <!-- Kolom Kontrol -->
-        <div class="w-full lg:w-1/3 bg-white p-6 rounded-2xl shadow-lg mt-4 lg:mt-8">
-            <div id="info-panel" class="text-center bg-slate-200 p-2 rounded-lg mb-2">
-                <h2 class="text-lg font-semibold text-slate-800 leading-tight">Memuat Pertanyaan...</h2>
-                <p id="turn-info" class="text-sm text-slate-600 leading-tight">Mohon tunggu.</p>
-            </div>
+        <div class="w-full lg:w-1/3 bg-gray-50 rounded-2xl shadow-inner p-6 mt-4 lg:mt-8 control-column">
+            <div class="mb-4 sm:mb-6">
+                <div id="info-panel" class="text-center bg-slate-200 p-3 rounded-lg mb-4">
+                    <h2 class="text-lg font-semibold text-slate-800 leading-tight" id="info-panel-title">Memuat Pertanyaan...</h2>
+                    <p id="turn-info" class="text-sm text-slate-600 leading-tight">Mohon tunggu.</p>
+                </div>
 
-            <!-- Input Jumlah Pemain -->
-            <div id="player-count-section" class="mb-4">
-                <label for="player-count-input" class="block text-slate-700 text-sm font-bold mb-2">Jumlah Pemain (2-4):</label>
-                <input type="number" id="player-count-input" min="2" max="4" value="2" 
-                       class="w-full p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-150 ease-in-out">
-                <button id="set-players-btn" 
-                        class="w-full mt-2 bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-300 shadow-md">
-                    Atur Pemain
-                </button>
-            </div>
-            
-            <!-- Pilihan Tipe Dadu -->
-            <div class="mb-6">
-                <label class="block text-slate-700 text-sm font-bold mb-2">Pilih Tipe Dadu:</label>
-                <div class="flex items-center space-x-4">
-                    <label class="inline-flex items-center">
-                        <input type="radio" name="dice-type" value="digital" checked class="form-radio text-blue-600 h-4 w-4">
-                        <span class="ml-2 text-slate-700">Dadu Digital</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="radio" name="dice-type" value="physical" class="form-radio text-blue-600 h-4 w-4">
-                        <span class="ml-2 text-slate-700">Dadu Fisik</span>
-                    </label>
+                <!-- Input Jumlah Pemain -->
+                <div id="player-count-section" class="mb-4 text-center">
+                    <label for="player-count-input" class="block text-slate-700 text-sm font-bold mb-2">Jumlah Pemain (2-4):</label>
+                    <input type="number" id="player-count-input" min="2" max="4" value="2" 
+                           class="w-24 p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-150 ease-in-out text-center">
+                    <button id="set-players-btn" 
+                            class="mt-2 sm:mt-0 sm:ml-2 bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-300 shadow-md">
+                        Atur Pemain
+                    </button>
+                </div>
+                
+                <!-- Pilihan Tipe Dadu -->
+                <div class="mb-4 text-center">
+                    <label class="block text-slate-700 text-sm font-bold mb-2">Pilih Tipe Dadu:</label>
+                    <div class="flex items-center justify-center space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="dice-type" value="digital" checked class="form-radio text-blue-600 h-4 w-4">
+                            <span class="ml-2 text-slate-700">Dadu Digital</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="dice-type" value="physical" class="form-radio text-blue-600 h-4 w-4">
+                            <span class="ml-2 text-slate-700">Dadu Fisik</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
-            <div class="flex justify-center my-6">
-                <div id="dice-face" class="bg-white rounded-lg shadow-md flex items-center justify-center">
-                     <span class="text-4xl font-bold text-slate-700">🎲</span>
+            <div class="flex flex-col items-center flex-grow">
+                <div class="flex justify-center my-4">
+                    <div id="dice-face" class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg shadow-md flex items-center justify-center">
+                         <span class="text-3xl sm:text-4xl font-bold text-slate-700">🎲</span>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Tombol untuk Dadu Digital -->
-            <button id="roll-dice-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 shadow-md">
-                Kocok Dadu
-            </button>
-
-            <!-- Input untuk Dadu Fisik (tersembunyi secara default) -->
-            <div id="physical-dice-input-container" class="hidden mt-4">
-                <label for="physical-dice-result" class="block text-slate-700 text-sm font-bold mb-2">Masukkan Hasil Dadu Fisik (1-6):</label>
-                <input type="number" id="physical-dice-result" min="1" max="6" 
-                       class="w-full p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-150 ease-in-out">
-                <button id="submit-physical-roll-btn" 
-                        class="w-full mt-2 bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition-all duration-300 shadow-md">
-                    Submit Hasil Dadu
+                
+                <!-- Tombol untuk Dadu Digital -->
+                <button id="roll-dice-btn" class="w-full max-w-xs bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 shadow-md mb-2">
+                    Kocok Dadu
                 </button>
-                <!-- Tombol Batalkan yang akan selalu muncul di mode dadu fisik -->
-                <button id="cancel-roll-btn" 
-                        class="w-full mt-2 bg-red-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 shadow-md hidden">
-                    Batalkan
+
+                <!-- Input untuk Dadu Fisik (tersembunyi secara default) -->
+                <div id="physical-dice-input-container" class="hidden w-full max-w-xs flex flex-col items-center">
+                    <label for="physical-dice-result" class="block text-slate-700 text-sm font-bold mb-2">Masukkan Hasil Dadu Fisik (1-6):</label>
+                    <input type="number" id="physical-dice-result" min="1" max="6" 
+                           class="w-24 p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-150 ease-in-out text-center mb-2">
+                    <button id="submit-physical-roll-btn" 
+                            class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition-all duration-300 shadow-md mb-2">
+                        Submit Hasil Dadu
+                    </button>
+                    <!-- Tombol Batalkan yang akan selalu muncul di mode dadu fisik -->
+                    <button id="cancel-roll-btn" 
+                            class="w-full bg-red-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 shadow-md hidden">
+                        Batalkan
+                    </button>
+                </div>
+                
+                <button id="fullscreen-btn" class="w-full max-w-xs bg-purple-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 transition-all duration-300 shadow-md mt-4">
+                    Layar Penuh
+                </button>
+
+                <button id="restart-btn" class="w-full max-w-xs bg-slate-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-300 shadow-md mt-2">
+                    Mulai Ulang
                 </button>
             </div>
-
-             <button id="restart-btn" class="w-full bg-slate-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-300 shadow-md mt-4">
-                Mulai Ulang
-            </button>
         </div>
     </div>
 
     <!-- Modal untuk Pemenang -->
     <div id="winner-modal" class="modal">
         <div class="modal-content">
-            <h2 id="winner-text" class="text-3xl font-bold text-slate-800 mb-4"></h2>
-            <p class="text-slate-600 mb-6">Selamat! Main lagi?</p>
-            <button id="play-again-btn" class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform hover:scale-105">
+            <h2 id="winner-text" class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 mb-4"></h2>
+            <p class="text-base sm:text-lg text-slate-600 mb-6">Selamat! Main lagi?</p>
+            <button id="play-again-btn" class="bg-green-500 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform hover:scale-105">
                 Main Lagi
             </button>
         </div>
@@ -227,16 +449,16 @@
     <!-- Modal untuk Pertanyaan -->
     <div id="question-modal" class="modal">
         <div class="modal-content">
-            <h2 id="question-text" class="text-2xl font-bold text-slate-800 mb-4"></h2>
-            <div id="question-options" class="modal-options text-left">
+            <h2 id="question-text" class="text-xl sm:text-2xl font-bold text-slate-800 mb-4"></h2>
+            <div id="question-options" class="modal-options text-left text-base sm:text-lg w-full">
                 <!-- Pilihan jawaban akan dimuat di sini -->
             </div>
-            <input type="text" id="question-input" class="w-full p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 hidden" placeholder="Ketik jawaban Anda...">
-            <button id="submit-answer-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 shadow-md">
+            <input type="text" id="question-input" class="w-full p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 hidden text-base sm:text-lg" placeholder="Ketik jawaban Anda...">
+            <button id="submit-answer-btn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 shadow-md">
                 Submit Jawaban
             </button>
-            <p id="feedback-text" class="text-lg font-semibold mt-4"></p>
-            <button id="continue-game-btn" class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform hover:scale-105 mt-4 hidden">
+            <p id="feedback-text" class="text-base sm:text-lg font-semibold mt-4"></p>
+            <button id="continue-game-btn" class="bg-green-500 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform hover:scale-105 mt-4 hidden">
                 Lanjutkan Permainan
             </button>
         </div>
@@ -245,9 +467,9 @@
     <!-- Modal untuk Pesan Etika Digital -->
     <div id="ethics-message-modal" class="modal">
         <div class="modal-content">
-            <h2 id="ethics-message-title" class="text-2xl font-bold text-slate-800 mb-4">Pesan Etika Digital!</h2>
-            <p id="ethics-message-text" class="text-lg text-slate-700 mb-6"></p>
-            <button id="close-ethics-message-btn" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-transform hover:scale-105">
+            <h2 id="ethics-message-title" class="text-xl sm:text-2xl font-bold text-slate-800 mb-4">Pesan Etika Digital!</h2>
+            <p id="ethics-message-text" class="text-base sm:text-lg text-slate-700 mb-6"></p>
+            <button id="close-ethics-message-btn" class="bg-blue-600 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-transform hover:scale-105">
                 Oke, Lanjutkan
             </button>
         </div>
