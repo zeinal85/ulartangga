@@ -1,91 +1,533 @@
 [
-    {
-        "id": "q_privasi_data",
-        "question": "Apa yang dimaksud dengan 'privasi data' dalam etika digital?",
-        "type": "multiple_choice",
-        "options": [
-            "Hak untuk membagikan semua data pribadi",
-            "Hak untuk mengontrol informasi pribadi seseorang",
-            "Kewajiban untuk memberikan data kepada perusahaan",
-            "Tidak ada yang perlu disembunyikan"
-        ],
-        "answer": "Hak untuk mengontrol informasi pribadi seseorang",
-        "feedback": "Tepat sekali! Privasi data adalah tentang kontrol individu atas informasinya."
-    },
-    {
-        "id": "q_jejak_digital",
-        "question": "Benar atau Salah: 'Jejak digital' mengacu pada semua data yang kita tinggalkan saat online dan bisa dihapus sepenuhnya.",
-        "type": "true_false",
-        "options": ["Benar", "Salah"],
-        "answer": "Salah",
-        "feedback": "Sayang sekali! Jejak digital memang semua data online, tetapi sulit atau bahkan tidak mungkin dihapus sepenuhnya."
-    },
-    {
-        "id": "q_cyberbullying",
-        "question": "Bagaimana cara terbaik menghadapi 'cyberbullying'?",
-        "type": "text_input",
-        "answer": "Blokir, laporkan, dan cari dukungan dari orang dewasa", 
-        "feedback": "Itu adalah langkah yang tepat! Melaporkan dan mencari bantuan sangat penting."
-    },
-    {
-        "id": "q_hoax",
-        "question": "Apa bahaya utama dari penyebaran berita 'hoax'?",
-        "type": "multiple_choice",
-        "options": [
-            "Membuat orang terhibur",
-            "Menciptakan kebingungan dan konflik",
-            "Meningkatkan kecepatan internet",
-            "Menghemat biaya berita"
-        ],
-        "answer": "Menciptakan kebingungan dan konflik",
-        "feedback": "Benar! Hoax dapat merusak kepercayaan dan memicu perpecahan."
-    },
-    {
-        "id": "q_hak_cipta",
-        "question": "Mengapa penting untuk menghormati 'hak cipta' saat menggunakan konten dari internet?",
-        "type": "text_input",
-        "answer": "Untuk menghargai karya orang lain dan mencegah pelanggaran hukum",
-        "feedback": "Ya, itu inti dari hak cipta! Menghargai kreativitas adalah etika digital yang penting."
-    },
-    {
-        "id": "q_oversharing",
-        "question": "Benar atau Salah: 'Oversharing' di media sosial selalu aman dan tidak memiliki dampak negatif.",
-        "type": "true_false",
-        "options": ["Benar", "Salah"],
-        "answer": "Salah",
-        "feedback": "Tidak tepat! Oversharing bisa berakibat pada privasi dan keamanan pribadi."
-    },
-    {
-        "id": "q_etika_komentar",
-        "question": "Bagaimana seharusnya etika kita dalam berkomentar di platform digital?",
-        "type": "multiple_choice",
-        "options": [
-            "Bebas berkata apa saja",
-            "Menggunakan bahasa sopan dan menghargai perbedaan",
-            "Selalu memprovokasi",
-            "Mengabaikan orang lain"
-        ],
-        "answer": "Menggunakan bahasa sopan dan menghargai perbedaan",
-        "feedback": "Setuju! Kesopanan adalah kunci interaksi digital yang sehat."
-    },
-    {
-        "id": "q_phishing",
-        "question": "Apa tujuan utama dari serangan 'phishing'?",
-        "type": "text_input",
-        "answer": "Mencuri informasi pribadi atau kredensial",
-        "feedback": "Betul sekali! Phishing bertujuan untuk menipu Anda agar mengungkapkan data sensitif."
-    },
-    {
-        "id": "q_toleransi_digital",
-        "question": "Mengapa sikap toleransi penting dalam interaksi online?",
-        "type": "multiple_choice",
-        "options": [
-            "Agar terlihat baik",
-            "Menciptakan lingkungan yang positif dan inklusif",
-            "Meningkatkan jumlah teman",
-            "Tidak ada alasan khusus"
-        ],
-        "answer": "Menciptakan lingkungan yang positif dan inklusif",
-        "feedback": "Tepat! Toleransi membantu membangun komunitas online yang harmonis."
-    }
+  {
+    "id": "q_privasi_data_01",
+    "question": "Mengapa penting untuk menjaga privasi data pribadi Anda di era digital?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Untuk mencegah pencurian identitas.",
+      "Agar tidak ada yang tahu aktivitas online Anda.",
+      "Melindungi dari penyalahgunaan data oleh pihak tidak bertanggung jawab.",
+      "Untuk meningkatkan kecepatan internet."
+    ],
+    "answer": ["Untuk mencegah pencurian identitas.", "Melindungi dari penyalahgunaan data oleh pihak tidak bertanggung jawab."],
+    "feedback": "Tepat sekali! Menjaga privasi data adalah langkah krusial untuk keamanan Anda di dunia maya."
+  },
+  {
+    "id": "q_hoax_01",
+    "question": "Benar atau Salah: Berita hoax (berita palsu) selalu mudah dikenali dari judulnya yang sensasional.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Sayangnya tidak. Hoax bisa dibuat sangat meyakinkan dan sulit dibedakan dari berita asli."
+  },
+  {
+    "id": "q_cyberbullying_01",
+    "question": "Sebutkan minimal tiga tindakan yang dapat Anda lakukan jika Anda menjadi korban cyberbullying.",
+    "type": "text_input",
+    "answer": "Blokir pelaku, laporkan kepada platform, simpan bukti, cari dukungan dari orang dewasa/teman",
+    "feedback": "Itu adalah langkah-langkah yang tepat! Melindungi diri dan mencari bantuan sangat penting."
+  },
+  {
+    "id": "q_jejak_digital_01",
+    "question": "Apa yang dimaksud dengan 'jejak digital'?",
+    "type": "multiple_choice",
+    "options": [
+      "Jejak kaki yang Anda tinggalkan saat menggunakan perangkat digital.",
+      "Semua data dan aktivitas yang Anda tinggalkan saat menggunakan internet dan perangkat digital.",
+      "Riwayat pencarian di mesin telusur yang selalu dihapus secara otomatis.",
+      "Tanda tangan digital Anda pada dokumen online."
+    ],
+    "answer": "Semua data dan aktivitas yang Anda tinggalkan saat menggunakan internet dan perangkat digital.",
+    "feedback": "Benar! Jejak digital mencakup semua aktivitas online Anda, baik yang disengaja maupun tidak disengaja."
+  },
+  {
+    "id": "q_hak_cipta_01",
+    "question": "Mengapa penting untuk menghormati hak cipta dalam penggunaan konten digital?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Untuk menghargai kerja keras dan kreativitas pencipta.",
+      "Agar konten Anda menjadi viral.",
+      "Menghindari sanksi hukum atas pelanggaran hak cipta.",
+      "Agar konten lebih mudah diunduh."
+    ],
+    "answer": ["Untuk menghargai kerja keras dan kreativitas pencipta.", "Menghindari sanksi hukum atas pelanggaran hak cipta."],
+    "feedback": "Ya, menghormati hak cipta adalah pondasi etika digital dan kewajiban hukum."
+  },
+  {
+    "id": "q_phishing_01",
+    "question": "Benar atau Salah: Email phishing selalu mengandung banyak kesalahan tata bahasa dan ejaan, sehingga mudah dikenali.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Tidak selalu! Penipu semakin canggih dan bisa membuat email phishing yang terlihat sangat profesional."
+  },
+  {
+    "id": "q_oversharing_01",
+    "question": "Apa bahaya dari 'oversharing' atau berbagi informasi pribadi secara berlebihan di media sosial?",
+    "type": "multiple_choice",
+    "options": [
+      "Anda akan memiliki lebih banyak teman online.",
+      "Meningkatkan risiko pencurian identitas dan penipuan.",
+      "Postingan Anda akan mendapatkan lebih banyak 'like'.",
+      "Tidak ada bahaya sama sekali."
+    ],
+    "answer": "Meningkatkan risiko pencurian identitas dan penipuan.",
+    "feedback": "Betul sekali! Oversharing dapat membahayakan keamanan pribadi Anda."
+  },
+  {
+    "id": "q_etika_komunikasi_01",
+    "question": "Bagaimana seharusnya kita berkomunikasi di platform digital untuk menjaga etika yang baik?",
+    "type": "text_input",
+    "answer": "Menggunakan bahasa yang sopan, menghargai perbedaan pendapat, tidak menyebarkan kebencian",
+    "feedback": "Itu adalah kunci untuk interaksi digital yang positif dan konstruktif."
+  },
+  {
+    "id": "q_literasi_digital_01",
+    "question": "Apa yang dimaksud dengan 'literasi digital'?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Kemampuan untuk menemukan, mengevaluasi, dan menggunakan informasi digital secara efektif.",
+      "Kemampuan untuk menguasai semua aplikasi di ponsel.",
+      "Pemahaman tentang etika dan keamanan dalam penggunaan teknologi.",
+      "Kemampuan untuk bermain game online dengan baik."
+    ],
+    "answer": ["Kemampuan untuk menemukan, mengevaluasi, dan menggunakan informasi digital secara efektif.", "Pemahaman tentang etika dan keamanan dalam penggunaan teknologi."],
+    "feedback": "Literasi digital adalah keterampilan penting untuk hidup di era modern."
+  },
+  {
+    "id": "q_parental_control_01",
+    "question": "Benar atau Salah: Kontrol orang tua (parental control) di perangkat anak-anak adalah pelanggaran privasi dan tidak diperlukan.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Kontrol orang tua dapat menjadi alat penting untuk melindungi anak-anak dari konten tidak pantas dan ancaman online."
+  },
+  {
+    "id": "q_password_strength_01",
+    "question": "Ciri-ciri kata sandi yang kuat adalah...",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Mengandung kombinasi huruf besar dan kecil.",
+      "Mudah diingat seperti tanggal lahir Anda.",
+      "Mengandung angka dan simbol.",
+      "Memiliki panjang minimal 8-12 karakter."
+    ],
+    "answer": ["Mengandung kombinasi huruf besar dan kecil.", "Mengandung angka dan simbol.", "Memiliki panjang minimal 8-12 karakter."],
+    "feedback": "Kata sandi yang kuat adalah pertahanan pertama terhadap akses tidak sah!"
+  },
+  {
+    "id": "q_penipuan_online_02",
+    "question": "Bagaimana Anda dapat menghindari penipuan online yang menjanjikan hadiah atau uang tunai?",
+    "type": "text_input",
+    "answer": "Jangan mudah percaya, verifikasi sumber, jangan klik tautan mencurigakan, jangan berikan data pribadi",
+    "feedback": "Sangat bagus! Selalu waspada dan lakukan verifikasi."
+  },
+  {
+    "id": "q_toleransi_digital_01",
+    "question": "Mengapa toleransi dan rasa hormat penting saat berinteraksi dengan orang-orang yang memiliki pandangan berbeda di internet?",
+    "type": "multiple_choice",
+    "options": [
+      "Agar kita bisa memenangkan argumen.",
+      "Untuk menciptakan lingkungan online yang positif dan inklusif.",
+      "Tidak ada alasan, karena semua orang bebas berpendapat.",
+      "Agar lebih banyak orang setuju dengan Anda."
+    ],
+    "answer": "Untuk menciptakan lingkungan online yang positif dan inklusif.",
+    "feedback": "Tepat! Toleransi membantu membangun komunitas online yang harmonis."
+  },
+  {
+    "id": "q_etika_share_01",
+    "question": "Benar atau Salah: Kita boleh membagikan foto atau video orang lain di media sosial tanpa izin mereka.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Tidak! Selalu minta izin sebelum membagikan konten yang menampilkan orang lain, demi menghargai privasi mereka."
+  },
+  {
+    "id": "q_virus_malware_01",
+    "question": "Apa saja indikasi bahwa perangkat Anda mungkin terinfeksi virus atau malware?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Perangkat menjadi lambat atau sering crash.",
+      "Baterai lebih awet dari biasanya.",
+      "Muncul iklan pop-up yang tidak diinginkan secara terus-menerus.",
+      "File hilang atau rusak tanpa sebab yang jelas."
+    ],
+    "answer": ["Perangkat menjadi lambat atau sering crash.", "Muncul iklan pop-up yang tidak diinginkan secara terus-menerus.", "File hilang atau rusak tanpa sebab yang jelas."],
+    "feedback": "Perhatikan tanda-tanda ini dan segera ambil tindakan jika perangkat Anda terinfeksi!"
+  },
+  {
+    "id": "q_footprint_control_01",
+    "question": "Bagaimana cara kita mengelola jejak digital agar tetap positif?",
+    "type": "text_input",
+    "answer": "Pikirkan sebelum memposting, hapus konten lama yang tidak relevan, atur privasi akun, googling nama Anda sendiri",
+    "feedback": "Sangat baik! Mengelola jejak digital penting untuk reputasi online."
+  },
+  {
+    "id": "q_cybercrime_definition_01",
+    "question": "Apa definisi dari 'kejahatan siber' (cybercrime)?",
+    "type": "multiple_choice",
+    "options": [
+      "Semua aktivitas yang dilakukan di internet.",
+      "Tindakan kriminal yang dilakukan menggunakan jaringan komputer atau internet.",
+      "Permainan online yang menggunakan banyak data.",
+      "Penggunaan media sosial untuk hiburan."
+    ],
+    "answer": "Tindakan kriminal yang dilakukan menggunakan jaringan komputer atau internet.",
+    "feedback": "Benar! Kejahatan siber mencakup berbagai aktivitas ilegal yang dilakukan di dunia maya."
+  },
+  {
+    "id": "q_penipuan_romansa_01",
+    "question": "Benar atau Salah: Seseorang yang Anda kenal hanya secara online dan selalu meminta uang adalah tanda penipuan romansa (love scam).",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Benar",
+    "feedback": "Tepat! Ini adalah salah satu ciri utama penipuan romansa. Selalu waspada."
+  },
+  {
+    "id": "q_aturan_komunitas_01",
+    "question": "Mengapa penting untuk membaca dan mematuhi aturan komunitas (community guidelines) di platform online?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Untuk menjaga lingkungan yang aman dan nyaman bagi semua pengguna.",
+      "Agar postingan Anda menjadi populer.",
+      "Menghindari pemblokiran atau penangguhan akun.",
+      "Untuk mengetahui siapa saja yang ada di grup tersebut."
+    ],
+    "answer": ["Untuk menjaga lingkungan yang aman dan nyaman bagi semua pengguna.", "Menghindari pemblokiran atau penangguhan akun."],
+    "feedback": "Sangat bagus! Mematuhi aturan komunitas membantu menciptakan pengalaman online yang lebih baik untuk semua."
+  },
+  {
+    "id": "q_digital_wellbeing_01",
+    "question": "Apa dampak negatif penggunaan gadget berlebihan terhadap kesehatan fisik Anda?",
+    "type": "text_input",
+    "answer": "Mata lelah/kering, sakit leher/punggung, gangguan tidur, kurangnya aktivitas fisik",
+    "feedback": "Penting untuk menjaga keseimbangan penggunaan gadget demi kesehatan fisik."
+  },
+  {
+    "id": "q_two_factor_auth_01",
+    "question": "Apa keuntungan utama menggunakan autentikasi dua faktor (2FA) atau verifikasi dua langkah?",
+    "type": "multiple_choice",
+    "options": [
+      "Mempercepat proses login.",
+      "Menambah lapisan keamanan ekstra untuk akun Anda.",
+      "Mengurangi jumlah kata sandi yang harus diingat.",
+      "Membuat akun Anda lebih mudah diakses."
+    ],
+    "answer": "Menambah lapisan keamanan ekstra untuk akun Anda.",
+    "feedback": "Tepat! 2FA sangat efektif dalam melindungi akun Anda."
+  },
+  {
+    "id": "q_doxing_01",
+    "question": "Benar atau Salah: Doxing adalah tindakan mempublikasikan informasi pribadi orang lain di internet tanpa izin, dan itu tidak berbahaya.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Doxing sangat berbahaya karena dapat menyebabkan pelecehan, ancaman, atau bahaya fisik."
+  },
+  {
+    "id": "q_online_games_ethics_01",
+    "question": "Apa etika yang baik saat bermain game online?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Mengucapkan kata-kata kasar untuk memancing emosi lawan.",
+      "Menghormati pemain lain, tidak melakukan kecurangan.",
+      "Tidak melakukan 'ghosting' atau 'griefing' yang merugikan pemain lain.",
+      "Selalu memenangkan pertandingan dengan segala cara."
+    ],
+    "answer": ["Menghormati pemain lain, tidak melakukan kecurangan.", "Tidak melakukan 'ghosting' atau 'griefing' yang merugikan pemain lain."],
+    "feedback": "Etika yang baik dalam bermain game online menciptakan pengalaman yang menyenangkan untuk semua."
+  },
+  {
+    "id": "q_data_privasi_setting_01",
+    "question": "Bagaimana cara Anda dapat melindungi privasi data Anda di media sosial?",
+    "type": "text_input",
+    "answer": "Atur pengaturan privasi akun menjadi 'private', batasi siapa yang dapat melihat postingan, jangan berbagi informasi pribadi secara berlebihan, nonaktifkan pelacakan lokasi",
+    "feedback": "Pengaturan privasi adalah alat yang ampuh untuk melindungi diri Anda."
+  },
+  {
+    "id": "q_impersonation_01",
+    "question": "Apa bahaya dari peniruan identitas (impersonasi) online?",
+    "type": "multiple_choice",
+    "options": [
+      "Orang tersebut menjadi lebih terkenal.",
+      "Dapat digunakan untuk penipuan, pencemaran nama baik, atau kejahatan lainnya.",
+      "Tidak ada bahaya, karena hanya di dunia maya.",
+      "Meningkatkan interaksi di media sosial."
+    ],
+    "answer": "Dapat digunakan untuk penipuan, pencemaran nama baik, atau kejahatan lainnya.",
+    "feedback": "Benar! Peniruan identitas adalah kejahatan siber yang serius."
+  },
+  {
+    "id": "q_wifi_security_01",
+    "question": "Benar atau Salah: Menggunakan Wi-Fi publik untuk melakukan transaksi perbankan atau belanja online adalah praktik yang sangat aman.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Tidak! Wi-Fi publik rentan terhadap peretasan. Selalu gunakan jaringan aman atau VPN untuk transaksi sensitif."
+  },
+  {
+    "id": "q_digital_reputation_01",
+    "question": "Apa saja hal yang dapat memengaruhi reputasi digital Anda secara negatif?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Postingan yang mengandung ujaran kebencian atau diskriminasi.",
+      "Menggunakan nama asli Anda di media sosial.",
+      "Menyebarkan informasi palsu atau hoax.",
+      "Terlibat dalam cyberbullying atau pelecehan online."
+    ],
+    "answer": ["Postingan yang mengandung ujaran kebencian atau diskriminasi.", "Menyebarkan informasi palsu atau hoax.", "Terlibat dalam cyberbullying atau pelecehan online."],
+    "feedback": "Hati-hati! Reputasi digital yang buruk dapat berdampak jangka panjang."
+  },
+  {
+    "id": "q_digital_footprint_passive_active_01",
+    "question": "Jelaskan perbedaan antara 'jejak digital aktif' dan 'jejak digital pasif'.",
+    "type": "text_input",
+    "answer": "Jejak digital aktif adalah informasi yang sengaja kita bagikan (misal: postingan, komentar). Jejak digital pasif adalah data yang dikumpulkan tentang kita tanpa sadar (misal: riwayat Browse, lokasi dari aplikasi).",
+    "feedback": "Sangat bagus! Keduanya membentuk gambaran digital tentang diri kita."
+  },
+  {
+    "id": "q_online_safety_tips_01",
+    "question": "Apa saja tips penting untuk tetap aman saat berselancar di internet?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Mengklik setiap tautan yang muncul.",
+      "Gunakan kata sandi yang kuat dan unik.",
+      "Waspada terhadap email atau pesan mencurigakan.",
+      "Selalu perbarui perangkat lunak dan antivirus."
+    ],
+    "answer": ["Gunakan kata sandi yang kuat dan unik.", "Waspada terhadap email atau pesan mencurigakan.", "Selalu perbarui perangkat lunak dan antivirus."],
+    "feedback": "Ini adalah praktik-praktik dasar untuk keamanan online yang baik."
+  },
+  {
+    "id": "q_data_breach_01",
+    "question": "Benar atau Salah: Jika data pribadi Anda bocor dalam insiden kebocoran data, Anda tidak bisa melakukan apa-apa.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Anda harus segera mengganti kata sandi yang mungkin terpengaruh, mengaktifkan 2FA, dan memantau aktivitas mencurigakan pada akun Anda."
+  },
+  {
+    "id": "q_internet_addiction_01",
+    "question": "Apa saja tanda-tanda kecanduan internet yang perlu diwaspadai?",
+    "type": "text_input",
+    "answer": "Menghabiskan waktu berlebihan online, mengabaikan tugas/hubungan sosial, perasaan cemas/gelisah saat tidak online, kesulitan membatasi penggunaan internet",
+    "feedback": "Kecanduan internet adalah masalah serius yang memerlukan perhatian."
+  },
+  {
+    "id": "q_privacy_vs_security_01",
+    "question": "Apa perbedaan mendasar antara 'privasi' dan 'keamanan' dalam konteks digital?",
+    "type": "multiple_choice",
+    "options": [
+      "Keduanya adalah hal yang sama.",
+      "Privasi adalah tentang melindungi perangkat, keamanan adalah tentang melindungi data.",
+      "Privasi adalah hak untuk mengontrol informasi pribadi, sedangkan keamanan adalah tindakan melindungi informasi dari akses tidak sah.",
+      "Privasi hanya di dunia nyata, keamanan hanya di dunia maya."
+    ],
+    "answer": "Privasi adalah hak untuk mengontrol informasi pribadi, sedangkan keamanan adalah tindakan melindungi informasi dari akses tidak sah.",
+    "feedback": "Memahami perbedaan ini penting untuk perlindungan diri yang komprehensif."
+  },
+  {
+    "id": "q_digital_empathy_01",
+    "question": "Mengapa empati menjadi penting dalam interaksi online?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Agar Anda terlihat ramah.",
+      "Mencegah kesalahpahaman dan konflik yang disebabkan oleh kurangnya nada suara atau ekspresi.",
+      "Membantu membangun hubungan yang lebih baik dan komunitas online yang positif.",
+      "Untuk membuat orang lain menyukai postingan Anda."
+    ],
+    "answer": ["Mencegah kesalahpahaman dan konflik yang disebabkan oleh kurangnya nada suara atau ekspresi.", "Membantu membangun hubungan yang lebih baik dan komunitas online yang positif."],
+    "feedback": "Empati sangat penting untuk menciptakan lingkungan online yang lebih manusiawi."
+  },
+  {
+    "id": "q_scam_call_01",
+    "question": "Jika Anda menerima panggilan telepon yang mengaku dari bank atau lembaga keuangan dan meminta OTP (One-Time Password) Anda, apa yang harus Anda lakukan?",
+    "type": "multiple_choice",
+    "options": [
+      "Berikan OTP Anda segera.",
+      "Segera putuskan panggilan dan hubungi bank/lembaga tersebut melalui nomor resmi mereka.",
+      "Biarkan mereka bicara sampai selesai.",
+      "Berikan hanya sebagian dari OTP Anda."
+    ],
+    "answer": "Segera putuskan panggilan dan hubungi bank/lembaga tersebut melalui nomor resmi mereka.",
+    "feedback": "Tepat! Bank tidak akan pernah meminta OTP Anda melalui telepon."
+  },
+  {
+    "id": "q_online_ethics_principles_01",
+    "question": "Sebutkan minimal tiga prinsip dasar etika digital.",
+    "type": "text_input",
+    "answer": "Hormati privasi, berpikir kritis, berkomunikasi dengan hormat, menghargai hak cipta, bertanggung jawab",
+    "feedback": "Prinsip-prinsip ini membimbing perilaku kita di dunia digital."
+  },
+  {
+    "id": "q_deepfake_threat_01",
+    "question": "Bagaimana 'deepfake' dapat menjadi ancaman di dunia digital?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Digunakan untuk membuat berita palsu atau disinformasi yang sangat meyakinkan.",
+      "Membuat video lebih mudah diedit.",
+      "Digunakan untuk memeras atau mencemarkan nama baik seseorang.",
+      "Membuat avatar digital yang lebih realistis."
+    ],
+    "answer": ["Digunakan untuk membuat berita palsu atau disinformasi yang sangat meyakinkan.", "Digunakan untuk memeras atau mencemarkan nama baik seseorang."],
+    "feedback": "Deepfake adalah teknologi canggih dengan potensi penyalahgunaan yang berbahaya."
+  },
+  {
+    "id": "q_online_safety_kids_01",
+    "question": "Benar atau Salah: Anak-anak tidak perlu diajarkan tentang keamanan online karena mereka sudah pintar dengan teknologi.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Justru anak-anak sangat perlu edukasi keamanan online karena mereka rentan terhadap ancaman digital."
+  },
+  {
+    "id": "q_data_minimization_01",
+    "question": "Apa itu prinsip 'data minimization' dalam perlindungan data pribadi?",
+    "type": "multiple_choice",
+    "options": [
+      "Mengumpulkan data sebanyak mungkin dari pengguna.",
+      "Hanya mengumpulkan data pribadi yang benar-benar diperlukan untuk tujuan tertentu.",
+      "Menghapus semua data setelah 24 jam.",
+      "Membagikan data pribadi secara luas."
+    ],
+    "answer": "Hanya mengumpulkan data pribadi yang benar-benar diperlukan untuk tujuan tertentu.",
+    "feedback": "Tepat! Ini adalah prinsip penting untuk meminimalkan risiko privasi."
+  },
+  {
+    "id": "q_social_engineering_01",
+    "question": "Jelaskan apa yang dimaksud dengan 'social engineering' dalam konteks keamanan siber.",
+    "type": "text_input",
+    "answer": "Manipulasi psikologis untuk menipu orang agar melakukan tindakan atau mengungkapkan informasi rahasia.",
+    "feedback": "Social engineering adalah teknik yang digunakan penipu untuk mengeksploitasi kepercayaan manusia."
+  },
+  {
+    "id": "q_digital_footprint_delete_01",
+    "question": "Benar atau Salah: Setelah Anda menghapus postingan di media sosial, itu berarti postingan tersebut benar-benar hilang dari internet selamanya.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Tidak selalu! Salinan postingan mungkin masih tersimpan di server, di-cache, atau telah disebarkan oleh orang lain."
+  },
+  {
+    "id": "q_cyber_resilience_01",
+    "question": "Apa saja komponen penting dari 'ketahanan siber' (cyber resilience)?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Kemampuan untuk melindungi sistem dan data dari serangan siber.",
+      "Kemampuan untuk mendeteksi serangan siber dengan cepat.",
+      "Kemampuan untuk pulih dari serangan siber dan melanjutkan operasi.",
+      "Kemampuan untuk tidak pernah terkena serangan siber."
+    ],
+    "answer": ["Kemampuan untuk melindungi sistem dan data dari serangan siber.", "Kemampuan untuk mendeteksi serangan siber dengan cepat.", "Kemampuan untuk pulih dari serangan siber dan melanjutkan operasi."],
+    "feedback": "Ketahanan siber adalah pendekatan komprehensif untuk menghadapi ancaman siber."
+  },
+  {
+    "id": "q_digital_detox_01",
+    "question": "Apa manfaat melakukan 'detoks digital' (digital detox)?",
+    "type": "multiple_choice",
+    "options": [
+      "Membuat Anda ketinggalan berita.",
+      "Menurunkan produktivitas.",
+      "Meningkatkan kesehatan mental, mengurangi stres, dan meningkatkan fokus.",
+      "Tidak ada manfaat yang signifikan."
+    ],
+    "answer": "Meningkatkan kesehatan mental, mengurangi stres, dan meningkatkan fokus.",
+    "feedback": "Detoks digital dapat memberikan jeda yang sangat dibutuhkan dari dunia online."
+  },
+  {
+    "id": "q_online_harassment_01",
+    "question": "Apa yang harus Anda lakukan jika Anda melihat orang lain dilecehkan secara online?",
+    "type": "text_input",
+    "answer": "Laporkan kepada platform, berikan dukungan kepada korban, jangan ikut menyebarkan pelecehan, jangan jadi penonton pasif",
+    "feedback": "Berdiri teguh melawan pelecehan online adalah tanggung jawab kita bersama."
+  },
+  {
+    "id": "q_ethical_ai_01",
+    "question": "Mengapa etika dalam pengembangan dan penggunaan AI (Artificial Intelligence) menjadi penting?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Agar AI menjadi lebih pintar.",
+      "Mencegah bias dan diskriminasi dalam keputusan yang dibuat oleh AI.",
+      "Memastikan AI digunakan untuk kebaikan manusia dan bukan untuk merugikan.",
+      "Hanya untuk kepentingan perusahaan pengembang AI."
+    ],
+    "answer": ["Mencegah bias dan diskriminasi dalam keputusan yang dibuat oleh AI.", "Memastikan AI digunakan untuk kebaikan manusia dan bukan untuk merugikan."],
+    "feedback": "Etika AI sangat krusial untuk memastikan teknologi ini berkembang secara bertanggung jawab."
+  },
+  {
+    "id": "q_online_identity_01",
+    "question": "Benar atau Salah: Identitas online Anda (profil media sosial, komentar, postingan) tidak berhubungan dengan identitas Anda di dunia nyata.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Identitas online dan di dunia nyata saling terkait dan dapat memengaruhi satu sama lain."
+  },
+  {
+    "id": "q_digital_divide_01",
+    "question": "Apa yang dimaksud dengan 'kesenjangan digital' (digital divide)?",
+    "type": "multiple_choice",
+    "options": [
+      "Perbedaan antara kecepatan internet di kota dan desa.",
+      "Kesenjangan akses dan penggunaan teknologi informasi dan komunikasi (TIK) antara kelompok masyarakat.",
+      "Perbedaan antara harga smartphone dan laptop.",
+      "Perbedaan jenis konten yang dikonsumsi secara online."
+    ],
+    "answer": "Kesenjangan akses dan penggunaan teknologi informasi dan komunikasi (TIK) antara kelompok masyarakat.",
+    "feedback": "Kesenjangan digital adalah masalah sosial yang perlu diatasi untuk memastikan semua orang memiliki akses yang setara."
+  },
+  {
+    "id": "q_critical_thinking_01",
+    "question": "Mengapa kemampuan berpikir kritis sangat penting saat mengonsumsi informasi online?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Agar Anda tidak ketinggalan tren.",
+      "Untuk membedakan informasi yang akurat dari yang palsu atau bias.",
+      "Mencegah penyebaran disinformasi dan hoax.",
+      "Agar bisa berdebat lebih baik di media sosial."
+    ],
+    "answer": ["Untuk membedakan informasi yang akurat dari yang palsu atau bias.", "Mencegah penyebaran disinformasi dan hoax."],
+    "feedback": "Berpikir kritis adalah keterampilan esensial untuk navigasi yang aman dan cerdas di dunia digital."
+  },
+  {
+    "id": "q_cybersecurity_basic_01",
+    "question": "Sebutkan minimal tiga tindakan pencegahan dasar untuk menjaga keamanan siber pribadi Anda.",
+    "type": "text_input",
+    "answer": "Gunakan kata sandi kuat, aktifkan 2FA, waspada terhadap phishing, perbarui perangkat lunak, gunakan antivirus, cadangkan data",
+    "feedback": "Menerapkan langkah-langkah ini akan sangat meningkatkan keamanan siber Anda."
+  },
+  {
+    "id": "q_online_harassment_definition_01",
+    "question": "Apa yang dimaksud dengan 'pelecehan online'?",
+    "type": "multiple_choice",
+    "options": [
+      "Mengirim pesan teks ke teman Anda.",
+      "Berinteraksi secara positif di media sosial.",
+      "Perilaku berulang yang mengganggu, mengancam, atau menghina seseorang melalui platform digital.",
+      "Mencari informasi di internet."
+    ],
+    "answer": "Perilaku berulang yang mengganggu, mengancam, atau menghina seseorang melalui platform digital.",
+    "feedback": "Pelecehan online adalah masalah serius yang memerlukan tindakan."
+  },
+  {
+    "id": "q_data_sharing_consent_01",
+    "question": "Benar atau Salah: Ketika Anda menginstal aplikasi, Anda tidak perlu membaca bagian 'izin' (permissions) yang diminta aplikasi karena itu tidak penting.",
+    "type": "true_false",
+    "options": ["Benar", "Salah"],
+    "answer": "Salah",
+    "feedback": "Penting untuk membaca izin aplikasi untuk mengetahui data apa yang akan diakses aplikasi dari perangkat Anda."
+  },
+  {
+    "id": "q_report_content_01",
+    "question": "Mengapa penting untuk melaporkan konten atau perilaku yang tidak pantas di platform online?",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Agar akun Anda menjadi terkenal.",
+      "Membantu platform menjaga keamanan dan kualitas konten.",
+      "Melindungi pengguna lain dari potensi bahaya.",
+      "Tidak ada alasan, karena platform akan mencari sendiri."
+    ],
+    "answer": ["Membantu platform menjaga keamanan dan kualitas konten.", "Melindungi pengguna lain dari potensi bahaya."],
+    "feedback": "Melaporkan adalah tindakan proaktif untuk membuat internet menjadi tempat yang lebih aman bagi semua."
+  }
 ]

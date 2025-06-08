@@ -9,28 +9,29 @@ const snakesAndLaddersMap = {
 };
 
 // Variabel triggerCells yang sekarang berada di bagian konfigurasi global
+// Ini adalah daftar sel di mana pertanyaan akan muncul.
 const triggerCells = [3, 5, 7, 9, 11, 15, 21, 23, 25, 31, 39, 43, 44, 47, 48, 49, 54, 58, 65, 75, 77, 79, 80, 85, 88, 89, 91, 95, 96, 97, 98];
 
 const playerColors = ['bg-red-700', 'bg-blue-700', 'bg-green-700', 'bg-yellow-700'];
 const additionalPlayerColors = ['bg-purple-700', 'bg-orange-700'];
 
 // Bank Soal Etika Digital - AKAN DIISI DARI URL EKSTERNAL
-let questionBank = {};
-// Pemetaan sel ke ID pertanyaan - AKAN DIBUAT SECARA DINAMIS
-let cellQuestionMap = {};
+let questionBank = {}; // Objek untuk menyimpan pertanyaan berdasarkan ID
+// Pemetaan sel ke ID pertanyaan - TIDAK LAGI DIGUNAKAN SECARA STATIS.
+// Pertanyaan akan dipilih acak saat pemain mendarat di triggerCell.
+let cellQuestionMap = {}; // Variabel ini tetap dideklarasikan tapi tidak digunakan untuk pemetaan statis.
 
 // Bank Pesan Etika Digital untuk Ular dan Tangga - AKAN DIISI DARI URL EKSTERNAL
 let ethicsMessages = { ladders: [], snakes: [] }; // Inisialisasi sebagai objek kosong yang akan diisi
 
 // =====================================================================
-// Menggunakan file questions.json yang ada di folder yang sama
+// Menggunakan URL Gist GitHub untuk pertanyaan dan pesan etika.
+// Pastikan URL ini dapat diakses publik.
 // =====================================================================
 const QUESTIONS_URL = './questions.json';
-
-// =====================================================================
-// Menggunakan file pesan.json yang ada di folder yang sama
-// =====================================================================
+//'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/f9646e3bc3d8559b1802026abd7ef60c58e9dded/questions.json';
 const ETHICS_URL = './pesan.json';
+//'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/42de164222a875d339ef83e648509a4042a43d59/pesan.json';
 
 
 // State (kondisi) permainan
@@ -46,6 +47,11 @@ let previousPlayerPosition = Array(4).fill(0); // Menyimpan posisi pemain sebelu
 let lastPlayerMoved = null; // Menyimpan indeks pemain yang terakhir bergerak sebelum gerakan
 let lastDiceRollResult = null; // Menyimpan hasil dadu terakhir yang menggerakkan pemain
 let actionInProgress = false; // Mencegah interaksi saat animasi atau modal aktif
+
+// Variabel baru untuk menyimpan langkah yang tertunda dari pertanyaan
+let pendingQuestionMoveSteps = 0;
+// Variabel untuk menyimpan data pertanyaan saat ini yang sedang ditampilkan di modal
+let currentQuestionData = null;
 
 
 // --- REFERENSI ELEMEN DOM ---
@@ -108,6 +114,8 @@ function initGame() {
     lastPlayerMoved = null; // Ini akan memastikan tombol batal tersembunyi di awal
     lastDiceRollResult = null;
     actionInProgress = false;
+    pendingQuestionMoveSteps = 0; // Reset langkah tertunda
+    currentQuestionData = null; // Reset data pertanyaan
 
     // Bersihkan dan buat papan permainan
     board.innerHTML = '';
@@ -145,6 +153,7 @@ function createBoard() {
         cell.dataset.number = i;
 
         // Tambahkan indikator visual untuk sel pertanyaan
+        // Indikator tetap ada di triggerCells, namun pertanyaannya akan diacak saat mendarat
         if (triggerCells.includes(i)) {
             cell.classList.add('question-cell-indicator'); // Class baru untuk styling
             const questionIcon = document.createElement('span');
@@ -244,12 +253,26 @@ async function handleRollDiceDigital() {
         return;
     }
 
-    if (cellQuestionMap[playerPositions[currentPlayer]]) {
+    // Cek apakah pemain mendarat di sel pemicu pertanyaan
+    if (triggerCells.includes(playerPositions[currentPlayer])) {
         waitingForAnswer = true;
         disableDiceButtons();
         cancelRollBtn.classList.add('hidden'); // Pastikan batal tersembunyi jika ada pertanyaan
-        const questionId = cellQuestionMap[playerPositions[currentPlayer]];
-        showQuestionModal(questionBank[questionId]);
+        
+        // Pilih pertanyaan secara acak dari questionBank
+        const questionIds = Object.keys(questionBank);
+        if (questionIds.length > 0) {
+            const randomQuestionId = questionIds[Math.floor(Math.random() * questionIds.length)];
+            currentQuestionData = questionBank[randomQuestionId]; // Simpan data pertanyaan yang dipilih
+            showQuestionModal(currentQuestionData);
+        } else {
+            console.warn("Tidak ada pertanyaan yang tersedia di questionBank. Melanjutkan permainan.");
+            // Lanjutkan permainan jika tidak ada pertanyaan
+            waitingForAnswer = false;
+            switchPlayer();
+            updateDiceUI();
+            updateTurnInfo();
+        }
     } else {
         // Jika hasil dadu bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
         if (diceResult !== 6 || consecutiveSixes >= 3) {
@@ -262,7 +285,6 @@ async function handleRollDiceDigital() {
             turnInfo.textContent = "Silakan kocok dadu lagi.";
             rollDiceBtn.disabled = false; // Biarkan tombol dadu digital aktif
         }
-        // Tombol batal tidak akan muncul di mode digital, jadi tidak perlu penyesuaian di sini.
     }
     actionInProgress = false; // Reset flag
 }
@@ -315,12 +337,26 @@ async function handleSubmitPhysicalRoll() {
         return;
     }
 
-    if (cellQuestionMap[playerPositions[currentPlayer]]) {
+    // Cek apakah pemain mendarat di sel pemicu pertanyaan
+    if (triggerCells.includes(playerPositions[currentPlayer])) {
         waitingForAnswer = true;
         disableDiceButtons(); // nonaktifkan tombol dadu dan submit
         cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal jika ada pertanyaan
-        const questionId = cellQuestionMap[playerPositions[currentPlayer]];
-        showQuestionModal(questionBank[questionId]);
+        
+        // Pilih pertanyaan secara acak dari questionBank
+        const questionIds = Object.keys(questionBank);
+        if (questionIds.length > 0) {
+            const randomQuestionId = questionIds[Math.floor(Math.random() * questionIds.length)];
+            currentQuestionData = questionBank[randomQuestionId]; // Simpan data pertanyaan yang dipilih
+            showQuestionModal(currentQuestionData);
+        } else {
+            console.warn("Tidak ada pertanyaan yang tersedia di questionBank. Melanjutkan permainan.");
+            // Lanjutkan permainan jika tidak ada pertanyaan
+            waitingForAnswer = false;
+            switchPlayer();
+            updateDiceUI();
+            updateTurnInfo();
+        }
     } else {
         // Jika hasil dadu bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
         if (diceResult !== 6 || consecutiveSixes >= 3) {
@@ -334,7 +370,6 @@ async function handleSubmitPhysicalRoll() {
             physicalDiceResultInput.disabled = false;
             submitPhysicalRollBtn.disabled = false;
             physicalDiceResultInput.value = '';
-            // Tombol batal tetap terlihat karena sudah diatur oleh updateDiceUI()
         }
     }
     actionInProgress = false; // Reset flag
@@ -582,16 +617,18 @@ function showQuestionModal(questionData) {
         questionInput.disabled = false;
         questionInput.focus();
         questionOptions.classList.add('hidden');
-    } else {
+    } else { // Termasuk 'multiple_choice', 'true_false', dan yang lainnya
         questionInput.classList.add('hidden');
         questionOptions.classList.remove('hidden');
     }
 
+    // Menggunakan tipe "multiple_choice_multi_select" untuk menentukan checkbox
     if (questionData.options && questionData.options.length > 0) {
+        const inputType = (questionData.type === 'multiple_choice_multi_select') ? 'checkbox' : 'radio';
         questionData.options.forEach((option, index) => {
             const label = document.createElement('label');
             label.innerHTML = `
-                <input type="radio" name="question-option" value="${option}" class="form-radio h-4 w-4 text-blue-600">
+                <input type="${inputType}" name="question-option" value="${option}" class="form-${inputType} h-4 w-4 text-blue-600">
                 <span class="ml-2">${option}</span>
             `;
             questionOptions.appendChild(label);
@@ -609,21 +646,59 @@ function showQuestionModal(questionData) {
  * Menangani submit jawaban pertanyaan.
  */
 submitAnswerBtn.addEventListener('click', async () => {
-    const currentQuestionId = cellQuestionMap[playerPositions[currentPlayer]];
-    const currentQuestion = questionBank[currentQuestionId];
+    // Gunakan currentQuestionData yang sudah disimpan saat showQuestionModal dipanggil
+    const currentQuestion = currentQuestionData;
+    if (!currentQuestion) {
+        console.error("ERROR: currentQuestionData tidak ditemukan saat submit jawaban.");
+        return;
+    }
+
     let userAnswer;
 
     if (currentQuestion.type === 'text_input') {
         userAnswer = questionInput.value.trim();
-    } else if (currentQuestion.type === 'multiple_choice' || currentQuestion.type === 'true_false') {
+    } else if (currentQuestion.type === 'multiple_choice_multi_select') {
+        // Kumpulkan semua jawaban yang dipilih dari checkbox
+        userAnswer = Array.from(document.querySelectorAll('input[name="question-option"]:checked'))
+                        .map(checkbox => checkbox.value);
+    } else { // 'multiple_choice' atau 'true_false'
         const selectedOption = document.querySelector('input[name="question-option"]:checked');
         userAnswer = selectedOption ? selectedOption.value : '';
     }
 
     let isCorrect = false;
+
+    // Logika pemeriksaan jawaban yang diperbarui
     if (currentQuestion.type === 'text_input') {
-        isCorrect = userAnswer.toLowerCase() === currentQuestion.answer.toLowerCase();
-    } else {
+        // Untuk text_input, 'answer' bisa berupa string tunggal atau array string
+        if (Array.isArray(currentQuestion.answer)) {
+            const normalizedUserAnswer = userAnswer.toLowerCase();
+            isCorrect = currentQuestion.answer.some(ans => ans.toLowerCase() === normalizedUserAnswer);
+            // Anda juga bisa menambahkan logika yang lebih kompleks di sini
+            // Misalnya: memecah jawaban pengguna menjadi kata kunci dan memeriksa apakah
+            // semua kata kunci yang diharapkan ada dalam jawaban, dll.
+        } else {
+            isCorrect = userAnswer.toLowerCase() === currentQuestion.answer.toLowerCase();
+        }
+    } else if (currentQuestion.type === 'multiple_choice_multi_select') {
+        // Untuk multi-select, 'answer' HARUS berupa array
+        if (Array.isArray(currentQuestion.answer)) {
+            // Cek apakah semua jawaban yang benar dipilih DAN tidak ada jawaban salah yang dipilih
+            const correctAnswers = currentQuestion.answer.map(ans => ans.toLowerCase());
+            const selectedAnswers = userAnswer.map(ans => ans.toLowerCase());
+            
+            // Semua jawaban yang benar harus ada di jawaban yang dipilih pengguna
+            const allCorrectSelected = correctAnswers.every(ans => selectedAnswers.includes(ans));
+            // Jumlah jawaban yang dipilih harus sama dengan jumlah jawaban yang benar
+            const sameCount = selectedAnswers.length === correctAnswers.length;
+
+            isCorrect = allCorrectSelected && sameCount;
+        } else {
+            // Jika answer di JSON bukan array untuk multi-select, ini adalah error data
+            console.error("ERROR: Tipe 'multiple_choice_multi_select' membutuhkan 'answer' berupa array.");
+            isCorrect = false;
+        }
+    } else { // 'multiple_choice' atau 'true_false'
         isCorrect = userAnswer === currentQuestion.answer;
     }
 
@@ -631,27 +706,15 @@ submitAnswerBtn.addEventListener('click', async () => {
         feedbackText.textContent = "Benar! " + (currentQuestion.feedback || "") + " Anda maju 1 langkah!";
         feedbackText.classList.remove('text-red-500');
         feedbackText.classList.add('text-green-600');
-
-        // Hadiah: Maju 1 langkah
-        let newPosition = playerPositions[currentPlayer] + 1;
-        // Pastikan tidak melebihi BOARD_SIZE
-        playerPositions[currentPlayer] = Math.min(newPosition, BOARD_SIZE);
-        updatePlayerPositionUI(currentPlayer); // Update posisi visual
-
+        pendingQuestionMoveSteps = 1; // Simpan langkah maju
     } else {
-        feedbackText.textContent = `Salah. Jawaban yang benar adalah: ${currentQuestion.answer}. ` + (currentQuestion.feedback || "") + " Anda mundur 1 langkah!";
+        feedbackText.textContent = `Salah. Jawaban yang benar adalah: ${Array.isArray(currentQuestion.answer) ? currentQuestion.answer.join(" / ") : currentQuestion.answer}. ` + (currentQuestion.feedback || "") + " Anda mundur 1 langkah!";
         feedbackText.classList.remove('text-green-600');
         feedbackText.classList.add('text-red-500');
-
-        // Hukuman: Mundur 1 langkah
-        let newPosition = playerPositions[currentPlayer] - 1;
-        // Pastikan tidak kurang dari 0 (posisi start)
-        playerPositions[currentPlayer] = Math.max(newPosition, 0);
-        updatePlayerPositionUI(currentPlayer); // Update posisi visual
+        pendingQuestionMoveSteps = -1; // Simpan langkah mundur
     }
 
-    // Tambahkan jeda waktu di sini agar pemain sempat membaca umpan balik dan melihat pergerakan
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Jeda 1.5 detik
+    // --- Tidak ada jeda waktu di sini ---
 
     submitAnswerBtn.classList.add('hidden');
     continueGameBtn.classList.remove('hidden');
@@ -660,16 +723,28 @@ submitAnswerBtn.addEventListener('click', async () => {
 });
 
 /**
- * Melanjutkan permainan setelah pertanyaan dijawab.
+ * Melanjutkan permainan setelah pertanyaan dijawab dan memicu pergerakan bidak.
  */
-continueGameBtn.addEventListener('click', () => {
-    questionModal.classList.remove('show');
+continueGameBtn.addEventListener('click', async () => {
+    questionModal.classList.remove('show'); // Modal ditutup
     waitingForAnswer = false;
 
+    // Lakukan pergerakan bidak berdasarkan pendingQuestionMoveSteps setelah modal tertutup
+    if (pendingQuestionMoveSteps !== 0) {
+        let newPosition = playerPositions[currentPlayer] + pendingQuestionMoveSteps;
+        // Pastikan posisi tidak melebihi BOARD_SIZE atau kurang dari 0
+        playerPositions[currentPlayer] = Math.min(Math.max(newPosition, 0), BOARD_SIZE);
+        updatePlayerPositionUI(currentPlayer); // Update posisi visual
+        pendingQuestionMoveSteps = 0; // Reset langkah tertunda
+        await new Promise(resolve => setTimeout(resolve, 500)); // Beri jeda singkat untuk animasi bidak
+    }
+    
+    // Reset elemen modal
     questionInput.value = '';
     questionInput.disabled = false;
     questionOptions.innerHTML = '';
     feedbackText.textContent = '';
+    currentQuestionData = null; // Reset data pertanyaan setelah digunakan
 
     // Jika hasil dadu terakhir bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
     if (lastDiceRollResult !== 6 || consecutiveSixes >= 3) {
@@ -769,20 +844,12 @@ async function loadGameContent() {
         ethicsMessages.ladders = ethicsData.ladders;
         ethicsMessages.snakes = ethicsData.snakes;
 
-        cellQuestionMap = {};
-        if (questionsArray.length > 0) { // Hanya isi cellQuestionMap jika ada pertanyaan yang dimuat
-            let questionIndex = 0;
-            // Menggunakan triggerCells yang sudah dideklarasikan di bagian konfigurasi global di atas
-            triggerCells.forEach(cellNum => {
-                if (questionsArray[questionIndex] && questionBank[questionsArray[questionIndex].id]) {
-                    cellQuestionMap[cellNum] = questionsArray[questionIndex].id;
-                }
-                questionIndex = (questionIndex + 1) % questionsArray.length;
-            });
-        }
+        // cellQuestionMap tidak lagi diisi dengan pertanyaan tetap
+        // Pertanyaan akan dipilih acak saat pemain mendarat di triggerCell.
+        cellQuestionMap = {}; // Ini tetap dideklarasikan tapi tidak digunakan untuk pemetaan statis.
 
         console.log("Bank Soal Dimuat dari database:", questionBank);
-        console.log("Peta Sel Pertanyaan:", cellQuestionMap);
+        console.log("Peta Sel Pertanyaan (tidak lagi statis):", cellQuestionMap);
         console.log("Pesan Etika Digital Dimuat:", ethicsMessages);
         initGame();
         displayMessage("Siap Bermain!", "Konten game berhasil dimuat dari database."); // Pesan diperbarui
@@ -814,7 +881,7 @@ function toggleFullscreen() {
         } else if (element.webkitRequestFullscreen) { /* Chrome, Safari, dan Opera */
             element.webkitRequestFullscreen();
         } else if (element.msRequestFullscreen) { /* IE/Edge */
-            element.msRequestFullscreen();
+            document.msRequestFullscreen();
         }
     } else {
         // Jika dalam mode layar penuh, keluar dari layar penuh
