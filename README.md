@@ -1,94 +1,12 @@
 # ulartangga
-Deskripsi Lengkap Game Ular Tangga - Etika Digital
-Judul Game: Game Ular Tangga - Etika Digital
+Ular Tangga Edukatif - Etika Digital Game Ular Tangga - Etika Digital adalah adaptasi modern dari permainan papan klasik Ular Tangga, yang dirancang ulang sebagai platform pembelajaran interaktif. Permainan ini bertujuan untuk mengedukasi pemain mengenai pentingnya etika digital melalui gameplay yang menarik dan menantang. Pemain diajak dalam sebuah perjalanan virtual di papan permainan 100 kotak, di mana setiap langkahnya dipenuhi dengan pengetahuan, tantangan, dan refleksi tentang perilaku di dunia digital. 
 
-Konsep Game:
-Game ini adalah adaptasi digital dari permainan papan Ular Tangga yang populer, dirancang khusus untuk mengedukasi pemain tentang etika digital melalui interaksi yang menyenangkan dan menantang. Pemain akan menggerakkan bidak di papan dari sel 1 hingga 100, menghadapi tantangan berupa pertanyaan dan mendapatkan pesan etika digital di sepanjang perjalanan.
+Dalam gameplay inti, pemain bergiliran mengocok dadu (baik digital maupun fisik) untuk memindahkan bidak mereka di papan hingga mencapai kotak ke-100. Papan ini memiliki konfigurasi ular dan tangga tradisional, di mana tangga memberikan keuntungan untuk maju lebih cepat, sementara ular memberikan konsekuensi berupa kemunduran. Menariknya, ular dan tangga kini memiliki makna edukatif yang relevan, dengan setiap pemain direpresentasikan oleh bidak berwarna yang bergerak secara dinamis di papan permainan. Fleksibilitas juga ditawarkan dalam pilihan dadu, di mana pemain dapat memilih untuk mengocok dadu secara otomatis melalui antarmuka game atau menggunakan dadu fisik dan memasukkan hasilnya secara manual, mengakomodasi berbagai preferensi bermain. 
 
-Fitur Utama:
+Aspek pembelajaran interaktif dalam game ini disajikan melalui pertanyaan yang muncul di sel-sel pemicu tertentu di papan. Ketika bidak pemain mendarat di sel ini, sebuah modal (pop-up) akan muncul, menantang pemain dengan soal-soal seputar etika digital, seperti privasi, cyberbullying, berita bohong (hoax), dan jejak digital. Game ini mendukung format soal yang beragam, termasuk pilihan ganda dan isian singkat. Sistem konsekuensi diterapkan: jika pemain menjawab pertanyaan dengan benar, mereka diberi hadiah berupa maju satu langkah tambahan, sedangkan jika salah, mereka mundur satu langkah. Setelah menjawab, pemain menerima umpan balik langsung, termasuk jawaban yang benar jika menjawab salah, dengan jeda 1.5 detik agar informasi dapat diproses sepenuhnya. 
 
-Gameplay Ular Tangga Klasik:
+Penguatan konsep etika digital juga dilakukan melalui pesan kontekstual yang muncul setiap kali pemain naik tangga atau turun ular. Pesan-pesan ini relevan dengan konsep "ular" yang memicu pesan peringatan tentang risiko dan konsekuensi perilaku tidak etis, dan "tangga" yang memicu pesan positif tentang praktik digital yang baik. Momen ini dirancang untuk memberikan jeda reflektif dan memperkuat poin pembelajaran secara kontekstual. 
 
-Pemain bergiliran mengocok dadu (baik digital maupun fisik) untuk memindahkan bidak mereka di papan 100 sel.
+Dari sisi aspek teknis dan desain, game ini mendukung 2 hingga 4 pemain, dengan jumlah yang dapat diatur di awal permainan. Manajemen konten sangat fleksibel karena seluruh bank soal (questions.json) dan kumpulan pesan etika (pesan.json) dimuat dari file JSON eksternal. Arsitektur ini memungkinkan pengajar atau pengembang untuk dengan mudah memperbarui atau mengganti konten tanpa mengubah kode inti game. Desain antarmuka pengguna (UI/UX) dibangun dengan Tailwind CSS, memastikan game memberikan pengalaman yang responsif dan optimal di berbagai perangkat (desktop, tablet, dan ponsel). Antarmuka yang bersih dan modern memastikan pemain dapat dengan mudah memahami cara bermain dan berinteraksi dengan semua fitur, didukung oleh transisi yang halus untuk pergerakan bidak dan animasi pada elemen interaktif yang menciptakan pengalaman bermain yang lebih hidup. Sebuah panel informasi khusus juga menyediakan status real-time mengenai giliran pemain, hasil dadu, dan pesan status penting lainnya, sementara modal pemenang akan muncul secara otomatis ketika seorang pemain berhasil mencapai garis finis. 
 
-Papan memiliki konfigurasi ular dan tangga tradisional, di mana tangga akan memajukan pemain dan ular akan memundurkan pemain.
-
-Bidak pemain ditampilkan dengan warna berbeda dan bergerak secara dinamis di papan.
-
-Pilihan Tipe Dadu:
-
-Dadu Digital: Pemain dapat mengklik tombol untuk secara otomatis mengocok dadu dan mendapatkan hasil acak.
-
-Dadu Fisik: Pemain dapat memasukkan hasil kocokan dadu fisik mereka secara manual, memberikan fleksibilitas bagi mereka yang lebih suka menggunakan dadu sungguhan.
-
-Interaksi Pertanyaan Etika Digital:
-
-Game ini mengintegrasikan elemen pembelajaran interaktif di sel-sel pemicu tertentu di papan.
-
-Ketika bidak pemain mendarat di sel pemicu, sebuah modal (pop-up) pertanyaan akan muncul, menantang pemain dengan soal-soal seputar etika digital.
-
-Jenis Pertanyaan: Mendukung pertanyaan pilihan ganda atau input teks (isian singkat).
-
-Hadiah & Hukuman:
-
-Jika pemain menjawab pertanyaan dengan benar, mereka akan maju 1 langkah tambahan.
-
-Jika pemain menjawab pertanyaan dengan salah, mereka akan mundur 1 langkah.
-
-Umpan balik (jawaban benar/salah dan jawaban yang benar jika salah) akan ditampilkan, dan permainan akan terhenti sejenak (1.5 detik) agar pemain dapat memproses informasi sebelum melanjutkan.
-
-Pesan Etika Digital pada Ular dan Tangga:
-
-Sebagai tambahan edukatif, setiap kali pemain mendarat dan bergerak melalui ular atau tangga, sebuah modal pesan etika digital akan muncul.
-
-Pesan-pesan ini relevan dengan konsep "ular" (konsekuensi negatif dari tindakan tidak etis di dunia digital) dan "tangga" (manfaat positif dari praktik etika digital yang baik).
-
-Pesan ini dirancang untuk memberikan refleksi singkat dan poin pembelajaran, yang harus diakui pemain sebelum permainan dilanjutkan.
-
-Dukungan Jumlah Pemain yang Dapat Disesuaikan:
-
-Game mendukung 2 hingga 4 pemain, dengan opsi untuk mengatur jumlah pemain di awal permainan.
-
-Manajemen Konten Eksternal:
-
-Bank soal (questions.json) dan kumpulan pesan etika digital (pesan.json) dimuat secara eksternal dari file JSON terpisah. Ini memungkinkan pembaruan konten game yang mudah tanpa perlu mengubah kode inti game.
-
-File-file JSON ini diharapkan berada dalam folder yang sama dengan file HTML dan JavaScript utama game.
-
-Desain Responsif & Antarmuka Pengguna yang Bersih:
-
-Dibangun dengan Tailwind CSS untuk memastikan tata letak yang responsif dan menarik di berbagai ukuran layar (desktop, tablet, dan mobile).
-
-Desain yang bersih dan intuitif memudahkan navigasi dan interaksi pemain.
-
-Transisi halus untuk pergerakan bidak dan tampilan modal menciptakan pengalaman yang menyenangkan.
-
-Status Game & Informasi:
-
-Panel informasi di samping papan memberikan pembaruan real-time tentang giliran pemain, hasil dadu, dan status game.
-
-Modal pemenang akan muncul saat seorang pemain mencapai sel terakhir (100).
-
-Potensi Pengembangan dan Fleksibilitas Materi:
-Salah satu kekuatan utama dari arsitektur game ini adalah fleksibilitasnya yang tinggi. Dengan memisahkan bank soal dan pesan etika ke dalam file JSON eksternal, game ini tidak hanya terbatas pada materi etika digital. Pengembang atau pengajar dapat dengan sangat mudah mengganti atau memperbarui konten file questions.json dan pesan.json untuk menerapkan game ini pada berbagai materi atau mata pelajaran lainnya, seperti:
-
-Sejarah: Pertanyaan tentang peristiwa sejarah atau tokoh.
-
-Matematika: Soal-soal hitungan atau konsep matematika.
-
-Sains: Pertanyaan tentang fakta ilmiah atau eksperimen.
-
-Bahasa: Kosakata, tata bahasa, atau pemahaman teks.
-
-Pendidikan Karakter: Pesan-pesan moral atau skenario etika lainnya.
-Fleksibilitas ini menjadikan game Ular Tangga ini alat yang sangat adaptif untuk pengajaran dan pembelajaran interaktif di berbagai disiplin ilmu.
-
-Teknologi yang Digunakan:
-
-HTML5: Struktur dasar halaman game.
-
-CSS3 (Tailwind CSS): Styling dan responsivitas antarmuka pengguna.
-
-JavaScript: Seluruh logika game, termasuk pergerakan bidak, sistem dadu, interaksi pertanyaan, manajemen modal, dan pemuatan data eksternal.
-
-Game Ular Tangga - Etika Digital ini merupakan alat yang efektif untuk pembelajaran yang menarik dan interaktif, cocok untuk berbagai kalangan pengguna, dengan potensi pengembangan yang luas untuk berbagai konten edukasi.
+Potensi pengembangan lanjutan game ini sangat luas. Arsitektur game yang modular dengan konten eksternal membuka kemungkinan tak terbatas untuk adaptasi materi. Game ini dapat dengan mudah diubah menjadi alat pembelajaran untuk mata pelajaran lain, seperti Sejarah (pertanyaan tentang peristiwa dan tokoh penting), Sains (konsep ilmiah dan fakta-fakta alam), Matematika (soal latihan dan pemecahan masalah), Bahasa (kosakata, idiom, atau tata bahasa), atau Pendidikan Karakter (skenario moral dan etika umum). Fleksibilitas ini menjadikan game Ular Tangga ini sebuah kerangka kerja yang kuat dan serbaguna untuk menciptakan pengalaman belajar yang gamified dan efektif. Secara keseluruhan, Game Ular Tangga - Etika Digital adalah sebuah proyek yang menggabungkan hiburan klasik dengan tujuan edukasi modern, menghasilkan alat pembelajaran yang tidak hanya informatif tetapi juga sangat menarik. Game ini dibangun dengan HTML5 untuk struktur, CSS3 dengan framework Tailwind CSS untuk styling, dan JavaScript (ES6+) untuk logika serta interaktivitas.
