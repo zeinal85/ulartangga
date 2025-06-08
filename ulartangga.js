@@ -15,42 +15,42 @@ const triggerCells = [3, 5, 7, 9, 11, 15, 21, 23, 25, 31, 39, 43, 44, 47, 48, 49
 const playerColors = ['bg-red-700', 'bg-blue-700', 'bg-green-700', 'bg-yellow-700'];
 const additionalPlayerColors = ['bg-purple-700', 'bg-orange-700'];
 
-// Bank Soal Etika Digital - AKAN DIISI DARI URL EKSTERNAL
+// Bank Soal dan Pesan Etika Digital - AKAN DIISI DARI FILE LOKAL
 let questionBank = {}; // Objek untuk menyimpan pertanyaan berdasarkan ID
-// Pemetaan sel ke ID pertanyaan - TIDAK LAGI DIGUNAKAN SECARA STATIS.
-// Pertanyaan akan dipilih acak saat pemain mendarat di triggerCell.
-let cellQuestionMap = {}; // Variabel ini tetap dideklarasikan tapi tidak digunakan untuk pemetaan statis.
-
-// Bank Pesan Etika Digital untuk Ular dan Tangga - AKAN DIISI DARI URL EKSTERNAL
 let ethicsMessages = { ladders: [], snakes: [] }; // Inisialisasi sebagai objek kosong yang akan diisi
 
 // =====================================================================
 // Konfigurasi URL untuk berbagai materi pelajaran.
-// Anda perlu mengganti placeholder URL 'YOUR_USERNAME', 'YOUR_REPO_ID'
-// dengan Gist GitHub Anda sendiri jika Anda menambahkan materi baru.
+// URL di sini sekarang menggunakan jalur relatif untuk mengakses file lokal
+// dalam struktur folder yang Anda tunjukkan (folder 'soal' dan 'pesan'
+// berada di level yang sama dengan 'ulartangga.js' dan 'index.html').
 // =====================================================================
 const materialConfigs = {
     'literasi_digital': {
         name: 'Literasi Digital',
-        questions_url: './soal/questions_etika.json', // Menggunakan path relatif
-        ethics_url: './pesan/pesan_etika.json' // Menggunakan path relatif
+        //questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
+        //ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/c89e79fedc82e926c0f7af87781a1dd4d1fcdfcf/questions_etika.json',
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
+
     },
     'sejarah': {
         name: 'Sejarah',
-        questions_url: './soal/questions_sejarah.json', // Sesuaikan jika nama filenya berbeda
-        ethics_url: './pesan/pesan_sejarah.json' // Sesuaikan jika nama filenya berbeda
+        //questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
+        //ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/335a9858ec9eb005ea6aaef6a0ae6204227dc394/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/9677f8fc278fe51d7b5654fe99bd485b449d8c78/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+
     },
-    'sains': {
-        name: 'Sains',
-        questions_url: './soal/questions_sains.json',
-        ethics_url: './pesan/pesan_sains.json'
+	'sains': {
+		name: 'Sains',
+		//questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
+		//ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/6204328a3c721dd0ab20af708fee010c6b7de0e2/questions_sains.json',
+		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
+
     },
     // Tambahkan materi lain di sini sesuai kebutuhan
-    // 'sains': {
-    //     name: 'Sains',
-    //     questions_url: 'URL_GIST_PERTANYAAN_SAINS',
-    //     ethics_url: 'URL_GIST_PESAN_SAINS'
-    // },
 };
 
 // State untuk materi yang sedang dipilih. Default ke 'literasi_digital'.
@@ -161,9 +161,12 @@ async function initGame() {
     createPlayerPieces();
     drawSnakesAndLadders();
 
-    // Update UI ke kondisi awal
+    // PENTING: Memuat konten game setelah pengaturan pemain dan materi dipilih
+    await loadGameContent(selectedMaterialKey);
+
+    // Update UI ke kondisi awal setelah konten dimuat dan game siap
     updateAllPlayerPositionsUI();
-    updateTurnInfo(); // Ini akan mengontrol visibilitas tombol batal
+    updateTurnInfo(); // Ini akan mengontrol visibilitas tombol batal dan menampilkan giliran pemain
     rollDiceBtn.disabled = false;
     physicalDiceResultInput.disabled = false;
     submitPhysicalRollBtn.disabled = false;
@@ -172,9 +175,6 @@ async function initGame() {
     ethicsMessageModal.classList.remove('show'); // Pastikan modal etika juga tersembunyi
     diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">🎲</span>`;
     updateDiceUI(); // Panggil ini untuk menampilkan UI dadu yang benar saat inisialisasi
-
-    // PENTING: Memuat konten game setelah pengaturan pemain dan materi dipilih
-    await loadGameContent(selectedMaterialKey);
 }
 
 /**
@@ -252,8 +252,6 @@ async function handleRollDiceDigital() {
     if (!gameActive || waitingForAnswer || actionInProgress) return;
     actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
 
-    // Sembunyikan bagian jumlah pemain saat dadu dikocok (sudah di gameSetupScreen)
-    // playerCountSection.classList.add('hidden'); // Ini sudah tidak perlu di sini
     cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan tombol batal untuk dadu digital
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -331,10 +329,6 @@ async function handleRollDiceDigital() {
 async function handleSubmitPhysicalRoll() {
     if (!gameActive || waitingForAnswer || actionInProgress) return;
     actionInProgress = true; // Set flag bahwa aksi sedang berlangsung
-
-    // Sembunyikan bagian jumlah pemain saat dadu dikocok (sudah di gameSetupScreen)
-    // playerCountSection.classList.add('hidden'); // Ini sudah tidak perlu di sini
-    // Tombol batal seharusnya sudah terlihat karena di mode fisik (diatur di updateDiceUI)
 
     const diceResult = parseInt(physicalDiceResultInput.value, 10);
 
@@ -867,7 +861,7 @@ async function loadGameContent(materialKey) {
     }
 
     infoPanelTitle.textContent = `Memuat Konten ${config.name}...`;
-    turnInfo.textContent = "Mohon tunggu (bank soal & etika digital dari database)...";
+    turnInfo.textContent = "Mohon tunggu (memuat bank soal dan pesan)..."; 
     disableDiceButtons();
 
     try {
@@ -889,7 +883,8 @@ async function loadGameContent(materialKey) {
             throw new Error(`HTTP error! status: ${ethicsResponse.status} for ethics messages from ${config.ethics_url}.`);
         }
         const ethicsData = await ethicsResponse.json();
-        ethicsMessages.ladders = ethicsData.ladders;
+        // PERBAIKAN TYPO: 'laddles' menjadi 'ladders'
+        ethicsMessages.ladders = ethicsData.ladders; 
         ethicsMessages.snakes = ethicsData.snakes;
 
         // cellQuestionMap tidak lagi diisi dengan pertanyaan tetap
@@ -900,11 +895,8 @@ async function loadGameContent(materialKey) {
         console.log("Peta Sel Pertanyaan (tidak lagi statis):", cellQuestionMap);
         console.log(`Pesan Etika Digital (${config.name}) Dimuat:`, ethicsMessages);
         
-        // Setelah berhasil memuat, perbarui info panel dan enable buttons
-        displayMessage("Siap Bermain!", `Game dengan materi ${config.name} siap dimulai.`);
-        rollDiceBtn.disabled = false;
-        physicalDiceResultInput.disabled = false;
-        submitPhysicalRollBtn.disabled = false;
+        // Pesan sukses dihilangkan dari sini agar tidak menimpa updateTurnInfo
+        // yang akan dipanggil setelah ini di initGame().
 
     } catch (error) {
         console.error("Gagal memuat konten game:", error);
@@ -913,8 +905,8 @@ async function loadGameContent(materialKey) {
         disableDiceButtons();
 
         infoPanelTitle.textContent = "Gagal Memuat Game!";
-        turnInfo.textContent = `Game tidak dapat dimulai karena konten gagal dimuat dari database untuk materi ${config.name}. Periksa URL Anda atau koneksi internet.`;
-        displayMessage("Error Fatal!", `Game tidak dapat dimulai karena konten gagal dimuat dari database untuk materi ${config.name}. Periksa URL Anda atau koneksi internet.`);
+        turnInfo.textContent = `Game tidak dapat dimulai karena konten gagal dimuat untuk materi ${config.name}. Periksa URL Anda atau koneksi internet.`;
+        displayMessage("Error Fatal!", `Game tidak dapat dimulai karena konten gagal dimuat untuk materi ${config.name}. Periksa URL Anda atau koneksi internet.`);
         // Kembali ke layar setup jika ada error loading
         mainGameScreen.classList.add('hidden');
         gameSetupScreen.classList.remove('hidden');
