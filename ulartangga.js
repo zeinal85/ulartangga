@@ -32,27 +32,18 @@ let availableQuestionIds = []; // Daftar ID pertanyaan yang belum ditanyakan
 const materialConfigs = {
     'literasi_digital': {
         name: 'Literasi Digital',
-        //questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
-        //ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/ad72c429de8de3d74ca1095babadd8b71d7aade9/questions_etika.json',
-        ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
-
+        questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
+        ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
     },
     'sejarah': {
         name: 'Sejarah',
-        //questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
-        //ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/7565a2a04ba66fbfff234204bf29b81d6ac4c363/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
-        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/f2b1ed2cd4fb7e5face1a65ee330a38ae901a4ed/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
-
+        questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
+        ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
     },
 	'sains': {
 		name: 'Sains',
-		//questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
-		//ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/91e88a0c3b86e8c4e80cc4c367d704964ef2d096/questions_sains.json',
-		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
-
+		questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
+		ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
     },
     // Tambahkan materi lain di sini sesuai kebutuhan
 };
