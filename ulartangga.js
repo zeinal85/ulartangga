@@ -57,7 +57,7 @@ const materialConfigs = {
 };
 
 // State untuk materi yang sedang dipilih. Default ke 'literasi_digital'.
-let selectedMaterialKey = 'literasi_digital';
+let selectedMaterialKey = 'akidah';
 
 
 // State (kondisi) permainan
