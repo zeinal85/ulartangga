@@ -10,7 +10,7 @@ const snakesAndLaddersMap = {
 
 // Variabel triggerCells yang sekarang berada di bagian konfigurasi global
 // Ini adalah daftar sel di mana pertanyaan akan muncul.
-const triggerCells = [3, 5, 7, 9, 11, 15, 21, 23, 25, 31, 39, 43, 44, 47, 48, 49, 54, 58, 65, 75, 77, 79, 80, 85, 88, 89, 91, 95, 96, 97, 98];
+const triggerCells = [3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25, 31, 33, 35, 37, 39, 43, 44, 47, 48, 49, 54, 55, 57, 58, 59, 63, 65, 69, 71, 73, 75, 77, 79, 80, 81, 85, 88, 89, 90, 91, 93, 95, 96, 97, 98];//46 tempat soal
 
 const playerColors = ['bg-red-700', 'bg-blue-700', 'bg-green-700', 'bg-yellow-700'];
 const additionalPlayerColors = ['bg-purple-700', 'bg-orange-700'];
@@ -32,18 +32,21 @@ let availableQuestionIds = []; // Daftar ID pertanyaan yang belum ditanyakan
 const materialConfigs = {
     'literasi_digital': {
         name: 'Literasi Digital',
-        questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
-        ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/ad72c429de8de3d74ca1095babadd8b71d7aade9/questions_etika.json',
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
+
     },
     'sejarah': {
         name: 'Sejarah',
-        questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
-        ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/7565a2a04ba66fbfff234204bf29b81d6ac4c363/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/f2b1ed2cd4fb7e5face1a65ee330a38ae901a4ed/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+
     },
-    'sains': {
-	name: 'Sains',
-	questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
-	ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
+	'sains': {
+		name: 'Sains',
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/91e88a0c3b86e8c4e80cc4c367d704964ef2d096/questions_sains.json',
+		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
+
     },
     // Tambahkan materi lain di sini sesuai kebutuhan
 };
@@ -98,6 +101,11 @@ const diceRollSynth = new Tone.NoiseSynth({
     }
 }).toDestination();
 
+// --- VARIABEL STOPWATCH BARU ---
+let timerInterval = null; // Variabel untuk menyimpan ID interval timer
+let timeLeft = 0; // Sisa waktu dalam detik
+const QUESTION_TIME_LIMIT = 20; // Batas waktu untuk menjawab pertanyaan (dalam detik)
+
 
 // --- REFERENSI ELEMEN DOM ---
 
@@ -133,6 +141,7 @@ const questionText = document.getElementById('question-text');
 const questionOptions = document.getElementById('question-options');
 const questionInput = document.getElementById('question-input');
 const submitAnswerBtn = document.getElementById('submit-answer-btn');
+const questionTimerDisplay = document.getElementById('question-timer-display'); // Referensi elemen stopwatch baru
 
 // Referensi elemen modal feedback BARU
 const feedbackModal = document.getElementById('feedback-modal');
@@ -195,6 +204,11 @@ async function initGame() {
     pendingQuestionMoveSteps = 0; // Reset langkah tertunda
     currentQuestionData = null; // Reset data pertanyaan
 
+    // Reset timer
+    stopQuestionTimer();
+    questionTimerDisplay.textContent = '00:' + QUESTION_TIME_LIMIT.toString().padStart(2, '0');
+
+
     // Bersihkan dan buat papan permainan
     board.innerHTML = '';
     playerPiecesContainer.innerHTML = '';
@@ -220,7 +234,7 @@ async function initGame() {
     questionModal.classList.remove('show'); // Sembunyikan modal pertanyaan
     ethicsMessageModal.classList.remove('show'); // Pastikan modal etika juga tersembunyi
     feedbackModal.classList.remove('show'); // Pastikan modal feedback juga tersembunyi
-    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">🎲</span>`; // Mengatur dadu ke ikon awal
+    diceFace.innerHTML = `<span class="text-3xl sm:text-4xl font-bold text-slate-700">🎲</span>`; // Mengatur dadu ke ikon awal
     updateDiceUI(); // Panggil ini untuk menampilkan UI dadu yang benar saat inisialisasi
 
     // Fokus ke papan permainan setelah memulai game dengan sedikit delay
@@ -315,7 +329,7 @@ async function handleRollDiceDigital() {
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     // Tampilkan ikon dadu berputar di awal animasi
-    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700 animate-spin">🎲</span>`; // Ikon berputar
+    diceFace.innerHTML = `<span class="text-3xl sm:text-4xl font-bold text-slate-700 animate-spin">🎲</span>`; // Ikon dadu berputar
     diceFace.classList.add('rolling'); // Tambahkan animasi rolling ke dadu visual
     diceFace.style.pointerEvents = 'none'; // Nonaktifkan klik selama animasi
 
@@ -326,7 +340,7 @@ async function handleRollDiceDigital() {
     const diceResult = Math.floor(Math.random() * 6) + 1;
 
     // Setelah animasi selesai, tampilkan angka dadu
-    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">${diceResult}</span>`;
+    diceFace.innerHTML = `<span class="text-3xl sm:text-4xl font-bold text-slate-700">${diceResult}</span>`;
     diceFace.classList.remove('rolling');
     diceFace.style.pointerEvents = 'auto'; // Aktifkan kembali klik setelah animasi
 
@@ -374,28 +388,30 @@ async function handleRollDiceDigital() {
             availableQuestionIds.splice(randomIndex, 1);
             console.log("Pertanyaan dipilih:", randomQuestionId, "Sisa pertanyaan:", availableQuestionIds.length);
 
-            showQuestionModal(currentQuestionData);
+            // AWAIT the question modal to close
+            await showQuestionModal(currentQuestionData); 
+            // The game flow continues here after question is answered and feedback modal is closed.
+            currentQuestionData = null; // Reset data pertanyaan setelah digunakan
         } else {
             console.warn("Tidak ada pertanyaan yang tersedia di questionBank (meskipun setelah reset). Melanjutkan permainan.");
             // Lanjutkan permainan jika tidak ada pertanyaan
-            waitingForAnswer = false;
-            switchPlayer();
-            updateDiceUI();
-            updateTurnInfo();
+            waitingForAnswer = false; // Jika tidak ada pertanyaan, langsung lanjutkan
         }
+    } 
+    
+    // Logic below will only run after question flow is complete (if any) or if no question was triggered
+    if (diceResult !== 6 || consecutiveSixes >= 3) {
+        switchPlayer();
+        consecutiveSixes = 0;
+        updateDiceUI();
+        updateTurnInfo();
     } else {
-        // Jika hasil dadu bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
-        if (diceResult !== 6 || consecutiveSixes >= 3) {
-            switchPlayer();
-            consecutiveSixes = 0; // Reset penghitung untuk pemain berikutnya
-            updateDiceUI(); // Re-enable dice buttons for the new player
-            updateTurnInfo();
-        } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
-            infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
-            turnInfo.textContent = "Silakan kocok dadu lagi.";
-        }
+        infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
+        turnInfo.textContent = "Silakan kocok dadu lagi.";
+        updateDiceUI(); // Pastikan dadu kembali aktif untuk pemain yang sama
+        updateTurnInfo(); // Pastikan info giliran diperbarui
     }
-    actionInProgress = false; // Reset flag
+    actionInProgress = false; // Reset flag after all turn logic, including question.
 }
 
 /**
@@ -424,7 +440,7 @@ async function handleSubmitPhysicalRoll() {
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">${diceResult}</span>`; // Ini akan langsung menampilkan angka untuk dadu fisik
+    diceFace.innerHTML = `<span class="text-3xl sm:text-4xl font-bold text-slate-700">${diceResult}</span>`; // Ini akan langsung menampilkan angka untuk dadu fisik
 
     infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} memasukkan ${diceResult}`;
 
@@ -472,31 +488,31 @@ async function handleSubmitPhysicalRoll() {
             availableQuestionIds.splice(randomIndex, 1);
             console.log("Pertanyaan dipilih:", randomQuestionId, "Sisa pertanyaan:", availableQuestionIds.length);
 
-            showQuestionModal(currentQuestionData);
+            // AWAIT the question modal to close
+            await showQuestionModal(currentQuestionData); 
+            // The game flow continues here after question is answered and feedback modal is closed.
+            currentQuestionData = null; // Reset data pertanyaan setelah digunakan
         } else {
             console.warn("Tidak ada pertanyaan yang tersedia di questionBank (meskipun setelah reset). Melanjutkan permainan.");
             // Lanjutkan permainan jika tidak ada pertanyaan
-            waitingForAnswer = false;
-            switchPlayer();
-            updateDiceUI();
-            updateTurnInfo();
+            waitingForAnswer = false; // Jika tidak ada pertanyaan, langsung lanjutkan
         }
-    } else {
-        // Jika hasil dadu bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
-        if (diceResult !== 6 || consecutiveSixes >= 3) {
-            switchPlayer();
-            consecutiveSixes = 0; // Reset penghitung untuk pemain berikutnya
-            updateDiceUI(); // Re-enable dice buttons for the new player
-            updateTurnInfo();
-        } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
-            infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
-            turnInfo.textContent = "Silakan masukkan hasil dadu lagi.";
-            physicalDiceResultInput.disabled = false;
-            submitPhysicalRollBtn.disabled = false;
-            physicalDiceResultInput.value = '';
-        }
+    } 
+    
+    // Logic below will only run after question flow is complete (if any) or if no question was triggered
+    if (diceResult !== 6 || consecutiveSixes >= 3) {
+        switchPlayer();
+        consecutiveSixes = 0; // Reset penghitung untuk pemain berikutnya
+        updateDiceUI(); // Re-enable dice buttons for the new player
+        updateTurnInfo();
+    } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
+        infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
+        turnInfo.textContent = "Silakan masukkan hasil dadu lagi.";
+        physicalDiceResultInput.disabled = false;
+        submitPhysicalRollBtn.disabled = false;
+        physicalDiceResultInput.value = '';
     }
-    actionInProgress = false; // Reset flag
+    actionInProgress = false; // Reset flag after all turn logic, including question.
 }
 
 /**
@@ -743,8 +759,52 @@ function updateScoresUI() {
 // --- FUNGSI MODAL PERTANYAAN ---
 
 /**
+ * Fungsi untuk memulai hitungan mundur stopwatch.
+ * @param {number} duration - Durasi hitung mundur dalam detik.
+ * @param {function} timeoutCallback - Callback yang akan dipanggil saat waktu habis.
+ */
+function startQuestionTimer(duration, timeoutCallback) {
+    timeLeft = duration;
+    questionTimerDisplay.textContent = '00:' + timeLeft.toString().padStart(2, '0');
+    questionTimerDisplay.classList.remove('text-red-600', 'text-orange-500'); // Reset warna
+    questionTimerDisplay.classList.add('text-green-600'); // Mulai dengan hijau
+
+    if (timerInterval) {
+        clearInterval(timerInterval); // Pastikan tidak ada timer yang berjalan ganda
+    }
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        questionTimerDisplay.textContent = '00:' + timeLeft.toString().padStart(2, '0');
+
+        if (timeLeft <= 5 && timeLeft > 0) { // Waktu kritis, ubah warna menjadi oranye
+            questionTimerDisplay.classList.remove('text-green-600');
+            questionTimerDisplay.classList.add('text-orange-500');
+        } else if (timeLeft <= 0) { // Waktu habis, ubah warna menjadi merah
+            questionTimerDisplay.classList.remove('text-orange-500');
+            questionTimerDisplay.classList.add('text-red-600');
+            clearInterval(timerInterval);
+            timerInterval = null;
+            if (timeoutCallback) timeoutCallback(); // Panggil callback saat waktu habis
+        }
+    }, 1000); // Update setiap 1 detik
+}
+
+/**
+ * Fungsi untuk menghentikan hitungan mundur stopwatch.
+ */
+function stopQuestionTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+/**
  * Menampilkan modal pertanyaan dengan detail pertanyaan yang diberikan.
+ * Fungsi ini sekarang mengembalikan Promise yang akan di-resolve setelah feedback modal ditutup.
  * @param {object} questionData - Objek berisi data pertanyaan.
+ * @returns {Promise<void>} - Promise yang di-resolve saat modal pertanyaan dan feedback ditutup.
  */
 function showQuestionModal(questionData) {
     questionText.textContent = questionData.question;
@@ -780,94 +840,111 @@ function showQuestionModal(questionData) {
     updateTurnInfo();
     disableDiceButtons(); // Nonaktifkan semua interaksi dadu
     cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal saat modal aktif
-}
 
-/**
- * Menangani submit jawaban pertanyaan.
- */
-submitAnswerBtn.addEventListener('click', async () => {
-    // Gunakan currentQuestionData yang sudah disimpan saat showQuestionModal dipanggil
-    const currentQuestion = currentQuestionData;
-    if (!currentQuestion) {
-        console.error("ERROR: currentQuestionData tidak ditemukan saat submit jawaban.");
-        return;
-    }
+    return new Promise(resolveQuestionFlow => {
+        let answerResolved = false; // Flag untuk mencegah resolve ganda
 
-    let userAnswer;
+        /**
+         * Fungsi internal untuk menangani pengiriman jawaban (baik dari user atau timeout).
+         * @param {boolean} isCorrectAnswer - Apakah jawaban benar.
+         * @param {string} feedbackMsg - Pesan feedback.
+         * @param {number} stepsToMove - Langkah yang harus diambil.
+         */
+        const handleAnswerAndCloseModals = async (isCorrectAnswer, feedbackMsg, stepsToMove) => {
+            if (answerResolved) return; // Jika sudah di-resolve, abaikan
+            answerResolved = true;
 
-    if (currentQuestion.type === 'text_input') {
-        userAnswer = questionInput.value.trim();
-    } else if (currentQuestion.type === 'multiple_choice_multi_select') {
-        // Kumpulkan semua jawaban yang dipilih dari checkbox
-        userAnswer = Array.from(document.querySelectorAll('input[name="question-option"]:checked'))
-                        .map(checkbox => checkbox.value);
-    } else { // 'multiple_choice' atau 'true_false'
-        const selectedOption = document.querySelector('input[name="question-option"]:checked');
-        userAnswer = selectedOption ? selectedOption.value : '';
-    }
+            stopQuestionTimer(); // Pastikan timer berhenti
+            questionModal.classList.remove('show'); // Tutup modal pertanyaan
 
-    let isCorrect = false;
-    let feedbackMessageText = "";
-
-    // Logika pemeriksaan jawaban yang diperbarui
-    if (currentQuestion.type === 'text_input') {
-        // Untuk text_input, 'answer' bisa berupa string tunggal atau array string
-        if (Array.isArray(currentQuestion.answer)) {
-            const normalizedUserAnswer = userAnswer.toLowerCase();
-            isCorrect = currentQuestion.answer.some(ans => ans.toLowerCase() === normalizedUserAnswer);
-        } else {
-            isCorrect = userAnswer.toLowerCase() === currentQuestion.answer.toLowerCase();
-        }
-    } else if (currentQuestion.type === 'multiple_choice_multi_select') {
-        // Untuk multi-select, 'answer' HARUS berupa array
-        if (Array.isArray(currentQuestion.answer)) {
-            // Cek apakah semua jawaban yang benar dipilih DAN tidak ada jawaban salah yang dipilih
-            const correctAnswers = currentQuestion.answer.map(ans => ans.toLowerCase());
-            const selectedAnswers = userAnswer.map(ans => ans.toLowerCase());
+            await showFeedbackModal(isCorrectAnswer ? "Jawaban Benar!" : "Jawaban Salah!", feedbackMsg, stepsToMove);
             
-            // Semua jawaban yang benar harus ada di jawaban yang dipilih pengguna
-            const allCorrectSelected = correctAnswers.every(ans => selectedAnswers.includes(ans));
-            // Jumlah jawaban yang dipilih harus sama dengan jumlah jawaban yang benar
-            const sameCount = selectedAnswers.length === correctAnswers.length;
+            // Setelah feedback modal ditutup dan promise-nya di-resolve,
+            // barulah kita bisa melanjutkan flow pertanyaan.
+            waitingForAnswer = false; // Permainan tidak lagi menunggu jawaban
+            
+            // Reset elemen modal pertanyaan untuk penggunaan berikutnya
+            questionInput.value = '';
+            questionInput.disabled = false;
+            questionOptions.innerHTML = '';
+            
+            resolveQuestionFlow(); // Resolve Promise dari showQuestionModal
+        };
 
-            isCorrect = allCorrectSelected && sameCount;
-        } else {
-            // Jika answer di JSON bukan array untuk multi-select, ini adalah error data
-            console.error("ERROR: Tipe 'multiple_choice_multi_select' membutuhkan 'answer' berupa array.");
-            isCorrect = false;
-        }
-    } else { // 'multiple_choice' atau 'true_false'
-        isCorrect = userAnswer === currentQuestion.answer;
-    }
+        // Event listener untuk tombol "Jawab"
+        submitAnswerBtn.onclick = async () => {
+            const currentQuestion = questionData; // Gunakan parameter questionData
 
-    if (isCorrect) {
-        feedbackMessageText = "Benar! " + (currentQuestion.feedback || "") + " Anda maju 1 langkah!";
-        pendingQuestionMoveSteps = 1; // Simpan langkah maju
-        
-        // --- BAGIAN UNTUK MENAMBAH POIN ---
-        console.log('Question points:', currentQuestion.points, 'Player scores before update:', playerScores[currentPlayer]); // Debug log
-        if (currentQuestion.points !== undefined && currentQuestion.points !== null) { // Pastikan properti points ada di data pertanyaan
-            playerScores[currentPlayer] += currentQuestion.points;
-            feedbackMessageText += ` Anda mendapatkan ${currentQuestion.points} poin!`;
-            updateScoresUI(); // Perbarui tampilan skor
-        } else {
-            console.warn("Properti 'points' tidak ditemukan atau null untuk pertanyaan ini:", currentQuestion);
-        }
-        // --- AKHIR BAGIAN UNTUK MENAMBAH POIN ---
+            let userAnswer;
+            if (currentQuestion.type === 'text_input') {
+                userAnswer = questionInput.value.trim();
+            } else if (currentQuestion.type === 'multiple_choice_multi_select') {
+                userAnswer = Array.from(document.querySelectorAll('input[name="question-option"]:checked'))
+                                .map(checkbox => checkbox.value);
+            } else {
+                const selectedOption = document.querySelector('input[name="question-option"]:checked');
+                userAnswer = selectedOption ? selectedOption.value : '';
+            }
 
-    } else {
-        feedbackMessageText = `Salah. Jawaban yang benar adalah: ${Array.isArray(currentQuestion.answer) ? currentQuestion.answer.join(" / ") : currentQuestion.answer}. ` + (currentQuestion.feedback || "") + " Anda mundur 1 langkah!";
-        pendingQuestionMoveSteps = -1; // Simpan langkah mundur
-    }
+            let isCorrect = false;
+            let feedbackMessageText = "";
+            let stepsAfterQuestion = 0;
 
-    submitAnswerBtn.classList.add('hidden');
-    questionInput.disabled = true;
-    document.querySelectorAll('input[name="question-option"]').forEach(input => input.disabled = true);
+            // Logika pemeriksaan jawaban
+            if (currentQuestion.type === 'text_input') {
+                if (Array.isArray(currentQuestion.answer)) {
+                    const normalizedUserAnswer = userAnswer.toLowerCase();
+                    isCorrect = currentQuestion.answer.some(ans => ans.toLowerCase() === normalizedUserAnswer);
+                } else {
+                    isCorrect = userAnswer.toLowerCase() === currentQuestion.answer.toLowerCase();
+                }
+            } else if (currentQuestion.type === 'multiple_choice_multi_select') {
+                if (Array.isArray(currentQuestion.answer)) {
+                    const correctAnswers = currentQuestion.answer.map(ans => ans.toLowerCase());
+                    const selectedAnswers = userAnswer.map(ans => ans.toLowerCase());
+                    const allCorrectSelected = correctAnswers.every(ans => selectedAnswers.includes(ans));
+                    const sameCount = selectedAnswers.length === correctAnswers.length;
+                    isCorrect = allCorrectSelected && sameCount;
+                } else {
+                    console.error("ERROR: Tipe 'multiple_choice_multi_select' membutuhkan 'answer' berupa array.");
+                    isCorrect = false;
+                }
+            } else {
+                isCorrect = userAnswer === currentQuestion.answer;
+            }
 
-    // TUTUP MODAL PERTANYAAN, LALU TAMPILKAN MODAL FEEDBACK
-    questionModal.classList.remove('show');
-    await showFeedbackModal(isCorrect ? "Jawaban Benar!" : "Jawaban Salah!", feedbackMessageText, pendingQuestionMoveSteps);
-});
+            if (isCorrect) {
+                feedbackMessageText = "Benar! " + (currentQuestion.feedback || "") + " Anda maju 1 langkah!";
+                stepsAfterQuestion = 1;
+                if (currentQuestion.points !== undefined && currentQuestion.points !== null) {
+                    playerScores[currentPlayer] += currentQuestion.points;
+                    feedbackMessageText += ` Anda mendapatkan ${currentQuestion.points} poin!`;
+                    updateScoresUI();
+                }
+            } else {
+                feedbackMessageText = `Salah. Jawaban yang benar adalah: ${Array.isArray(currentQuestion.answer) ? currentQuestion.answer.join(" / ") : currentQuestion.answer}. ` + (currentQuestion.feedback || "") + " Anda mundur 1 langkah!";
+                stepsAfterQuestion = -1;
+            }
+
+            // Panggil handler umum untuk menutup modal dan melanjutkan flow
+            await handleAnswerAndCloseModals(isCorrect, feedbackMessageText, stepsAfterQuestion);
+        };
+
+        // Fungsi yang akan dipanggil saat waktu habis
+        const handleTimeoutAnswer = async () => {
+            // Nonaktifkan interaksi saat waktu habis, sebelum feedback
+            submitAnswerBtn.classList.add('hidden');
+            questionInput.disabled = true;
+            document.querySelectorAll('input[name="question-option"]').forEach(input => input.disabled = true);
+            
+            // Panggil handler umum untuk menutup modal dan melanjutkan flow, dianggap salah
+            await handleAnswerAndCloseModals(false, "Waktu Habis! Waktu Anda habis! Jawaban dianggap salah. Anda mundur 1 langkah.", -1);
+        };
+
+        // Mulai timer dengan callback untuk waktu habis
+        startQuestionTimer(QUESTION_TIME_LIMIT, handleTimeoutAnswer);
+    });
+}
 
 
 // --- FUNGSI MODAL FEEDBACK PERTANYAAN BARU ---
@@ -876,6 +953,7 @@ submitAnswerBtn.addEventListener('click', async () => {
  * @param {string} title - Judul feedback (misal: "Jawaban Benar!" atau "Jawaban Salah!").
  * @param {string} message - Detail pesan feedback.
  * @param {number} moveSteps - Jumlah langkah yang akan diambil setelah feedback (positif untuk maju, negatif untuk mundur).
+ * @returns {Promise<void>} - Promise yang di-resolve saat feedback modal ditutup.
  */
 async function showFeedbackModal(title, message, moveSteps) {
     feedbackTitle.textContent = title;
@@ -899,13 +977,13 @@ async function showFeedbackModal(title, message, moveSteps) {
     }
 
     feedbackModal.classList.add('show');
-    waitingForAnswer = true; // Tetap anggap sedang menunggu jawaban hingga modal feedback ditutup
+    // waitingForAnswer = true; // Dikelola oleh showQuestionModal
     cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal saat modal aktif
 
-    return new Promise(resolve => {
+    return new Promise(resolveFeedbackModal => {
         closeFeedbackBtn.onclick = async () => {
             feedbackModal.classList.remove('show');
-            waitingForAnswer = false; // Lanjutkan permainan
+            // waitingForAnswer = false; // Dikelola oleh handleAnswerAndCloseModals
 
             // Lakukan pergerakan bidak berdasarkan pendingQuestionMoveSteps setelah modal tertutup
             if (moveSteps !== 0) {
@@ -916,24 +994,15 @@ async function showFeedbackModal(title, message, moveSteps) {
                 await new Promise(resolveMove => setTimeout(resolveMove, 500)); // Beri jeda singkat untuk animasi bidak
             }
             
-            // Reset elemen modal pertanyaan
-            questionInput.value = '';
-            questionInput.disabled = false;
-            questionOptions.innerHTML = '';
-            currentQuestionData = null; // Reset data pertanyaan setelah digunakan
+            // Reset elemen modal pertanyaan - ini sudah dipindahkan ke handleAnswerAndCloseModals
+            // questionInput.value = '';
+            // questionInput.disabled = false;
+            // questionOptions.innerHTML = '';
+            // currentQuestionData = null; // Dikelola setelah showQuestionModal resolved
 
-            // Jika hasil dadu terakhir bukan 6, ATAU jika sudah mendapatkan 6 sebanyak 3 kali berturut-turut
-            if (lastDiceRollResult !== 6 || consecutiveSixes >= 3) {
-                switchPlayer();
-                consecutiveSixes = 0; // Reset penghitung 6 untuk pemain berikutnya
-                lastPlayerMoved = null; // Reset setelah giliran beralih atau selesai
-                lastDiceRollResult = null; // Reset hasil dadu terakhir
-            } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
-                infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
-                turnInfo.textContent = "Silakan kocok dadu lagi.";
-            }
-            updateDiceUI(); // Aktifkan interaksi dadu kembali sesuai tipe, yang juga akan mengelola visibilitas tombol batal
-            resolve();
+            // Logic untuk switchPlayer, updateDiceUI, updateTurnInfo dipindahkan ke handleRollDiceDigital/handleSubmitPhysicalRoll
+
+            resolveFeedbackModal(); // Resolve Promise dari showFeedbackModal
         };
     });
 }
@@ -1092,7 +1161,7 @@ function toggleFullscreen() {
             document.mozCancelFullScreen();
         } else if (document.webkitExitFullscreen) { /* Chrome, Safari, dan Opera */
             document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { /* IE/Edge */
+        } else if (element.msExitFullscreen) { /* IE/Edge */
             document.msExitFullscreen();
         }
     }
