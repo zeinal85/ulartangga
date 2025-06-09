@@ -48,6 +48,13 @@ const materialConfigs = {
 		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
 
     },
+	
+	'akidah': {
+		name: 'Akidah Islam',
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/91e88a0c3b86e8c4e80cc4c367d704964ef2d096/questions_sains.json',
+		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
+
+    },
     // Tambahkan materi lain di sini sesuai kebutuhan
 };
 

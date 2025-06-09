@@ -1,0 +1,1062 @@
+[
+  {
+    "id": "q_aqidah_001",
+    "question": "Berapakah jumlah sifat Jaiz (bebas terjadi tindaknya) bagi Allah Ta'ala?",
+    "type": "text_input",
+    "answer": "1",
+    "points": 5,
+    "feedback": "Benar, sifat Jaiz bagi Allah hanya ada satu, yaitu 'Fi’lu kulli mumkinin au tarkuhu'."
+  },
+  {
+    "id": "q_aqidah_002",
+    "question": "Apakah arti dari sifat Jaiz Allah, 'Fi’lu kulli mumkinin au tarkuhu'?",
+    "type": "multiple_choice",
+    "options": [
+      "Maha Mengetahui segala sesuatu",
+      "Mengerjakan sesuatu yang mungkin atau meninggalkannya",
+      "Wajib melakukan segala sesuatu",
+      "Tidak pernah melakukan apapun"
+    ],
+    "answer": "Mengerjakan sesuatu yang mungkin atau meninggalkannya",
+    "points": 7,
+    "feedback": "Tepat sekali. Ini menunjukkan kebebasan mutlak Allah dalam berbuat tanpa ada paksaan."
+  },
+  {
+    "id": "q_aqidah_003",
+    "question": "Apa yang harus diimani oleh seorang Muslim sebagai jawaban atas pertanyaan 'Apakah Iman itu?'",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Adanya Allah",
+      "Para malaikat-Nya",
+      "Kitab-kitab-Nya",
+      "Para utusan-Nya",
+      "Hari akhir",
+      "Takdir yang baik dan buruk"
+    ],
+    "answer": [
+      "Adanya Allah",
+      "Para malaikat-Nya",
+      "Kitab-kitab-Nya",
+      "Para utusan-Nya",
+      "Hari akhir",
+      "Takdir yang baik dan buruk"
+    ],
+    "points": 10,
+    "feedback": "Jawaban yang lengkap. Keenam hal ini adalah Rukun Iman yang wajib diyakini."
+  },
+  {
+    "id": "q_aqidah_004",
+    "question": "Jawaban mengenai Rukun Iman didasarkan pada hadis terkenal yang disebut Hadis Jibril. Siapakah perawi hadis tersebut?",
+    "type": "multiple_choice",
+    "options": [
+      "Anas bin Malik ra.",
+      "Umar bin Khathab ra. dan Abu Hurairah ra.",
+      "Aisyah ra.",
+      "Abdullah bin Mas'ud ra."
+    ],
+    "answer": "Umar bin Khathab ra. dan Abu Hurairah ra.",
+    "points": 7,
+    "feedback": "Benar. Riwayatnya ada dari Imam Muslim dari Umar bin Khathab ra. dan dari Imam Bukhari dari Abu Hurairah ra."
+  },
+  {
+    "id": "q_aqidah_005",
+    "question": "Selain mengimani para Rasul, kita juga harus meyakini bahwa mereka adalah orang-orang yang...",
+    "type": "text_input",
+    "answer": "Jujur lagi benar",
+    "points": 6,
+    "feedback": "Betul. Para utusan Allah adalah orang-orang yang jujur lagi benar dalam memberitakan apa saja yang diterima dari Allah Ta'ala."
+  },
+  {
+    "id": "q_aqidah_006",
+    "question": "Apakah orang-orang yang beriman akan dapat melihat Allah Ta'ala di akhirat?",
+    "type": "multiple_choice",
+    "options": [
+      "Ya, akan dapat melihat",
+      "Tidak, tidak akan dapat melihat",
+      "Hanya para Nabi yang dapat melihat",
+      "Tidak ada penjelasan tentang itu"
+    ],
+    "answer": "Ya, akan dapat melihat",
+    "points": 6,
+    "feedback": "Benar. Keyakinan 'melihat Allah Ta'ala di akhirat bagi orang-orang yang beriman' adalah bagian dari akidah Ahlussunnah wal Jama'ah."
+  },
+  {
+    "id": "q_aqidah_007",
+    "question": "Menurut sebagian ulama, bagaimana hukum iman seseorang yang tahu Rukun Iman tapi belum dapat menerangkan maksudnya?",
+    "type": "multiple_choice",
+    "options": [
+      "Imannya sudah sempurna",
+      "Ia tidak dapat dihukumi orang yang beriman",
+      "Imannya diterima dengan syarat",
+      "Ia dianggap sebagai orang munafik"
+    ],
+    "answer": "Ia tidak dapat dihukumi orang yang beriman",
+    "points": 8,
+    "feedback": "Tepat. Ini menunjukkan pentingnya ilmu ('ma'rifat') di samping keyakinan ('tashdiq')."
+  },
+  {
+    "id": "q_aqidah_008",
+    "question": "Mengapa iman seseorang ketika sekarat akan mati (ghorqhoroh) tidak diterima?",
+    "type": "multiple_choice",
+    "options": [
+      "Karena sudah tidak punya harta",
+      "Karena tidak dapat melakukan apa yang diperintahkan dalam keadaan dapat memilih",
+      "Karena malaikat sudah datang",
+      "Karena suaranya sudah tidak terdengar"
+    ],
+    "answer": "Karena tidak dapat melakukan apa yang diperintahkan dalam keadaan dapat memilih",
+    "points": 8,
+    "feedback": "Benar. Iman dan taubat disyaratkan terjadi dalam keadaan ikhtiar (memiliki pilihan), bukan dalam keadaan terpaksa."
+  },
+  {
+    "id": "q_aqidah_009",
+    "question": "Menurut hadis yang dikutip, apa yang akan diperlihatkan kepada seorang hamba sebelum ia meninggal?",
+    "type": "text_input",
+    "answer": "Tempatnya di surga atau di neraka",
+    "points": 7,
+    "feedback": "Tepat sekali. 'Sesungguhnya seorang hamba itu tidak akan mati sehingga melihat tempatnya di surga atau di neraka.'"
+  },
+  {
+    "id": "q_aqidah_010",
+    "question": "Menurut hadis riwayat Ibnu Umar ra., sampai kapan taubat seorang hamba mukmin itu akan diterima?",
+    "type": "multiple_choice",
+    "options": [
+      "Sampai ia berumur 40 tahun",
+      "Selagi matahari belum terbit dari barat",
+      "Selagi nyawanya belum sampai kerongkongan",
+      "Hanya di bulan Ramadhan"
+    ],
+    "answer": "Selagi nyawanya belum sampai kerongkongan",
+    "points": 7,
+    "feedback": "Benar. Ini adalah batas waktu diterimanya taubat secara individual."
+  },
+  {
+    "id": "q_aqidah_011",
+    "question": "Sebutkan tiga klasifikasi iman kepada Allah yang dijelaskan.",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Iman secara taqlid",
+      "Iman secara ijtihad",
+      "Iman secara tahkik",
+      "Iman secara istidlal",
+      "Iman secara tarikh"
+    ],
+    "answer": [
+      "Iman secara taqlid",
+      "Iman secara tahkik",
+      "Iman secara istidlal"
+    ],
+    "points": 8,
+    "feedback": "Tepat. Tiga klasifikasi tersebut adalah Taqlid (ikut-ikutan), Tahkik (sejati), dan Istidlal (berdasarkan dalil)."
+  },
+  {
+    "id": "q_aqidah_012",
+    "question": "Apakah yang dimaksud dengan 'Iman Taqlid'?",
+    "type": "multiple_choice",
+    "options": [
+      "Iman yang berdasarkan penelitian mendalam",
+      "Iman yang diperoleh melalui mimpi",
+      "Mempercayai keesaan Allah karena mengikuti perkataan ulama tanpa tahu dalilnya",
+      "Iman yang hanya diucapkan di lisan"
+    ],
+    "answer": "Mempercayai keesaan Allah karena mengikuti perkataan ulama tanpa tahu dalilnya",
+    "points": 6,
+    "feedback": "Benar. Iman Taqlid adalah iman yang bersifat ikut-ikutan."
+  },
+  {
+    "id": "q_aqidah_013",
+    "question": "Apa kelemahan utama dari 'Iman Taqlid'?",
+    "type": "multiple_choice",
+    "options": [
+      "Membuat seseorang menjadi sombong",
+      "Tidak dapat selamat dari goncangan hati apabila ada yang meragukan",
+      "Membutuhkan biaya yang mahal",
+      "Hanya dimiliki oleh orang awam"
+    ],
+    "answer": "Tidak dapat selamat dari goncangan hati apabila ada yang meragukan",
+    "points": 7,
+    "feedback": "Tepat. Karena tidak didasari oleh pengetahuan dalil, iman ini cenderung rapuh."
+  },
+  {
+    "id": "q_aqidah_014",
+    "question": "Iman yang mengikat hati dengan kuat terhadap sifat keesaan Allah sehingga tidak akan terpengaruh oleh perselisihan ahli ilmu disebut iman...",
+    "type": "text_input",
+    "answer": "Tahkik",
+    "points": 7,
+    "feedback": "Benar. Iman Tahkik (atau Iman Hakiki) adalah iman yang sejati dan kokoh."
+  },
+  {
+    "id": "q_aqidah_015",
+    "question": "Apakah yang dimaksud dengan 'Iman Istidlal'?",
+    "type": "multiple_choice",
+    "options": [
+      "Iman karena keturunan",
+      "Iman yang didasarkan pada perasaan",
+      "Menciptakan dalil atas segala ciptaan Allah sebagai bukti adanya Zat Pencipta",
+      "Iman yang menolak semua dalil"
+    ],
+    "answer": "Menciptakan dalil atas segala ciptaan Allah sebagai bukti adanya Zat Pencipta",
+    "points": 7,
+    "feedback": "Tepat. Iman Istidlal adalah iman yang berdasarkan pada penalaran dan pembuktian melalui alam semesta."
+  },
+  {
+    "id": "q_aqidah_016",
+    "question": "Analogi 'kotoran onta menunjukkan adanya onta' digunakan untuk menjelaskan jenis iman apa?",
+    "type": "multiple_choice",
+    "options": [
+      "Iman Taqlid",
+      "Iman Tahkik",
+      "Iman Istidlal",
+      "Iman Ghaib"
+    ],
+    "answer": "Iman Istidlal",
+    "points": 6,
+    "feedback": "Benar. Analogi ini menunjukkan bahwa setiap 'bekas' atau 'ciptaan' pasti menunjukkan adanya 'pemberi bekas' atau 'pencipta'."
+  },
+  {
+    "id": "q_aqidah_017",
+    "question": "Menurut Iman Istidlal, adanya bekas tanpa pemberi bekas adalah...",
+    "type": "text_input",
+    "answer": "Mustahil",
+    "points": 6,
+    "feedback": "Betul. Ini adalah prinsip dasar logika dalam Iman Istidlal untuk membuktikan adanya Sang Pencipta."
+  },
+  {
+    "id": "q_aqidah_018",
+    "question": "Ketika ditanya 'Bagaimana anda beriman kepada Allah?', jawaban yang diajarkan adalah bahwa Allah Ta'ala adalah...",
+    "type": "text_input",
+    "answer": "Esa",
+    "points": 5,
+    "feedback": "Benar. Esa, yang berarti satu atau tunggal."
+  },
+  {
+    "id": "q_aqidah_019",
+    "question": "Ke-Esaan Allah meliputi dua aspek, yaitu Esa pada ... dan Esa pada ...",
+    "type": "multiple_choice",
+    "options": [
+      "Nama dan Panggilan",
+      "Zat dan Sifat",
+      "Waktu dan Tempat",
+      "Langit dan Bumi"
+    ],
+    "answer": "Zat dan Sifat",
+    "points": 7,
+    "feedback": "Tepat. Allah Esa pada Zat-Nya (tidak tersusun) dan Esa pada Sifat-Nya (tidak ada yang menyamai)."
+  },
+  {
+    "id": "q_aqidah_020",
+    "question": "Sifat 'Hayat' (Hidup) bagi Allah adalah kehidupan yang terdahulu dan Zat-Nya berdiri sendiri tanpa...",
+    "type": "text_input",
+    "answer": "Ruh",
+    "points": 6,
+    "feedback": "Benar, kehidupan Allah tidak sama dengan kehidupan makhluk yang membutuhkan ruh."
+  },
+  {
+    "id": "q_aqidah_021",
+    "question": "Pengetahuan Allah (sifat 'Ilmu') bersifat Qadim dan meliputi segala perkara yang...",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Wajib adanya",
+      "Jaiz adanya",
+      "Mustahil adanya",
+      "Pernah ada"
+    ],
+    "answer": [
+      "Wajib adanya",
+      "Jaiz adanya",
+      "Mustahil adanya"
+    ],
+    "points": 9,
+    "feedback": "Tepat. Ilmu Allah meliputi segala sesuatu tanpa terkecuali."
+  },
+  {
+    "id": "q_aqidah_022",
+    "question": "Apakah kekuasaan Allah (sifat 'Qudrat') membutuhkan usaha dan perantara?",
+    "type": "multiple_choice",
+    "options": [
+      "Ya, selalu butuh perantara",
+      "Terkadang butuh",
+      "Tidak, tanpa usaha dan perantara",
+      "Hanya butuh usaha"
+    ],
+    "answer": "Tidak, tanpa usaha dan perantara",
+    "points": 7,
+    "feedback": "Benar. Kekuasaan Allah bersifat mutlak dan tidak bergantung pada apapun."
+  },
+  {
+    "id": "q_aqidah_023",
+    "question": "Kekuasaan Allah berhubungan dengan segala perkara yang mungkin ...",
+    "type": "text_input",
+    "answer": "wujudnya",
+    "points": 6,
+    "feedback": "Benar, kekuasaan Allah berta'alluq (berhubungan) dengan perkara-perkara mumkinat (yang mungkin ada atau tiada)."
+  },
+  {
+    "id": "q_aqidah_024",
+    "question": "Sifat Allah Yang Maha Mendengar disebut...",
+    "type": "text_input",
+    "answer": "Sama'",
+    "points": 5,
+    "feedback": "Betul, sifat Sama' (Mendengar)."
+  },
+  {
+    "id": "q_aqidah_025",
+    "question": "Sifat Allah Yang Maha Melihat disebut...",
+    "type": "text_input",
+    "answer": "Bashar",
+    "points": 5,
+    "feedback": "Betul, sifat Bashar (Melihat)."
+  },
+  {
+    "id": "q_aqidah_026",
+    "question": "Sifat Allah Yang Maha Berbicara disebut...",
+    "type": "text_input",
+    "answer": "Kalam",
+    "points": 5,
+    "feedback": "Betul, sifat Kalam (Berbicara)."
+  },
+  {
+    "id": "q_aqidah_027",
+    "question": "Bagaimanakah sifat Kalam (Pembicaraan) Allah?",
+    "type": "multiple_choice",
+    "options": [
+      "Dengan huruf dan suara seperti manusia",
+      "Hanya berupa tulisan",
+      "Tanpa huruf dan tanpa suara",
+      "Hanya bisa didengar oleh Nabi Musa as."
+    ],
+    "answer": "Tanpa huruf dan tanpa suara",
+    "points": 8,
+    "feedback": "Tepat. Kalam Allah adalah sifat yang qadim, azali, dan tidak menyerupai pembicaraan makhluk."
+  },
+  {
+    "id": "q_aqidah_028",
+    "question": "Apakah ucapan (Kalam) Allah didahului oleh sifat tidak ada dan akan kedatangan sifat tidak ada?",
+    "type": "multiple_choice",
+    "options": [
+      "Ya, sama seperti makhluk",
+      "Tidak, Kalam Allah itu qadim dan kekal",
+      "Hanya didahului sifat tidak ada",
+      "Hanya akan kedatangan sifat tidak ada"
+    ],
+    "answer": "Tidak, Kalam Allah itu qadim dan kekal",
+    "points": 7,
+    "feedback": "Benar. Karena Kalam adalah sifat Allah, maka ia juga bersifat Qadim (terdahulu) dan Baqa' (kekal)."
+  },
+  {
+    "id": "q_aqidah_029",
+    "question": "Firman Allah dalam QS. Thaha: 14, 'Sesungguhnya Aku ini adalah Allah...', adalah contoh Kalam Allah yang berhubungan dengan perkara yang...",
+    "type": "multiple_choice",
+    "options": [
+      "Jaiz",
+      "Haram",
+      "Mustahil",
+      "Wajib"
+    ],
+    "answer": "Wajib",
+    "points": 8,
+    "feedback": "Benar. Ke-Tuhanan Allah adalah perkara yang wajib adanya."
+  },
+  {
+    "id": "q_aqidah_030",
+    "question": "Firman Allah dalam QS. Al-Maidah: 73, '...Allah salah seorang dari yang tiga...', adalah contoh Kalam Allah yang memberitakan tentang perkara yang...",
+    "type": "multiple_choice",
+    "options": [
+      "Wajib",
+      "Sunnah",
+      "Mustahil",
+      "Jaiz"
+    ],
+    "answer": "Mustahil",
+    "points": 8,
+    "feedback": "Benar. Trinitas adalah perkara yang mustahil bagi Allah."
+  },
+  {
+    "id": "q_aqidah_031",
+    "question": "Firman Allah dalam QS. Ash-Shaffat: 96, 'Padahal Allah-lah yang menciptakan kamu dan apa yang kamu perbuat itu', adalah contoh Kalam Allah yang berhubungan dengan perkara yang...",
+    "type": "multiple_choice",
+    "options": [
+      "Wajib",
+      "Mustahil",
+      "Makruh",
+      "Jaiz"
+    ],
+    "answer": "Jaiz",
+    "points": 8,
+    "feedback": "Benar. Perbuatan hamba adalah perkara yang jaiz (mumkin), yang boleh terjadi atau tidak terjadi."
+  },
+  {
+    "id": "q_aqidah_032",
+    "question": "Menurut pendapat yang benar yang disepakati Ulama Mutaakhirin, apa arti lafadh Al-Qur'an yang kita baca?",
+    "type": "multiple_choice",
+    "options": [
+      "Itu adalah Zat Kalam Allah itu sendiri",
+      "Perkara yang menjadi hubungan dengan perkataan Allah yang qadim",
+      "Hanyalah ciptaan Nabi Muhammad saw.",
+      "Suara yang diciptakan di udara"
+    ],
+    "answer": "Perkara yang menjadi hubungan dengan perkataan Allah yang qadim",
+    "points": 9,
+    "feedback": "Tepat. Lafadz yang kita baca adalah 'ibarah' atau ungkapan yang menunjukkan kepada sifat Kalam Allah yang Qadim."
+  },
+  {
+    "id": "q_aqidah_033",
+    "question": "Jika yang dimaksud Al-Qur'an adalah Kalam Qadim yang tetap pada Zat Allah, maka hukumnya adalah...",
+    "type": "text_input",
+    "answer": "Qadim",
+    "points": 7,
+    "feedback": "Benar. Karena ia adalah sifat dari Zat yang Qadim, maka sifatnya pun Qadim."
+  },
+  {
+    "id": "q_aqidah_034",
+    "question": "Jika yang dimaksud Al-Qur'an adalah tulisan yang ada di kertas (mushaf), maka lafadh yang menunjukkan kepada Zat dan Sifat Allah dianggap...",
+    "type": "text_input",
+    "answer": "Qadim",
+    "points": 8,
+    "feedback": "Benar. Lafadz (seperti 'Allah', 'Ar-Rahman') yang menunjukkan kepada yang Qadim, maka ia dianggap Qadim dari segi penunjukannya (madlul)."
+  },
+  {
+    "id": "q_aqidah_035",
+    "question": "Jika yang dimaksud Al-Qur'an adalah tulisan di mushaf, lafadh yang menunjukkan kepada perkara baru (makhluk) seperti cerita tentang Firaun, maka lafadh itu dianggap...",
+    "type": "text_input",
+    "answer": "Baru",
+    "points": 8,
+    "feedback": "Benar. Lafadz yang menunjukkan kepada sesuatu yang baru (hadits), maka ia dianggap baru (hadits)."
+  },
+  {
+    "id": "q_aqidah_036",
+    "question": "Mengapa perkataan-perkataan dalam mushaf dinamakan Kalam Allah?",
+    "type": "multiple_choice",
+    "options": [
+      "Karena ditulis dengan tinta emas",
+      "Karena mengandung arti perkataan Allah",
+      "Karena dibawa oleh Jibril",
+      "Karena dicetak di Arab"
+    ],
+    "answer": "Karena mengandung arti perkataan Allah",
+    "points": 7,
+    "feedback": "Tepat. Ia adalah penunjuk (dalalah) kepada Kalam Nafsi yang Qadim."
+  },
+  {
+    "id": "q_aqidah_037",
+    "question": "Kalam Allah jika diungkapkan dengan bahasa Arab disebut...",
+    "type": "text_input",
+    "answer": "Al-Qur'an",
+    "points": 5,
+    "feedback": "Benar."
+  },
+  {
+    "id": "q_aqidah_038",
+    "question": "Tiga klasifikasi iman adalah Taqlid, Tahkik, dan...",
+    "type": "text_input",
+    "answer": "Istidlal",
+    "points": 6,
+    "feedback": "Betul. Iman Istidlal adalah iman yang berlandaskan dalil."
+  },
+  {
+    "id": "q_aqidah_039",
+    "question": "Iman sejati yang kokoh dan tidak terpengaruh oleh perselisihan disebut iman...",
+    "type": "text_input",
+    "answer": "Hakiki",
+    "points": 7,
+    "feedback": "Tepat, Iman Hakiki atau Iman Tahkik."
+  },
+  {
+    "id": "q_aqidah_040",
+    "question": "Iman yang paling rentan terhadap keraguan adalah iman...",
+    "type": "text_input",
+    "answer": "Taqlid",
+    "points": 6,
+    "feedback": "Benar, karena hanya ikut-ikutan tanpa mengetahui dasarnya."
+  },
+  {
+    "id": "q_aqidah_041",
+    "question": "Prinsip 'setiap bangunan menunjukkan adanya orang yang membangun' adalah contoh untuk iman jenis apa?",
+    "type": "text_input",
+    "answer": "Istidlal",
+    "points": 7,
+    "feedback": "Betul, ini adalah penalaran logis untuk membuktikan adanya Pencipta dari adanya ciptaan."
+  },
+  {
+    "id": "q_aqidah_042",
+    "question": "Sifat 'Qudrat' Allah berhubungan dengan perkara-perkara yang...",
+    "type": "multiple_choice",
+    "options": [
+      "Wajib",
+      "Mustahil",
+      "Mungkin (Jaiz)",
+      "Sudah terjadi"
+    ],
+    "answer": "Mungkin (Jaiz)",
+    "points": 8,
+    "feedback": "Benar, Qudrat dan Iradat berhubungan dengan Al-Mumkinat (segala sesuatu yang mungkin)."
+  },
+  {
+    "id": "q_aqidah_043",
+    "question": "Keesaan Allah berarti Dia tunggal dalam Sifat-Nya dan juga tunggal dalam...",
+    "type": "text_input",
+    "answer": "Zat-Nya",
+    "points": 6,
+    "feedback": "Tepat, tidak ada sekutu bagi-Nya baik dalam Zat maupun Sifat."
+  },
+  {
+    "id": "q_aqidah_044",
+    "question": "Sifat 'Ilmu' Allah berdiri sendiri dengan...",
+    "type": "text_input",
+    "answer": "Zat-Nya",
+    "points": 7,
+    "feedback": "Benar, Sifat-sifat Ma'ani (termasuk Ilmu) adalah sifat yang qadim dan berdiri (qa'im) pada Zat Allah."
+  },
+  {
+    "id": "q_aqidah_045",
+    "question": "Berbeda dengan makhluk, pendengaran (Sama') Allah bersifat...",
+    "type": "text_input",
+    "answer": "Qadim",
+    "points": 6,
+    "feedback": "Tepat. Semua sifat Allah bersifat qadim (terdahulu, tanpa permulaan)."
+  },
+  {
+    "id": "q_aqidah_046",
+    "question": "Pilih 2 ciri dari Kalam Allah yang disebutkan.",
+    "type": "multiple_choice_multi_select",
+    "options": [
+      "Tanpa huruf",
+      "Memiliki irama",
+      "Tanpa suara",
+      "Tertulis di Lauhul Mahfudz"
+    ],
+    "answer": [
+      "Tanpa huruf",
+      "Tanpa suara"
+    ],
+    "points": 8,
+    "feedback": "Benar, Kalam Nafsi Allah tidak berupa huruf maupun suara."
+  },
+  {
+    "id": "q_aqidah_047",
+    "question": "Apakah taubat orang yang sudah putus asa (ya's) masih diterima jika dilakukan pada kesempatan yang masih luas?",
+    "type": "multiple_choice",
+    "options": [
+      "Tidak akan diterima",
+      "Dapat diterima sepanjang imannya sudah benar",
+      "Hanya diterima jika ia bersedekah",
+      "Tergantung tingkat keputusasaannya"
+    ],
+    "answer": "Dapat diterima sepanjang imannya sudah benar",
+    "points": 8,
+    "feedback": "Benar, yang membatalkan adalah taubat saat nyawa di kerongkongan (gharqarah), bukan saat putus asa (ya's)."
+  },
+  {
+    "id": "q_aqidah_048",
+    "question": "Iman secara bahasa berarti...",
+    "type": "text_input",
+    "answer": "Membenarkan",
+    "points": 6,
+    "feedback": "Betul, iman mengandung arti 'membenarkan' (at-tashdiq)."
+  },
+  {
+    "id": "q_aqidah_049",
+    "question": "Siapakah yang menyepakati pendapat Ibnu Qasim mengenai lafadh Al-Qur'an?",
+    "type": "multiple_choice",
+    "options": [
+      "Seluruh Ulama Salaf",
+      "Seluruh Ulama Mutaakhirin",
+      "Hanya ulama mazhab Syafi'i",
+      "Tidak ada yang menyepakati"
+    ],
+    "answer": "Seluruh Ulama Mutaakhirin",
+    "points": 9,
+    "feedback": "Tepat. Ini adalah pendapat yang mu'tamad (dipegang) oleh kalangan ulama Asy'ariyah terkemudian."
+  },
+  {
+    "id": "q_aqidah_050",
+    "question": "Sifat 'berdiri sendiri dengan Zat-Nya' menunjukkan bahwa sifat-sifat Allah tidak membutuhkan...",
+    "type": "multiple_choice",
+    "options": [
+      "Pujian",
+      "Tempat atau organ (mahal)",
+      "Saksi",
+      "Waktu"
+    ],
+    "answer": "Tempat atau organ (mahal)",
+    "points": 8,
+    "feedback": "Benar, tidak seperti sifat makhluk. Contoh: pendengaran Allah tidak butuh telinga, penglihatan-Nya tidak butuh mata."
+  },
+  {
+    "id": "q_aqidah_051",
+    "question": "Apakah yang dimaksud 'takdir yang baik dan buruk dari Allah Ta'ala' dalam rukun iman?",
+    "type": "multiple_choice",
+    "options": [
+        "Manusia tidak punya pilihan sama sekali",
+        "Segala sesuatu yang terjadi, baik atau buruk menurut kita, adalah dalam ketentuan dan ciptaan Allah",
+        "Hanya takdir baik yang datang dari Allah",
+        "Manusia menciptakan takdirnya sendiri"
+    ],
+    "answer": "Segala sesuatu yang terjadi, baik atau buruk menurut kita, adalah dalam ketentuan dan ciptaan Allah",
+    "points": 7,
+    "feedback": "Tepat. Mengimani qadha dan qadar, baik yang kita sukai maupun tidak."
+  },
+  {
+    "id": "q_aqidah_052",
+    "question": "'Hari akhir' juga disebut sebagai 'hari pembangkitan dari kubur sesudah...'",
+    "type": "text_input",
+    "answer": "mati",
+    "points": 5,
+    "feedback": "Benar, beriman pada hari akhir mencakup keyakinan akan adanya kebangkitan setelah kematian (al-ba'ts ba'dal maut)."
+  },
+  {
+    "id": "q_aqidah_053",
+    "question": "Seorang yang imannya 'Tahkik' tidak akan goyah meskipun terjadi...",
+    "type": "multiple_choice",
+    "options": [
+        "Bencana alam",
+        "Perang saudara",
+        "Perselisihan ahli ilmu",
+        "Kenaikan harga"
+    ],
+    "answer": "Perselisihan ahli ilmu",
+    "points": 7,
+    "feedback": "Betul, karena imannya sudah terikat kuat di hati dan tidak sekadar ikut-ikutan pendapat."
+  },
+  {
+    "id": "q_aqidah_054",
+    "question": "Sifat Kalam Allah berhubungan dengan tiga jenis perkara. Apa sajakah itu?",
+    "type": "text_input",
+    "answer": "Wajib, Jaiz, dan Mustahil",
+    "points": 8,
+    "feedback": "Tepat sekali. Kalam Allah mencakup pemberitaan tentang segala sesuatu."
+  },
+  {
+    "id": "q_aqidah_055",
+    "question": "Dalam konteks Al-Qur'an, 'Hadits' berarti...",
+    "type": "multiple_choice",
+    "options": [
+        "Perkataan Nabi",
+        "Baru atau ciptaan",
+        "Cerita masa lalu",
+        "Sesuatu yang suci"
+    ],
+    "answer": "Baru atau ciptaan",
+    "points": 7,
+    "feedback": "Benar. 'Hadits' adalah lawan dari 'Qadim'. Ini merujuk pada segala sesuatu selain Allah dan sifat-Nya."
+  },
+  {
+    "id": "q_aqidah_056",
+    "question": "Apakah malaikat termasuk dalam perkara yang wajib diimani?",
+    "type": "text_input",
+    "answer": "Ya",
+    "points": 5,
+    "feedback": "Betul, iman kepada malaikat adalah rukun iman yang kedua."
+  },
+  {
+    "id": "q_aqidah_057",
+    "question": "Iman yang paling ideal dan kuat dari tiga klasifikasi yang disebutkan adalah...",
+    "type": "multiple_choice",
+    "options": [
+        "Iman Taqlid",
+        "Iman Tahkik yang disertai Istidlal",
+        "Iman Istidlal saja",
+        "Semuanya sama saja"
+    ],
+    "answer": "Iman Tahkik yang disertai Istidlal",
+    "points": 9,
+    "feedback": "Tepat. Tingkatan tertinggi adalah keyakinan yang kokoh (Tahkik) dan didukung oleh pengetahuan dalil (Istidlal)."
+  },
+  {
+    "id": "q_aqidah_058",
+    "question": "Allah bersifat 'Maha Kuasa dengan kekuasaan yang qadim dan berdiri sendiri dengan Zat-Nya tanpa ... dan ...'",
+    "type": "text_input",
+    "answer": "usaha dan perantara",
+    "points": 8,
+    "feedback": "Benar, kekuasaan-Nya bersifat mutlak."
+  },
+  {
+    "id": "q_aqidah_059",
+    "question": "Penglihatan (Bashar) Allah dapat melihat segala perkara yang terlihat dikala ... perkara yang dilihat itu.",
+    "type": "text_input",
+    "answer": "wujudnya",
+    "points": 7,
+    "feedback": "Betul, ini menunjukkan bahwa penglihatan Allah tidak terbatas oleh jarak, ruang, maupun waktu."
+  },
+  {
+    "id": "q_aqidah_060",
+    "question": "Lafadz Al-Qur'an yang menceritakan tentang 'kebodohan kita' dianggap sebagai lafadz yang menunjukkan perkara yang...",
+    "type": "text_input",
+    "answer": "baru",
+    "points": 7,
+    "feedback": "Benar, karena kebodohan adalah sifat makhluk, dan makhluk adalah baru (hadits)."
+  },
+  {
+    "id": "q_aqidah_061",
+    "question": "Iman kepada para utusan-Nya berarti membenarkan semua berita yang mereka sampaikan dari...",
+    "type": "text_input",
+    "answer": "Allah Ta'ala",
+    "points": 6,
+    "feedback": "Betul sekali."
+  },
+  {
+    "id": "q_aqidah_062",
+    "question": "Kondisi di mana nyawa sudah sampai di kerongkongan saat sakaratul maut disebut?",
+    "type": "multiple_choice",
+    "options": [
+        "Naza'",
+        "Gharqarah",
+        "Fana'",
+        "Khatimah"
+    ],
+    "answer": "Gharqarah",
+    "points": 8,
+    "feedback": "Tepat, pada kondisi gharqarah, pintu taubat dan iman sudah tertutup."
+  },
+  {
+    "id": "q_aqidah_063",
+    "question": "Sifat 'Menghendaki' bagi Allah disebut juga dengan sifat...",
+    "type": "text_input",
+    "answer": "Iradat",
+    "points": 6,
+    "feedback": "Benar, Allah bersifat Muridun (Zat yang menghendaki) dan memiliki sifat Iradat (Kehendak)."
+  },
+  {
+    "id": "q_aqidah_064",
+    "question": "Kehendak (Iradat) Allah bersifat terdahulu dan yang berdiri sendiri tetap pada...",
+    "type": "text_input",
+    "answer": "Zat-Nya",
+    "points": 7,
+    "feedback": "Tepat, Iradat adalah salah satu Sifat Ma'ani yang qadim dan melekat pada Zat Allah."
+  },
+  {
+    "id": "q_aqidah_065",
+    "question": "Pilih dua hal yang TIDAK ADA pada Kalam Allah.",
+    "type": "multiple_choice_multi_select",
+    "options": [
+        "Makna",
+        "Huruf",
+        "Suara",
+        "Perintah"
+    ],
+    "answer": ["Huruf", "Suara"],
+    "points": 8,
+    "feedback": "Betul. Kalam Nafsi Allah (yang qadim) tidak terdiri dari huruf dan suara seperti kalam makhluk."
+  },
+  {
+    "id": "q_aqidah_066",
+    "question": "Jika ada orang yang memengaruhi dan meragukan hati seorang Muqallid (orang yang imannya taqlid), kemungkinan besar imannya akan...",
+    "type": "text_input",
+    "answer": "Goncang",
+    "points": 6,
+    "feedback": "Benar, imannya tidak dapat selamat dari goncangan hati."
+  },
+  {
+    "id": "q_aqidah_067",
+    "question": "Apa bukti adanya Zat Pencipta menurut Iman Istidlal?",
+    "type": "multiple_choice",
+    "options": [
+        "Adanya kitab suci",
+        "Adanya para nabi",
+        "Segala ciptaan Allah",
+        "Adanya mimpi"
+    ],
+    "answer": "Segala ciptaan Allah",
+    "points": 7,
+    "feedback": "Tepat, alam semesta dan segala isinya adalah dalil (bukti) akan adanya Sang Pencipta."
+  },
+  {
+    "id": "q_aqidah_068",
+    "question": "Apakah kekuasaan (Qudrat) Allah pernah menjadi lemah?",
+    "type": "text_input",
+    "answer": "Tidak",
+    "points": 5,
+    "feedback": "Benar, kekuasaan Allah tak kunjung lemah."
+  },
+  {
+    "id": "q_aqidah_069",
+    "question": "Rukun Iman yang kelima adalah iman kepada...",
+    "type": "text_input",
+    "answer": "Hari akhir",
+    "points": 6,
+    "feedback": "Betul."
+  },
+  {
+    "id": "q_aqidah_070",
+    "question": "Rukun Iman yang keenam adalah iman kepada...",
+    "type": "text_input",
+    "answer": "Takdir yang baik dan buruk",
+    "points": 6,
+    "feedback": "Betul."
+  },
+  {
+    "id": "q_aqidah_071",
+    "question": "Apakah semua yang ada di dalam Al-Qur'an (mushaf) itu baru (hadits)?",
+    "type": "multiple_choice",
+    "options": [
+        "Ya, semuanya baru",
+        "Tidak, ada yang qadim dan ada yang baru tergantung penunjukannya",
+        "Semuanya qadim",
+        "Tidak bisa ditentukan"
+    ],
+    "answer": "Tidak, ada yang qadim dan ada yang baru tergantung penunjukannya",
+    "points": 9,
+    "feedback": "Jawaban yang sangat tepat. Ini adalah rincian penting dalam pembahasan sifat Kalam."
+  },
+  {
+    "id": "q_aqidah_072",
+    "question": "Allah bersifat 'Alimun, yang artinya...",
+    "type": "text_input",
+    "answer": "Maha Mengetahui",
+    "points": 5,
+    "feedback": "Benar."
+  },
+  {
+    "id": "q_aqidah_073",
+    "question": "Allah bersifat 'Sami'un, yang artinya...",
+    "type": "text_input",
+    "answer": "Maha Mendengar",
+    "points": 5,
+    "feedback": "Benar."
+  },
+  {
+    "id": "q_aqidah_074",
+    "question": "Allah bersifat 'Bashirun, yang artinya...",
+    "type": "text_input",
+    "answer": "Maha Melihat",
+    "points": 5,
+    "feedback": "Benar."
+  },
+  {
+    "id": "q_aqidah_075",
+    "question": "Orang yang memiliki Iman Tahkik digambarkan memiliki ... yang kuat dalam hatinya.",
+    "type": "text_input",
+    "answer": "ikatan",
+    "points": 7,
+    "feedback": "Benar, 'mengikat hatinya terhadap sifat ke Esaan Allah Ta'ala'."
+  },
+  {
+    "id": "q_aqidah_076",
+    "question": "Hadis tentang diterimanya taubat selagi nyawa belum di kerongkongan diriwayatkan oleh...",
+    "type": "text_input",
+    "answer": "Ibnu Umar ra.",
+    "points": 8,
+    "feedback": "Tepat sekali."
+  },
+  {
+    "id": "q_aqidah_077",
+    "question": "Apakah Allah membutuhkan dalil untuk mengetahui sesuatu?",
+    "type": "text_input",
+    "answer": "Tidak",
+    "points": 6,
+    "feedback": "Benar, Ilmu Allah bersifat qadim dan tidak melalui proses belajar atau mencari dalil."
+  },
+  {
+    "id": "q_aqidah_078",
+    "question": "Apakah Allah terikat oleh kehendak-Nya untuk melakukan sesuatu?",
+    "type": "multiple_choice",
+    "options": [
+        "Ya, terikat",
+        "Tidak, karena sifat jaiz-Nya",
+        "Kadang-kadang",
+        "Hanya terikat pada hal baik"
+    ],
+    "answer": "Tidak, karena sifat jaiz-Nya",
+    "points": 8,
+    "feedback": "Tepat, Allah memiliki kehendak (Iradat), namun Dia juga memiliki Sifat Jaiz 'mengerjakan sesuatu yang mungkin atau meninggalkannya'."
+  },
+  {
+    "id": "q_aqidah_079",
+    "question": "Surat dalam Al-Qur'an yang dikutip sebagai contoh Kalam Allah yang berhubungan dengan perkara wajib adalah...",
+    "type": "text_input",
+    "answer": "Thaha: 14",
+    "points": 8,
+    "feedback": "Benar, yaitu ayat 'Sesungguhnya Aku ini adalah Allah, tidak ada Tuhan (yang hak) selain Aku, maka sembahlah Aku.'"
+  },
+  {
+    "id": "q_aqidah_080",
+    "question": "Surat dalam Al-Qur'an yang dikutip sebagai contoh Kalam Allah yang berhubungan dengan perkara mustahil adalah...",
+    "type": "text_input",
+    "answer": "Al Maidah: 73",
+    "points": 8,
+    "feedback": "Benar, yaitu ayat 'Sesungguhnya kafirlah orang-orang yang mengatakan: 'Bahwasanya Allah salah seorang dari yang tiga'.'"
+  },
+  {
+    "id": "q_aqidah_081",
+    "question": "Surat dalam Al-Qur'an yang dikutip sebagai contoh Kalam Allah yang berhubungan dengan perkara jaiz adalah...",
+    "type": "text_input",
+    "answer": "Ash Shaffat: 96",
+    "points": 8,
+    "feedback": "Benar, yaitu ayat 'Padahal Allah-lah yang menciptakan kamu dan apa yang kamu perbuat itu.'"
+  },
+  {
+    "id": "q_aqidah_082",
+    "question": "Tindakan 'menyembah' dalam QS. Thaha: 14 adalah konsekuensi dari meyakini perkara yang...",
+    "type": "text_input",
+    "answer": "Wajib",
+    "points": 7,
+    "feedback": "Betul, karena Allah adalah satu-satunya Tuhan yang wajib disembah."
+  },
+  {
+    "id": "q_aqidah_083",
+    "question": "Pernyataan 'Allah salah seorang dari yang tiga' adalah sebuah kekafiran karena itu adalah perkara yang ... bagi Allah.",
+    "type": "text_input",
+    "answer": "Mustahil",
+    "points": 7,
+    "feedback": "Betul, hal tersebut mustahil bagi ke-Esaan Allah."
+  },
+  {
+    "id": "q_aqidah_084",
+    "question": "'Apa yang kamu perbuat' dalam QS. Ash-Shaffat: 96 merujuk pada perbuatan manusia yang merupakan perkara...",
+    "type": "text_input",
+    "answer": "Jaiz",
+    "points": 7,
+    "feedback": "Betul, perbuatan manusia termasuk dalam perkara yang mungkin (jaiz/mumkin)."
+  },
+  {
+    "id": "q_aqidah_085",
+    "question": "Iman yang tidak berdasarkan dalil disebut iman...",
+    "type": "text_input",
+    "answer": "Taqlid",
+    "points": 6,
+    "feedback": "Benar."
+  },
+  {
+    "id": "q_aqidah_086",
+    "question": "Iman yang berdasarkan dalil disebut iman...",
+    "type": "text_input",
+    "answer": "Istidlal",
+    "points": 6,
+    "feedback": "Benar."
+  },
+  {
+    "id": "q_aqidah_087",
+    "question": "Apakah iman yang diterima saat seseorang sudah melihat tempatnya di surga atau neraka?",
+    "type": "text_input",
+    "answer": "Tidak",
+    "points": 6,
+    "feedback": "Benar, karena sudah tidak ada lagi unsur pilihan (ikhtiar)."
+  },
+  {
+    "id": "q_aqidah_088",
+    "question": "Para utusan Allah adalah orang-orang yang ... lagi ...",
+    "type": "text_input",
+    "answer": "jujur lagi benar",
+    "points": 7,
+    "feedback": "Tepat sekali."
+  },
+  {
+    "id": "q_aqidah_089",
+    "question": "Kata 'Esa' berarti satu atau...",
+    "type": "text_input",
+    "answer": "tunggal",
+    "points": 5,
+    "feedback": "Benar."
+  },
+  {
+    "id": "q_aqidah_090",
+    "question": "Apakah Allah memiliki sekutu dalam Zat dan Sifat-Nya?",
+    "type": "text_input",
+    "answer": "Tidak",
+    "points": 5,
+    "feedback": "Benar, tiada sekutu bagi-Nya."
+  },
+  {
+    "id": "q_aqidah_091",
+    "question": "Pilih dua sifat Allah dari pembahasan Sifat Ma'ani.",
+    "type": "multiple_choice_multi_select",
+    "options": [
+        "Hayyun (Hidup)",
+        "Wujud (Ada)",
+        "Qudrat (Kuasa)",
+        "Baqa' (Kekal)"
+    ],
+    "answer": ["Hayyun (Hidup)", "Qudrat (Kuasa)"],
+    "points": 8,
+    "feedback": "Benar. Sifat Ma'ani yang dibahas antara lain Hayat (Hidup), Ilmu (Mengetahui), Qudrat (Kuasa), Iradat (Berkehendak), Sama' (Mendengar), Bashar (Melihat), dan Kalam (Berbicara)."
+  },
+  {
+    "id": "q_aqidah_092",
+    "question": "Pengetahuan Allah meliputi perkara yang telah terjadi, sedang terjadi, dan...",
+    "type": "multiple_choice",
+    "options": [
+        "Akan terjadi",
+        "Yang mustahil terjadi",
+        "Semua jawaban benar"
+    ],
+    "answer": "Semua jawaban benar",
+    "points": 8,
+    "feedback": "Tepat. Ilmu Allah meliputi perkara Wajib, Jaiz, dan Mustahil, yang mencakup semua kemungkinan."
+  },
+  {
+    "id": "q_aqidah_093",
+    "question": "Sifat Jaiz Allah hanya ada...",
+    "type": "text_input",
+    "answer": "satu",
+    "points": 5,
+    "feedback": "Betul."
+  },
+  {
+    "id": "q_aqidah_094",
+    "question": "Lafadz Al-Qur'an yang kita baca disepakati oleh Ulama Mutaakhirin sebagai ... dari Kalam Allah yang Qadim.",
+    "type": "multiple_choice",
+    "options": [
+        "Zat",
+        "Hikayat atau 'ibarat (ungkapan/penunjuk)",
+        "Bayangan",
+        "Terjemahan"
+    ],
+    "answer": "Hikayat atau 'ibarat (ungkapan/penunjuk)",
+    "points": 9,
+    "feedback": "Tepat. Lafadz yang kita baca bukanlah Zat Kalam itu sendiri, melainkan ungkapan yang menunjukkannya."
+  },
+  {
+    "id": "q_aqidah_095",
+    "question": "Apakah sifat 'bodoh' itu mungkin ada pada Allah?",
+    "type": "text_input",
+    "answer": "Tidak",
+    "points": 5,
+    "feedback": "Benar, itu adalah sifat mustahil. Lawan dari sifat 'Ilmu (Maha Mengetahui)."
+  },
+  {
+    "id": "q_aqidah_096",
+    "question": "Tujuan utama dari Iman Istidlal adalah membuktikan adanya...",
+    "type": "text_input",
+    "answer": "Zat Pencipta",
+    "points": 7,
+    "feedback": "Betul."
+  },
+  {
+    "id": "q_aqidah_097",
+    "question": "Siapakah yang dimaksud dengan 'hamba-hamba yang mulia' dalam rukun iman kepada Malaikat?",
+    "type": "text_input",
+    "answer": "Para Malaikat",
+    "points": 6,
+    "feedback": "Benar."
+  },
+  {
+    "id": "q_aqidah_098",
+    "question": "Iman yang kuat laksana ... yang tidak bisa dilepaskan.",
+    "type": "text_input",
+    "answer": "ikatan",
+    "points": 7,
+    "feedback": "Benar, ini gambaran untuk Iman Hakiki/Tahkik."
+  },
+  {
+    "id": "q_aqidah_099",
+    "question": "Lafadz Al-Qur'an yang menunjukkan kepada 'kepandaian kita' adalah lafadz yang menunjukkan perkara yang...",
+    "type": "text_input",
+    "answer": "baru",
+    "points": 7,
+    "feedback": "Benar, karena kepandaian manusia adalah sifat makhluk yang baru."
+  },
+  {
+    "id": "q_aqidah_100",
+    "question": "Apakah Iman Taqlid cukup untuk menyelamatkan seseorang di akhirat menurut semua ulama?",
+    "type": "multiple_choice",
+    "options": [
+        "Ya, sudah cukup",
+        "Tidak, ada perbedaan pendapat (khilafiyah) di kalangan ulama",
+        "Cukup jika ia orang Arab",
+        "Tidak disebutkan secara spesifik"
+    ],
+    "answer": "Tidak, ada perbedaan pendapat (khilafiyah) di kalangan ulama",
+    "points": 9,
+    "feedback": "Tepat. Ada ulama yang menganggapnya cukup dan ada yang tidak, ini menunjukkan masalah tersebut adalah khilafiyah (diperdebatkan)."
+  }
+]
