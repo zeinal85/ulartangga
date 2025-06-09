@@ -32,18 +32,27 @@ let availableQuestionIds = []; // Daftar ID pertanyaan yang belum ditanyakan
 const materialConfigs = {
     'literasi_digital': {
         name: 'Literasi Digital',
-        questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
-        ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
+        //questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
+        //ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/ad72c429de8de3d74ca1095babadd8b71d7aade9/questions_etika.json',
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
+
     },
     'sejarah': {
         name: 'Sejarah',
-        questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
-        ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
+        //questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
+        //ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/7565a2a04ba66fbfff234204bf29b81d6ac4c363/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/f2b1ed2cd4fb7e5face1a65ee330a38ae901a4ed/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+
     },
 	'sains': {
 		name: 'Sains',
-		questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
-		ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
+		//questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
+		//ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/91e88a0c3b86e8c4e80cc4c367d704964ef2d096/questions_sains.json',
+		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
+
     },
     // Tambahkan materi lain di sini sesuai kebutuhan
 };
@@ -85,12 +94,24 @@ const stepSynth = new Tone.Synth({
     }
 }).toDestination();
 
+// Objek Tone.js untuk efek suara lempar dadu
+const diceRollSynth = new Tone.NoiseSynth({
+    noise: {
+        type: "white" // Tipe kebisingan, 'white' biasanya bagus untuk efek umum
+    },
+    envelope: {
+        attack: 0.005,
+        decay: 0.2, // Durasi suara
+        sustain: 0.05,
+        release: 0.3
+    }
+}).toDestination();
+
 
 // --- REFERENSI ELEMEN DOM ---
 
 const board = document.getElementById('game-board');
 const playerPiecesContainer = document.getElementById('player-pieces-container');
-// const rollDiceBtn = document.getElementById('roll-dice-btn'); // Dihapus: Tombol fisik "Kocok Dadu" tidak ada lagi
 const restartBtn = document.getElementById('restart-btn');
 const diceFace = document.getElementById('dice-face');
 const turnInfo = document.getElementById('turn-info');
@@ -121,9 +142,6 @@ const questionText = document.getElementById('question-text');
 const questionOptions = document.getElementById('question-options');
 const questionInput = document.getElementById('question-input');
 const submitAnswerBtn = document.getElementById('submit-answer-btn');
-// feedbackText dan continueGameBtn DIPINDAHKAN ke modal baru
-// const feedbackText = document.getElementById('feedback-text');
-// const continueGameBtn = document.getElementById('continue-game-btn');
 
 // Referensi elemen modal feedback BARU
 const feedbackModal = document.getElementById('feedback-modal');
@@ -137,7 +155,6 @@ const ethicsMessageText = document.getElementById('ethics-message-text');
 const closeEthicsMessageBtn = document.getElementById('close-ethics-message-btn');
 
 // Referensi elemen baru: Bagian jumlah pemain dan tombol batal
-// playerCountSection tidak lagi digunakan secara langsung, diganti oleh gameSetupScreen
 const cancelRollBtn = document.getElementById('cancel-roll-btn');
 
 // Referensi elemen tombol fullscreen
@@ -206,14 +223,13 @@ async function initGame() {
     updateAllPlayerPositionsUI();
     updateTurnInfo(); // Ini akan mengontrol visibilitas tombol batal dan menampilkan giliran pemain
     updateScoresUI(); // Perbarui tampilan skor (BARU)
-    // rollDiceBtn.disabled = false; // Akan dikelola oleh updateDiceUI() - Dihapus
     physicalDiceResultInput.disabled = false;
     submitPhysicalRollBtn.disabled = false;
     winnerModal.classList.remove('show'); // Sembunyikan modal pemenang
     questionModal.classList.remove('show'); // Sembunyikan modal pertanyaan
     ethicsMessageModal.classList.remove('show'); // Pastikan modal etika juga tersembunyi
     feedbackModal.classList.remove('show'); // Pastikan modal feedback juga tersembunyi
-    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">🎲</span>`;
+    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">🎲</span>`; // Mengatur dadu ke ikon awal
     updateDiceUI(); // Panggil ini untuk menampilkan UI dadu yang benar saat inisialisasi
 
     // Fokus ke papan permainan setelah memulai game dengan sedikit delay
@@ -307,13 +323,18 @@ async function handleRollDiceDigital() {
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+    // Tampilkan ikon dadu berputar di awal animasi
+    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700 animate-spin">🔄</span>`; // Ikon berputar
     diceFace.classList.add('rolling'); // Tambahkan animasi rolling ke dadu visual
     diceFace.style.pointerEvents = 'none'; // Nonaktifkan klik selama animasi
 
-    await new Promise(resolve => setTimeout(resolve, 300));
+    diceRollSynth.triggerAttackRelease("0.5s"); // Mainkan suara dadu dilempar
+
+    await new Promise(resolve => setTimeout(resolve, 1500)); // Durasi animasi 1.5 detik
 
     const diceResult = Math.floor(Math.random() * 6) + 1;
 
+    // Setelah animasi selesai, tampilkan angka dadu
     diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">${diceResult}</span>`;
     diceFace.classList.remove('rolling');
     diceFace.style.pointerEvents = 'auto'; // Aktifkan kembali klik setelah animasi
@@ -412,7 +433,7 @@ async function handleSubmitPhysicalRoll() {
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">${diceResult}</span>`;
+    diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">${diceResult}</span>`; // Ini akan langsung menampilkan angka untuk dadu fisik
 
     infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} memasukkan ${diceResult}`;
 
@@ -1132,7 +1153,7 @@ startGameBtn.addEventListener('click', async () => {
     const desiredPlayers = parseInt(playerCountInputSetup.value, 10); // Ambil dari input layar setup
     const selectedMaterial = materialSelect.value; // Dapatkan nilai materi yang dipilih
 
-    if (!isNaN(desiredPlayers) && desiredPlayers >= 2 && desiredPlayers >= 2 && desiredPlayers <= 4) { // Menjaga batas bawah 2 pemain
+    if (!isNaN(desiredPlayers) && desiredPlayers >= 2 && desiredPlayers <= 4) {
         PLAYER_COUNT = desiredPlayers;
         selectedMaterialKey = selectedMaterial; // Simpan materi yang dipilih
         initGame(); // Memulai game dengan pengaturan baru
@@ -1159,6 +1180,7 @@ window.addEventListener('resize', () => {
  * Dipanggil saat halaman dimuat dan saat game dimulai ulang/dimainkan lagi.
  */
 function initSetupScreen() {
+    console.log("initSetupScreen() dipanggil."); // Debug log: Pastikan fungsi ini dipanggil
     // Pastikan layar setup terlihat dan layar game tersembunyi
     gameSetupScreen.classList.remove('hidden');
     mainGameScreen.classList.add('hidden');
@@ -1170,9 +1192,11 @@ function initSetupScreen() {
         option.value = key;
         option.textContent = materialConfigs[key].name; 
         materialSelect.appendChild(option);
+        console.log(`Menambahkan opsi materi: ${materialConfigs[key].name} (Value: ${key})`); // Debug log: Periksa setiap opsi yang ditambahkan
     }
     // Set opsi yang dipilih ke materi default atau yang terakhir dipilih
     materialSelect.value = selectedMaterialKey; 
+    console.log("Materi yang dipilih saat ini:", selectedMaterialKey); // Debug log
 
     // Reset input jumlah pemain ke nilai default
     playerCountInputSetup.value = 2;
