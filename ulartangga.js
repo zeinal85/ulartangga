@@ -30,6 +30,12 @@ let availableQuestionIds = []; // Daftar ID pertanyaan yang belum ditanyakan
 // berada di level yang sama dengan 'ulartangga.js' dan 'index.html').
 // =====================================================================
 const materialConfigs = {
+    'akidah': {
+	name: 'Akidah Islam',
+	questions_url: './soal/questions_akidah.json',  // Path relatif ke folder 'soal'
+	ethics_url: './pesan/pesan_akidah.json'        // Path relatif ke folder 'pesan'
+    },
+	
     'literasi_digital': {
         name: 'Literasi Digital',
         questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
@@ -41,17 +47,12 @@ const materialConfigs = {
         questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
         ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'		
     },
-	'sains': {
-		name: 'Sains',
-		questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
-		ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'		
+    'sains': {
+	name: 'Sains',
+	questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
+	ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'		
     },
 	
-	'akidah': {
-		name: 'Akidah Islam',
-		questions_url: './soal/questions_akidah.json',  // Path relatif ke folder 'soal'
-		ethics_url: './pesan/pesan_akidah.json'        // Path relatif ke folder 'pesan'
-    },
     // Tambahkan materi lain di sini sesuai kebutuhan
 };
 
