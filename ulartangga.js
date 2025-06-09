@@ -19,6 +19,10 @@ const additionalPlayerColors = ['bg-purple-700', 'bg-orange-700'];
 let questionBank = {}; // Objek untuk menyimpan pertanyaan berdasarkan ID
 let ethicsMessages = { ladders: [], snakes: [] }; // Inisialisasi sebagai objek kosong yang akan diisi
 
+// Variabel baru untuk melacak pertanyaan yang tersedia dan yang sudah ditanyakan
+let availableQuestionIds = []; // Daftar ID pertanyaan yang belum ditanyakan
+
+
 // =====================================================================
 // Konfigurasi URL untuk berbagai materi pelajaran.
 // URL di sini sekarang menggunakan jalur relatif untuk mengakses file lokal
@@ -28,26 +32,26 @@ let ethicsMessages = { ladders: [], snakes: [] }; // Inisialisasi sebagai objek 
 const materialConfigs = {
     'literasi_digital': {
         name: 'Literasi Digital',
-        questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
-        ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
-	//	questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/ad72c429de8de3d74ca1095babadd8b71d7aade9/questions_etika.json',
-        //ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
+        //questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
+        //ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/ad72c429de8de3d74ca1095babadd8b71d7aade9/questions_etika.json',
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
 
     },
     'sejarah': {
         name: 'Sejarah',
-        questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
-        ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
-	//	questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/7565a2a04ba66fbfff234204bf29b81d6ac4c363/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
-        //ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/f2b1ed2cd4fb7e5face1a65ee330a38ae901a4ed/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+        //questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
+        //ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/7565a2a04ba66fbfff234204bf29b81d6ac4c363/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/f2b1ed2cd4fb7e5face1a65ee330a38ae901a4ed/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
 
     },
 	'sains': {
 		name: 'Sains',
-		questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
-		ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
-		//questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/91e88a0c3b86e8c4e80cc4c367d704964ef2d096/questions_sains.json',
-		//ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
+		//questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
+		//ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/91e88a0c3b86e8c4e80cc4c367d704964ef2d096/questions_sains.json',
+		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
 
     },
     // Tambahkan materi lain di sini sesuai kebutuhan
@@ -202,6 +206,11 @@ async function initGame() {
     // PENTING: Memuat konten game setelah pengaturan pemain dan materi dipilih
     await loadGameContent(selectedMaterialKey);
 
+    // Setelah questionBank dimuat, inisialisasi availableQuestionIds
+    availableQuestionIds = Object.keys(questionBank);
+    console.log("availableQuestionIds setelah initGame:", availableQuestionIds);
+
+
     // Update UI ke kondisi awal setelah konten dimuat dan game siap
     updateAllPlayerPositionsUI();
     updateTurnInfo(); // Ini akan mengontrol visibilitas tombol batal dan menampilkan giliran pemain
@@ -307,7 +316,6 @@ async function handleRollDiceDigital() {
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    // rollDiceBtn.disabled = true; // Dihapus karena tombol tidak ada
     diceFace.classList.add('rolling'); // Tambahkan animasi rolling ke dadu visual
     diceFace.style.pointerEvents = 'none'; // Nonaktifkan klik selama animasi
 
@@ -346,14 +354,26 @@ async function handleRollDiceDigital() {
         disableDiceButtons(); // Nonaktifkan semua interaksi dadu
         cancelRollBtn.classList.add('hidden'); // Pastikan batal tersembunyi jika ada pertanyaan
         
-        // Pilih pertanyaan secara acak dari questionBank
-        const questionIds = Object.keys(questionBank);
-        if (questionIds.length > 0) {
-            const randomQuestionId = questionIds[Math.floor(Math.random() * questionIds.length)];
+        // --- LOGIKA PEMILIHAN PERTANYAAN UNIK ---
+        if (availableQuestionIds.length === 0) {
+            // Jika semua pertanyaan sudah ditanyakan, reset daftar
+            availableQuestionIds = Object.keys(questionBank);
+            displayMessage("Daftar Pertanyaan Direset!", "Semua pertanyaan telah ditanyakan. Daftar pertanyaan direset untuk sesi ini.");
+            console.warn("Semua pertanyaan telah ditanyakan. availableQuestionIds direset.");
+        }
+
+        if (availableQuestionIds.length > 0) {
+            const randomIndex = Math.floor(Math.random() * availableQuestionIds.length);
+            const randomQuestionId = availableQuestionIds[randomIndex];
             currentQuestionData = questionBank[randomQuestionId]; // Simpan data pertanyaan yang dipilih
+            
+            // Hapus pertanyaan yang baru saja dipilih dari daftar yang tersedia
+            availableQuestionIds.splice(randomIndex, 1);
+            console.log("Pertanyaan dipilih:", randomQuestionId, "Sisa pertanyaan:", availableQuestionIds.length);
+
             showQuestionModal(currentQuestionData);
         } else {
-            console.warn("Tidak ada pertanyaan yang tersedia di questionBank. Melanjutkan permainan.");
+            console.warn("Tidak ada pertanyaan yang tersedia di questionBank (meskipun setelah reset). Melanjutkan permainan.");
             // Lanjutkan permainan jika tidak ada pertanyaan
             waitingForAnswer = false;
             switchPlayer();
@@ -370,7 +390,6 @@ async function handleRollDiceDigital() {
         } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
             infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
             turnInfo.textContent = "Silakan kocok dadu lagi.";
-            // rollDiceBtn.disabled = false; // Dihapus karena tombol tidak ada
         }
     }
     actionInProgress = false; // Reset flag
@@ -433,14 +452,26 @@ async function handleSubmitPhysicalRoll() {
         disableDiceButtons(); // nonaktifkan tombol dadu dan submit
         cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal jika ada pertanyaan
         
-        // Pilih pertanyaan secara acak dari questionBank
-        const questionIds = Object.keys(questionBank);
-        if (questionIds.length > 0) {
-            const randomQuestionId = questionIds[Math.floor(Math.random() * questionIds.length)];
+        // --- LOGIKA PEMILIHAN PERTANYAAN UNIK (UNTUK DADU FISIK JUGA) ---
+        if (availableQuestionIds.length === 0) {
+            // Jika semua pertanyaan sudah ditanyakan, reset daftar
+            availableQuestionIds = Object.keys(questionBank);
+            displayMessage("Daftar Pertanyaan Direset!", "Semua pertanyaan telah ditanyakan. Daftar pertanyaan direset untuk sesi ini.");
+            console.warn("Semua pertanyaan telah ditanyakan. availableQuestionIds direset.");
+        }
+
+        if (availableQuestionIds.length > 0) {
+            const randomIndex = Math.floor(Math.random() * availableQuestionIds.length);
+            const randomQuestionId = availableQuestionIds[randomIndex];
             currentQuestionData = questionBank[randomQuestionId]; // Simpan data pertanyaan yang dipilih
+            
+            // Hapus pertanyaan yang baru saja dipilih dari daftar yang tersedia
+            availableQuestionIds.splice(randomIndex, 1);
+            console.log("Pertanyaan dipilih:", randomQuestionId, "Sisa pertanyaan:", availableQuestionIds.length);
+
             showQuestionModal(currentQuestionData);
         } else {
-            console.warn("Tidak ada pertanyaan yang tersedia di questionBank. Melanjutkan permainan.");
+            console.warn("Tidak ada pertanyaan yang tersedia di questionBank (meskipun setelah reset). Melanjutkan permainan.");
             // Lanjutkan permainan jika tidak ada pertanyaan
             waitingForAnswer = false;
             switchPlayer();
@@ -470,11 +501,9 @@ async function handleSubmitPhysicalRoll() {
  * Tombol 'Batalkan' tidak dinonaktifkan oleh fungsi ini.
  */
 function disableDiceButtons() {
-    // rollDiceBtn.disabled = true; // Dihapus karena tombol tidak ada
     physicalDiceResultInput.disabled = true;
     submitPhysicalRollBtn.disabled = true;
-    // Juga nonaktifkan klik pada dadu visual jika ada modal atau aksi
-    diceFace.style.pointerEvents = 'none';
+    diceFace.style.pointerEvents = 'none'; // Juga nonaktifkan klik pada dadu visual jika ada modal atau aksi
 }
 
 /**
@@ -673,14 +702,11 @@ function updatePlayerPositionUI(playerIndex) {
  */
 function updateDiceUI() {
     if (diceType === 'digital') {
-        // rollDiceBtn.classList.add('hidden'); // Dihapus karena tombol tidak ada
-        // rollDiceBtn.disabled = true; // Dihapus karena tombol tidak ada
         physicalDiceInputContainer.classList.add('hidden');
         cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan di mode digital
         diceFace.style.pointerEvents = 'auto'; // Aktifkan klik pada dadu visual
         diceFace.style.cursor = 'pointer'; // Beri indikator kursor bisa diklik
     } else { // diceType is 'physical'
-        // rollDiceBtn.classList.add('hidden'); // Dihapus karena tombol tidak ada
         physicalDiceInputContainer.classList.remove('hidden');
         physicalDiceResultInput.value = '';
         physicalDiceResultInput.disabled = false;
@@ -1074,7 +1100,6 @@ function toggleFullscreen() {
 }
 
 // --- EVENT LISTENERS GLOBAL ---
-// rollDiceBtn.addEventListener('click', handleRollDiceDigital); // Dihapus: Tombol fisik "Kocok Dadu" tidak ada lagi
 submitPhysicalRollBtn.addEventListener('click', handleSubmitPhysicalRoll);
 cancelRollBtn.addEventListener('click', handleCancelRoll); // Tambahkan event listener untuk tombol batal
 fullscreenBtn.addEventListener('click', toggleFullscreen); // Event listener untuk tombol fullscreen baru
@@ -1116,7 +1141,7 @@ startGameBtn.addEventListener('click', async () => {
     const desiredPlayers = parseInt(playerCountInputSetup.value, 10); // Ambil dari input layar setup
     const selectedMaterial = materialSelect.value; // Dapatkan nilai materi yang dipilih
 
-    if (!isNaN(desiredPlayers) && desiredPlayers >= 2 && desiredPlayers <= 4) {
+    if (!isNaN(desiredPlayers) && desiredPlayers >= 2 && desiredPlayers >= 2 && desiredPlayers <= 4) { // Menjaga batas bawah 2 pemain
         PLAYER_COUNT = desiredPlayers;
         selectedMaterialKey = selectedMaterial; // Simpan materi yang dipilih
         initGame(); // Memulai game dengan pengaturan baru
