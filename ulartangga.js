@@ -30,7 +30,7 @@ const materialConfigs = {
         name: 'Literasi Digital',
         //questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
         //ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/ad72c429de8de3d74ca1095babadd8b71d7aade9/questions_etika.json',
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/c89e79fedc82e926c0f7af87781a1dd4d1fcdfcf/questions_etika.json',
         ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
 
     },
@@ -38,15 +38,15 @@ const materialConfigs = {
         name: 'Sejarah',
         //questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
         //ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/7565a2a04ba66fbfff234204bf29b81d6ac4c363/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
-        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/f2b1ed2cd4fb7e5face1a65ee330a38ae901a4ed/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/335a9858ec9eb005ea6aaef6a0ae6204227dc394/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/9677f8fc278fe51d7b5654fe99bd485b449d8c78/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
 
     },
 	'sains': {
 		name: 'Sains',
 		//questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
 		//ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/91e88a0c3b86e8c4e80cc4c367d704964ef2d096/questions_sains.json',
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/6204328a3c721dd0ab20af708fee010c6b7de0e2/questions_sains.json',
 		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
 
     },
@@ -95,7 +95,7 @@ const stepSynth = new Tone.Synth({
 
 const board = document.getElementById('game-board');
 const playerPiecesContainer = document.getElementById('player-pieces-container');
-const rollDiceBtn = document.getElementById('roll-dice-btn');
+// const rollDiceBtn = document.getElementById('roll-dice-btn'); // Dihapus: Tombol fisik "Kocok Dadu" tidak ada lagi
 const restartBtn = document.getElementById('restart-btn');
 const diceFace = document.getElementById('dice-face');
 const turnInfo = document.getElementById('turn-info');
@@ -206,7 +206,7 @@ async function initGame() {
     updateAllPlayerPositionsUI();
     updateTurnInfo(); // Ini akan mengontrol visibilitas tombol batal dan menampilkan giliran pemain
     updateScoresUI(); // Perbarui tampilan skor (BARU)
-    rollDiceBtn.disabled = false;
+    // rollDiceBtn.disabled = false; // Akan dikelola oleh updateDiceUI() - Dihapus
     physicalDiceResultInput.disabled = false;
     submitPhysicalRollBtn.disabled = false;
     winnerModal.classList.remove('show'); // Sembunyikan modal pemenang
@@ -291,7 +291,7 @@ function drawSnakesAndLadders() {
 }
 
 /**
- * Event handler saat tombol "Kocok Dadu" ditekan (untuk dadu digital).
+ * Event handler untuk mengocok dadu digital (dipicu oleh klik pada ikon dadu).
  */
 async function handleRollDiceDigital() {
     if (!gameActive || waitingForAnswer || actionInProgress) return;
@@ -300,15 +300,16 @@ async function handleRollDiceDigital() {
     // Memulai Tone.js audio context pada interaksi pertama
     if (Tone.context.state !== 'running') {
         await Tone.start();
-        console.log("Audio context dimulai dari rollDiceBtn.");
+        console.log("Audio context dimulai dari handleRollDiceDigital.");
     }
 
     cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan tombol batal untuk dadu digital
 
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    rollDiceBtn.disabled = true;
-    diceFace.classList.add('rolling');
+    // rollDiceBtn.disabled = true; // Dihapus karena tombol tidak ada
+    diceFace.classList.add('rolling'); // Tambahkan animasi rolling ke dadu visual
+    diceFace.style.pointerEvents = 'none'; // Nonaktifkan klik selama animasi
 
     await new Promise(resolve => setTimeout(resolve, 300));
 
@@ -316,6 +317,7 @@ async function handleRollDiceDigital() {
 
     diceFace.innerHTML = `<span class="text-4xl font-bold text-slate-700">${diceResult}</span>`;
     diceFace.classList.remove('rolling');
+    diceFace.style.pointerEvents = 'auto'; // Aktifkan kembali klik setelah animasi
 
     infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat ${diceResult}`;
 
@@ -341,7 +343,7 @@ async function handleRollDiceDigital() {
     // Cek apakah pemain mendarat di sel pemicu pertanyaan
     if (triggerCells.includes(playerPositions[currentPlayer])) {
         waitingForAnswer = true;
-        disableDiceButtons();
+        disableDiceButtons(); // Nonaktifkan semua interaksi dadu
         cancelRollBtn.classList.add('hidden'); // Pastikan batal tersembunyi jika ada pertanyaan
         
         // Pilih pertanyaan secara acak dari questionBank
@@ -368,7 +370,7 @@ async function handleRollDiceDigital() {
         } else { // Pemain dapat giliran lagi (dapat 6, kurang dari 3x berturut-turut)
             infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
             turnInfo.textContent = "Silakan kocok dadu lagi.";
-            rollDiceBtn.disabled = false; // Biarkan tombol dadu digital aktif
+            // rollDiceBtn.disabled = false; // Dihapus karena tombol tidak ada
         }
     }
     actionInProgress = false; // Reset flag
@@ -468,9 +470,11 @@ async function handleSubmitPhysicalRoll() {
  * Tombol 'Batalkan' tidak dinonaktifkan oleh fungsi ini.
  */
 function disableDiceButtons() {
-    rollDiceBtn.disabled = true;
+    // rollDiceBtn.disabled = true; // Dihapus karena tombol tidak ada
     physicalDiceResultInput.disabled = true;
     submitPhysicalRollBtn.disabled = true;
+    // Juga nonaktifkan klik pada dadu visual jika ada modal atau aksi
+    diceFace.style.pointerEvents = 'none';
 }
 
 /**
@@ -665,16 +669,18 @@ function updatePlayerPositionUI(playerIndex) {
 
 /**
  * Mengatur visibilitas tombol dadu berdasarkan tipe dadu yang dipilih.
- * Juga mengaktifkan kembali tombol dadu.
+ * Juga mengaktifkan kembali interaksi dadu.
  */
 function updateDiceUI() {
     if (diceType === 'digital') {
-        rollDiceBtn.classList.remove('hidden');
-        rollDiceBtn.disabled = false;
+        // rollDiceBtn.classList.add('hidden'); // Dihapus karena tombol tidak ada
+        // rollDiceBtn.disabled = true; // Dihapus karena tombol tidak ada
         physicalDiceInputContainer.classList.add('hidden');
         cancelRollBtn.classList.add('hidden'); // Selalu sembunyikan di mode digital
+        diceFace.style.pointerEvents = 'auto'; // Aktifkan klik pada dadu visual
+        diceFace.style.cursor = 'pointer'; // Beri indikator kursor bisa diklik
     } else { // diceType is 'physical'
-        rollDiceBtn.classList.add('hidden');
+        // rollDiceBtn.classList.add('hidden'); // Dihapus karena tombol tidak ada
         physicalDiceInputContainer.classList.remove('hidden');
         physicalDiceResultInput.value = '';
         physicalDiceResultInput.disabled = false;
@@ -685,11 +691,13 @@ function updateDiceUI() {
         } else {
             cancelRollBtn.classList.add('hidden');
         }
+        diceFace.style.pointerEvents = 'none'; // Nonaktifkan klik pada dadu visual
+        diceFace.style.cursor = 'default'; // Kembalikan kursor default
     }
 }
 
 /**
- * Memperbarui tampilan skor pemain di UI. (BARU)
+ * Memperbarui tampilan skor pemain di UI.
  */
 function updateScoresUI() {
     if (playerScoresDisplay) {
@@ -712,8 +720,6 @@ function showQuestionModal(questionData) {
     questionText.textContent = questionData.question;
     questionOptions.innerHTML = '';
     questionInput.value = '';
-    // feedbackText.textContent = ''; // Dipindahkan ke modal feedback
-    // continueGameBtn.classList.add('hidden'); // Dipindahkan ke modal feedback
     submitAnswerBtn.classList.remove('hidden');
 
     if (questionData.type === 'text_input') {
@@ -742,7 +748,7 @@ function showQuestionModal(questionData) {
 
     questionModal.classList.add('show');
     updateTurnInfo();
-    disableDiceButtons(); // Nonaktifkan tombol dadu/submit
+    disableDiceButtons(); // Nonaktifkan semua interaksi dadu
     cancelRollBtn.classList.add('hidden'); // Sembunyikan tombol batal saat modal aktif
 }
 
@@ -822,7 +828,6 @@ submitAnswerBtn.addEventListener('click', async () => {
     }
 
     submitAnswerBtn.classList.add('hidden');
-    // continueGameBtn.classList.remove('hidden'); // Dipindahkan ke modal feedback
     questionInput.disabled = true;
     document.querySelectorAll('input[name="question-option"]').forEach(input => input.disabled = true);
 
@@ -830,8 +835,6 @@ submitAnswerBtn.addEventListener('click', async () => {
     questionModal.classList.remove('show');
     await showFeedbackModal(isCorrect ? "Jawaban Benar!" : "Jawaban Salah!", feedbackMessageText, pendingQuestionMoveSteps);
 });
-
-// continueGameBtn.addEventListener('click', async () => { /* Logic ini sekarang ada di showFeedbackModal */ });
 
 
 // --- FUNGSI MODAL FEEDBACK PERTANYAAN BARU ---
@@ -896,7 +899,7 @@ async function showFeedbackModal(title, message, moveSteps) {
                 infoPanelTitle.textContent = `Pemain ${currentPlayer + 1} dapat giliran lagi! (${consecutiveSixes}x 6 beruntun)`;
                 turnInfo.textContent = "Silakan kocok dadu lagi.";
             }
-            updateDiceUI(); // Aktifkan tombol dadu kembali sesuai tipe, yang juga akan mengelola visibilitas tombol batal
+            updateDiceUI(); // Aktifkan interaksi dadu kembali sesuai tipe, yang juga akan mengelola visibilitas tombol batal
             resolve();
         };
     });
@@ -925,6 +928,9 @@ async function showEthicsMessageModal(message) {
 }
 
 // --- FUNGSI BARU UNTUK TOMBOL "BATALKAN" ---
+/**
+ * Mengelola fungsionalitas tombol "Batalkan" untuk mengembalikan langkah pemain.
+ */
 async function handleCancelRoll() {
     // Memeriksa apakah game aktif, tidak sedang menunggu jawaban, ada langkah yang bisa dibatalkan, dan tidak ada aksi lain berlangsung
     if (!gameActive || waitingForAnswer || lastPlayerMoved === null || actionInProgress) {
@@ -952,7 +958,7 @@ async function handleCancelRoll() {
     lastDiceRollResult = null; // Reset hasil dadu terakhir setelah dibatalkan
 
     updateTurnInfo(); // Perbarui informasi giliran
-    updateDiceUI(); // Aktifkan kembali tombol dadu dan kelola visibilitas tombol batal
+    updateDiceUI(); // Aktifkan kembali interaksi dadu dan kelola visibilitas tombol batal
     actionInProgress = false; // Reset flag
 }
 
@@ -969,6 +975,7 @@ async function loadGameContent(materialKey) {
         displayMessage("Error Konfigurasi!", `Materi '${materialKey}' tidak ditemukan. Mohon pilih materi yang valid.`);
         gameActive = false;
         disableDiceButtons();
+
         // Kembali ke layar setup jika ada error konfigurasi
         mainGameScreen.classList.add('hidden');
         gameSetupScreen.classList.remove('hidden');
@@ -998,7 +1005,6 @@ async function loadGameContent(materialKey) {
             throw new Error(`HTTP error! status: ${ethicsResponse.status} for ethics messages from ${config.ethics_url}.`);
         }
         const ethicsData = await ethicsResponse.json();
-        // PERBAIKAN TYPO: 'laddles' menjadi 'ladders'
         ethicsMessages.ladders = ethicsData.ladders; 
         ethicsMessages.snakes = ethicsData.snakes;
 
@@ -1064,10 +1070,19 @@ function toggleFullscreen() {
 }
 
 // --- EVENT LISTENERS GLOBAL ---
-rollDiceBtn.addEventListener('click', handleRollDiceDigital);
+// rollDiceBtn.addEventListener('click', handleRollDiceDigital); // Dihapus: Tombol fisik "Kocok Dadu" tidak ada lagi
 submitPhysicalRollBtn.addEventListener('click', handleSubmitPhysicalRoll);
 cancelRollBtn.addEventListener('click', handleCancelRoll); // Tambahkan event listener untuk tombol batal
 fullscreenBtn.addEventListener('click', toggleFullscreen); // Event listener untuk tombol fullscreen baru
+
+// Event listener untuk klik pada dadu visual
+diceFace.addEventListener('click', async () => {
+    // Pastikan ini hanya berfungsi jika tipe dadu adalah digital, game aktif, tidak sedang menunggu jawaban, dan tidak ada aksi lain berlangsung
+    if (diceType === 'digital' && gameActive && !waitingForAnswer && !actionInProgress) {
+        await handleRollDiceDigital();
+    }
+});
+
 
 // Event listener untuk tombol Restart
 restartBtn.addEventListener('click', () => {
