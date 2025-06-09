@@ -141,7 +141,7 @@
         
         #dice-face.rolling {
             /* Animasi putar yang lebih cepat */
-            animation: spin 0.3s linear infinite; 
+            animation: spin 0.8s linear infinite; 
         }
 
         /* Animasi Dadu Berputar */
