@@ -10,6 +10,7 @@
       "Untuk meningkatkan kecepatan internet."
     ],
     "answer": ["Untuk mencegah pencurian identitas.", "Melindungi dari penyalahgunaan data oleh pihak tidak bertanggung jawab."],
+    "points": 9,
     "feedback": "Tepat sekali! Menjaga privasi data adalah langkah krusial untuk keamanan Anda di dunia maya."
   },
   {
@@ -18,6 +19,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 5,
     "feedback": "Sayangnya tidak. Hoax bisa dibuat sangat meyakinkan dan sulit dibedakan dari berita asli."
   },
   {
@@ -25,6 +27,7 @@
     "question": "Sebutkan minimal tiga tindakan yang dapat Anda lakukan jika Anda menjadi korban cyberbullying.",
     "type": "text_input",
     "answer": "Blokir pelaku, laporkan kepada platform, simpan bukti, cari dukungan dari orang dewasa/teman",
+    "points": 10,
     "feedback": "Itu adalah langkah-langkah yang tepat! Melindungi diri dan mencari bantuan sangat penting."
   },
   {
@@ -38,6 +41,7 @@
       "Tanda tangan digital Anda pada dokumen online."
     ],
     "answer": "Semua data dan aktivitas yang Anda tinggalkan saat menggunakan internet dan perangkat digital.",
+    "points": 7,
     "feedback": "Benar! Jejak digital mencakup semua aktivitas online Anda, baik yang disengaja maupun tidak disengaja."
   },
   {
@@ -51,6 +55,7 @@
       "Agar konten lebih mudah diunduh."
     ],
     "answer": ["Untuk menghargai kerja keras dan kreativitas pencipta.", "Menghindari sanksi hukum atas pelanggaran hak cipta."],
+    "points": 8,
     "feedback": "Ya, menghormati hak cipta adalah pondasi etika digital dan kewajiban hukum."
   },
   {
@@ -59,6 +64,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 6,
     "feedback": "Tidak selalu! Penipu semakin canggih dan bisa membuat email phishing yang terlihat sangat profesional."
   },
   {
@@ -72,6 +78,7 @@
       "Tidak ada bahaya sama sekali."
     ],
     "answer": "Meningkatkan risiko pencurian identitas dan penipuan.",
+    "points": 7,
     "feedback": "Betul sekali! Oversharing dapat membahayakan keamanan pribadi Anda."
   },
   {
@@ -79,6 +86,7 @@
     "question": "Bagaimana seharusnya kita berkomunikasi di platform digital untuk menjaga etika yang baik?",
     "type": "text_input",
     "answer": "Menggunakan bahasa yang sopan, menghargai perbedaan pendapat, tidak menyebarkan kebencian",
+    "points": 8,
     "feedback": "Itu adalah kunci untuk interaksi digital yang positif dan konstruktif."
   },
   {
@@ -92,6 +100,7 @@
       "Kemampuan untuk bermain game online dengan baik."
     ],
     "answer": ["Kemampuan untuk menemukan, mengevaluasi, dan menggunakan informasi digital secara efektif.", "Pemahaman tentang etika dan keamanan dalam penggunaan teknologi."],
+    "points": 9,
     "feedback": "Literasi digital adalah keterampilan penting untuk hidup di era modern."
   },
   {
@@ -100,6 +109,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 5,
     "feedback": "Kontrol orang tua dapat menjadi alat penting untuk melindungi anak-anak dari konten tidak pantas dan ancaman online."
   },
   {
@@ -113,6 +123,7 @@
       "Memiliki panjang minimal 8-12 karakter."
     ],
     "answer": ["Mengandung kombinasi huruf besar dan kecil.", "Mengandung angka dan simbol.", "Memiliki panjang minimal 8-12 karakter."],
+    "points": 8,
     "feedback": "Kata sandi yang kuat adalah pertahanan pertama terhadap akses tidak sah!"
   },
   {
@@ -120,6 +131,7 @@
     "question": "Bagaimana Anda dapat menghindari penipuan online yang menjanjikan hadiah atau uang tunai?",
     "type": "text_input",
     "answer": "Jangan mudah percaya, verifikasi sumber, jangan klik tautan mencurigakan, jangan berikan data pribadi",
+    "points": 9,
     "feedback": "Sangat bagus! Selalu waspada dan lakukan verifikasi."
   },
   {
@@ -133,6 +145,7 @@
       "Agar lebih banyak orang setuju dengan Anda."
     ],
     "answer": "Untuk menciptakan lingkungan online yang positif dan inklusif.",
+    "points": 7,
     "feedback": "Tepat! Toleransi membantu membangun komunitas online yang harmonis."
   },
   {
@@ -141,6 +154,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 5,
     "feedback": "Tidak! Selalu minta izin sebelum membagikan konten yang menampilkan orang lain, demi menghargai privasi mereka."
   },
   {
@@ -154,6 +168,7 @@
       "File hilang atau rusak tanpa sebab yang jelas."
     ],
     "answer": ["Perangkat menjadi lambat atau sering crash.", "Muncul iklan pop-up yang tidak diinginkan secara terus-menerus.", "File hilang atau rusak tanpa sebab yang jelas."],
+    "points": 9,
     "feedback": "Perhatikan tanda-tanda ini dan segera ambil tindakan jika perangkat Anda terinfeksi!"
   },
   {
@@ -161,6 +176,7 @@
     "question": "Bagaimana cara kita mengelola jejak digital agar tetap positif?",
     "type": "text_input",
     "answer": "Pikirkan sebelum memposting, hapus konten lama yang tidak relevan, atur privasi akun, googling nama Anda sendiri",
+    "points": 10,
     "feedback": "Sangat baik! Mengelola jejak digital penting untuk reputasi online."
   },
   {
@@ -174,6 +190,7 @@
       "Penggunaan media sosial untuk hiburan."
     ],
     "answer": "Tindakan kriminal yang dilakukan menggunakan jaringan komputer atau internet.",
+    "points": 6,
     "feedback": "Benar! Kejahatan siber mencakup berbagai aktivitas ilegal yang dilakukan di dunia maya."
   },
   {
@@ -182,6 +199,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Benar",
+    "points": 6,
     "feedback": "Tepat! Ini adalah salah satu ciri utama penipuan romansa. Selalu waspada."
   },
   {
@@ -195,6 +213,7 @@
       "Untuk mengetahui siapa saja yang ada di grup tersebut."
     ],
     "answer": ["Untuk menjaga lingkungan yang aman dan nyaman bagi semua pengguna.", "Menghindari pemblokiran atau penangguhan akun."],
+    "points": 8,
     "feedback": "Sangat bagus! Mematuhi aturan komunitas membantu menciptakan pengalaman online yang lebih baik untuk semua."
   },
   {
@@ -202,6 +221,7 @@
     "question": "Apa dampak negatif penggunaan gadget berlebihan terhadap kesehatan fisik Anda?",
     "type": "text_input",
     "answer": "Mata lelah/kering, sakit leher/punggung, gangguan tidur, kurangnya aktivitas fisik",
+    "points": 8,
     "feedback": "Penting untuk menjaga keseimbangan penggunaan gadget demi kesehatan fisik."
   },
   {
@@ -215,6 +235,7 @@
       "Membuat akun Anda lebih mudah diakses."
     ],
     "answer": "Menambah lapisan keamanan ekstra untuk akun Anda.",
+    "points": 6,
     "feedback": "Tepat! 2FA sangat efektif dalam melindungi akun Anda."
   },
   {
@@ -223,6 +244,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 7,
     "feedback": "Doxing sangat berbahaya karena dapat menyebabkan pelecehan, ancaman, atau bahaya fisik."
   },
   {
@@ -236,6 +258,7 @@
       "Selalu memenangkan pertandingan dengan segala cara."
     ],
     "answer": ["Menghormati pemain lain, tidak melakukan kecurangan.", "Tidak melakukan 'ghosting' atau 'griefing' yang merugikan pemain lain."],
+    "points": 8,
     "feedback": "Etika yang baik dalam bermain game online menciptakan pengalaman yang menyenangkan untuk semua."
   },
   {
@@ -243,6 +266,7 @@
     "question": "Bagaimana cara Anda dapat melindungi privasi data Anda di media sosial?",
     "type": "text_input",
     "answer": "Atur pengaturan privasi akun menjadi 'private', batasi siapa yang dapat melihat postingan, jangan berbagi informasi pribadi secara berlebihan, nonaktifkan pelacakan lokasi",
+    "points": 9,
     "feedback": "Pengaturan privasi adalah alat yang ampuh untuk melindungi diri Anda."
   },
   {
@@ -256,6 +280,7 @@
       "Meningkatkan interaksi di media sosial."
     ],
     "answer": "Dapat digunakan untuk penipuan, pencemaran nama baik, atau kejahatan lainnya.",
+    "points": 7,
     "feedback": "Benar! Peniruan identitas adalah kejahatan siber yang serius."
   },
   {
@@ -264,6 +289,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 5,
     "feedback": "Tidak! Wi-Fi publik rentan terhadap peretasan. Selalu gunakan jaringan aman atau VPN untuk transaksi sensitif."
   },
   {
@@ -277,6 +303,7 @@
       "Terlibat dalam cyberbullying atau pelecehan online."
     ],
     "answer": ["Postingan yang mengandung ujaran kebencian atau diskriminasi.", "Menyebarkan informasi palsu atau hoax.", "Terlibat dalam cyberbullying atau pelecehan online."],
+    "points": 9,
     "feedback": "Hati-hati! Reputasi digital yang buruk dapat berdampak jangka panjang."
   },
   {
@@ -284,6 +311,7 @@
     "question": "Jelaskan perbedaan antara 'jejak digital aktif' dan 'jejak digital pasif'.",
     "type": "text_input",
     "answer": "Jejak digital aktif adalah informasi yang sengaja kita bagikan (misal: postingan, komentar). Jejak digital pasif adalah data yang dikumpulkan tentang kita tanpa sadar (misal: riwayat Browse, lokasi dari aplikasi).",
+    "points": 10,
     "feedback": "Sangat bagus! Keduanya membentuk gambaran digital tentang diri kita."
   },
   {
@@ -297,6 +325,7 @@
       "Selalu perbarui perangkat lunak dan antivirus."
     ],
     "answer": ["Gunakan kata sandi yang kuat dan unik.", "Waspada terhadap email atau pesan mencurigakan.", "Selalu perbarui perangkat lunak dan antivirus."],
+    "points": 8,
     "feedback": "Ini adalah praktik-praktik dasar untuk keamanan online yang baik."
   },
   {
@@ -305,6 +334,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 7,
     "feedback": "Anda harus segera mengganti kata sandi yang mungkin terpengaruh, mengaktifkan 2FA, dan memantau aktivitas mencurigakan pada akun Anda."
   },
   {
@@ -312,6 +342,7 @@
     "question": "Apa saja tanda-tanda kecanduan internet yang perlu diwaspadai?",
     "type": "text_input",
     "answer": "Menghabiskan waktu berlebihan online, mengabaikan tugas/hubungan sosial, perasaan cemas/gelisah saat tidak online, kesulitan membatasi penggunaan internet",
+    "points": 9,
     "feedback": "Kecanduan internet adalah masalah serius yang memerlukan perhatian."
   },
   {
@@ -325,6 +356,7 @@
       "Privasi hanya di dunia nyata, keamanan hanya di dunia maya."
     ],
     "answer": "Privasi adalah hak untuk mengontrol informasi pribadi, sedangkan keamanan adalah tindakan melindungi informasi dari akses tidak sah.",
+    "points": 10,
     "feedback": "Memahami perbedaan ini penting untuk perlindungan diri yang komprehensif."
   },
   {
@@ -338,6 +370,7 @@
       "Untuk membuat orang lain menyukai postingan Anda."
     ],
     "answer": ["Mencegah kesalahpahaman dan konflik yang disebabkan oleh kurangnya nada suara atau ekspresi.", "Membantu membangun hubungan yang lebih baik dan komunitas online yang positif."],
+    "points": 8,
     "feedback": "Empati sangat penting untuk menciptakan lingkungan online yang lebih manusiawi."
   },
   {
@@ -351,6 +384,7 @@
       "Berikan hanya sebagian dari OTP Anda."
     ],
     "answer": "Segera putuskan panggilan dan hubungi bank/lembaga tersebut melalui nomor resmi mereka.",
+    "points": 7,
     "feedback": "Tepat! Bank tidak akan pernah meminta OTP Anda melalui telepon."
   },
   {
@@ -358,6 +392,7 @@
     "question": "Sebutkan minimal tiga prinsip dasar etika digital.",
     "type": "text_input",
     "answer": "Hormati privasi, berpikir kritis, berkomunikasi dengan hormat, menghargai hak cipta, bertanggung jawab",
+    "points": 10,
     "feedback": "Prinsip-prinsip ini membimbing perilaku kita di dunia digital."
   },
   {
@@ -371,6 +406,7 @@
       "Membuat avatar digital yang lebih realistis."
     ],
     "answer": ["Digunakan untuk membuat berita palsu atau disinformasi yang sangat meyakinkan.", "Digunakan untuk memeras atau mencemarkan nama baik seseorang."],
+    "points": 9,
     "feedback": "Deepfake adalah teknologi canggih dengan potensi penyalahgunaan yang berbahaya."
   },
   {
@@ -379,6 +415,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 5,
     "feedback": "Justru anak-anak sangat perlu edukasi keamanan online karena mereka rentan terhadap ancaman digital."
   },
   {
@@ -392,6 +429,7 @@
       "Membagikan data pribadi secara luas."
     ],
     "answer": "Hanya mengumpulkan data pribadi yang benar-benar diperlukan untuk tujuan tertentu.",
+    "points": 7,
     "feedback": "Tepat! Ini adalah prinsip penting untuk meminimalkan risiko privasi."
   },
   {
@@ -399,6 +437,7 @@
     "question": "Jelaskan apa yang dimaksud dengan 'social engineering' dalam konteks keamanan siber.",
     "type": "text_input",
     "answer": "Manipulasi psikologis untuk menipu orang agar melakukan tindakan atau mengungkapkan informasi rahasia.",
+    "points": 9,
     "feedback": "Social engineering adalah teknik yang digunakan penipu untuk mengeksploitasi kepercayaan manusia."
   },
   {
@@ -407,6 +446,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 7,
     "feedback": "Tidak selalu! Salinan postingan mungkin masih tersimpan di server, di-cache, atau telah disebarkan oleh orang lain."
   },
   {
@@ -420,6 +460,7 @@
       "Kemampuan untuk tidak pernah terkena serangan siber."
     ],
     "answer": ["Kemampuan untuk melindungi sistem dan data dari serangan siber.", "Kemampuan untuk mendeteksi serangan siber dengan cepat.", "Kemampuan untuk pulih dari serangan siber dan melanjutkan operasi."],
+    "points": 10,
     "feedback": "Ketahanan siber adalah pendekatan komprehensif untuk menghadapi ancaman siber."
   },
   {
@@ -433,6 +474,7 @@
       "Tidak ada manfaat yang signifikan."
     ],
     "answer": "Meningkatkan kesehatan mental, mengurangi stres, dan meningkatkan fokus.",
+    "points": 6,
     "feedback": "Detoks digital dapat memberikan jeda yang sangat dibutuhkan dari dunia online."
   },
   {
@@ -440,6 +482,7 @@
     "question": "Apa yang harus Anda lakukan jika Anda melihat orang lain dilecehkan secara online?",
     "type": "text_input",
     "answer": "Laporkan kepada platform, berikan dukungan kepada korban, jangan ikut menyebarkan pelecehan, jangan jadi penonton pasif",
+    "points": 8,
     "feedback": "Berdiri teguh melawan pelecehan online adalah tanggung jawab kita bersama."
   },
   {
@@ -453,6 +496,7 @@
       "Hanya untuk kepentingan perusahaan pengembang AI."
     ],
     "answer": ["Mencegah bias dan diskriminasi dalam keputusan yang dibuat oleh AI.", "Memastikan AI digunakan untuk kebaikan manusia dan bukan untuk merugikan."],
+    "points": 9,
     "feedback": "Etika AI sangat krusial untuk memastikan teknologi ini berkembang secara bertanggung jawab."
   },
   {
@@ -461,6 +505,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 6,
     "feedback": "Identitas online dan di dunia nyata saling terkait dan dapat memengaruhi satu sama lain."
   },
   {
@@ -474,6 +519,7 @@
       "Perbedaan jenis konten yang dikonsumsi secara online."
     ],
     "answer": "Kesenjangan akses dan penggunaan teknologi informasi dan komunikasi (TIK) antara kelompok masyarakat.",
+    "points": 7,
     "feedback": "Kesenjangan digital adalah masalah sosial yang perlu diatasi untuk memastikan semua orang memiliki akses yang setara."
   },
   {
@@ -487,6 +533,7 @@
       "Agar bisa berdebat lebih baik di media sosial."
     ],
     "answer": ["Untuk membedakan informasi yang akurat dari yang palsu atau bias.", "Mencegah penyebaran disinformasi dan hoax."],
+    "points": 9,
     "feedback": "Berpikir kritis adalah keterampilan esensial untuk navigasi yang aman dan cerdas di dunia digital."
   },
   {
@@ -494,6 +541,7 @@
     "question": "Sebutkan minimal tiga tindakan pencegahan dasar untuk menjaga keamanan siber pribadi Anda.",
     "type": "text_input",
     "answer": "Gunakan kata sandi kuat, aktifkan 2FA, waspada terhadap phishing, perbarui perangkat lunak, gunakan antivirus, cadangkan data",
+    "points": 10,
     "feedback": "Menerapkan langkah-langkah ini akan sangat meningkatkan keamanan siber Anda."
   },
   {
@@ -507,6 +555,7 @@
       "Mencari informasi di internet."
     ],
     "answer": "Perilaku berulang yang mengganggu, mengancam, atau menghina seseorang melalui platform digital.",
+    "points": 6,
     "feedback": "Pelecehan online adalah masalah serius yang memerlukan tindakan."
   },
   {
@@ -515,6 +564,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Salah",
+    "points": 5,
     "feedback": "Penting untuk membaca izin aplikasi untuk mengetahui data apa yang akan diakses aplikasi dari perangkat Anda."
   },
   {
@@ -528,6 +578,7 @@
       "Tidak ada alasan, karena platform akan mencari sendiri."
     ],
     "answer": ["Membantu platform menjaga keamanan dan kualitas konten.", "Melindungi pengguna lain dari potensi bahaya."],
+    "points": 8,
     "feedback": "Melaporkan adalah tindakan proaktif untuk membuat internet menjadi tempat yang lebih aman bagi semua."
   }
 ]

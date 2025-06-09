@@ -10,6 +10,7 @@
       "Peradaban Romawi"
     ],
     "answer": "Peradaban Mesir Kuno",
+    "points": 5,
     "feedback": "Tepat! Piramida Giza adalah salah satu keajaiban dunia kuno."
   },
   {
@@ -17,6 +18,7 @@
     "question": "Siapakah tokoh yang memproklamasikan kemerdekaan Indonesia pada tanggal 17 Agustus 1945?",
     "type": "text_input",
     "answer": "Soekarno",
+    "points": 6,
     "feedback": "Benar! Bersama Mohammad Hatta, beliau membacakan teks proklamasi."
   },
   {
@@ -30,6 +32,7 @@
       "Perjanjian Versailles"
     ],
     "answer": "Bom atom di Hiroshima dan Nagasaki",
+    "points": 7,
     "feedback": "Ya, peristiwa ini memaksa Jepang menyerah dan mengakhiri perang."
   },
   {
@@ -37,6 +40,7 @@
     "question": "Apa nama kerajaan maritim terbesar di Nusantara pada abad ke-7 hingga ke-13 Masehi?",
     "type": "text_input",
     "answer": "Sriwijaya",
+    "points": 8,
     "feedback": "Tepat! Sriwijaya menguasai jalur perdagangan maritim di Asia Tenggara."
   },
   {
@@ -50,6 +54,7 @@
       "James Cook"
     ],
     "answer": "Ferdinand Magellan",
+    "points": 8,
     "feedback": "Benar! Meskipun Magellan meninggal di tengah perjalanan, ekspedisinya berhasil mengelilingi bumi."
   },
   {
@@ -57,6 +62,7 @@
     "question": "Revolusi Industri dimulai di negara...",
     "type": "text_input",
     "answer": "Inggris",
+    "points": 6,
     "feedback": "Tepat! Dimulai pada abad ke-18 dengan penemuan mesin uap."
   },
   {
@@ -70,6 +76,7 @@
       "1812"
     ],
     "answer": "1776",
+    "points": 7,
     "feedback": "Ya, tanggal 4 Juli 1776 adalah hari kemerdekaan AS."
   },
   {
@@ -77,6 +84,7 @@
     "question": "Apa nama tembok pertahanan raksasa yang dibangun di Tiongkok kuno?",
     "type": "text_input",
     "answer": "Tembok Besar Tiongkok",
+    "points": 5,
     "feedback": "Benar! Dibangun untuk melindungi dari invasi bangsa nomaden."
   },
   {
@@ -90,6 +98,7 @@
       "Vietnam"
     ],
     "answer": "II",
+    "points": 6,
     "feedback": "Tepat! PBB didirikan untuk menjaga perdamaian dunia."
   },
   {
@@ -97,6 +106,7 @@
     "question": "Sistem pemerintahan yang dihapuskan di Prancis pada Revolusi Prancis adalah...",
     "type": "text_input",
     "answer": "Monarki Absolut",
+    "points": 7,
     "feedback": "Ya, digantikan dengan republik."
   },
   {
@@ -110,6 +120,7 @@
       "Perjanjian Trianon"
     ],
     "answer": "Perjanjian Versailles",
+    "points": 7,
     "feedback": "Benar! Ditandatangani pada tahun 1919."
   },
   {
@@ -117,6 +128,7 @@
     "question": "Siapakah pemimpin Nazi Jerman selama Perang Dunia II?",
     "type": "text_input",
     "answer": "Adolf Hitler",
+    "points": 6,
     "feedback": "Tepat! Beliau adalah Führer dan Kanselir Jerman."
   },
   {
@@ -125,18 +137,20 @@
     "type": "multiple_choice",
     "options": [
       "Abad Pencerahan",
-      "Abad Kegelapan",
+      "Abad Pertengahan",
       "Renaisans",
       "Abad Modern"
     ],
     "answer": "Abad Pertengahan",
-    "feedback": "Istilah 'Abad Kegelapan' sering digunakan untuk bagian awal Abad Pertengahan."
+    "points": 7,
+    "feedback": "Istilah 'Abad Kegelapan' sering digunakan untuk bagian awal Abad Pertengahan, namun 'Abad Pertengahan' adalah istilah yang lebih akurat secara keseluruhan."
   },
   {
     "id": "q_sejarah_014",
     "question": "Peristiwa jatuhnya Bastille pada tahun 1789 menandai dimulainya...",
     "type": "text_input",
     "answer": "Revolusi Prancis",
+    "points": 8,
     "feedback": "Ya, penyerbuan Bastille adalah simbol perlawanan rakyat."
   },
   {
@@ -150,6 +164,7 @@
       "Mikhail Gorbachev"
     ],
     "answer": "Joseph Stalin",
+    "points": 7,
     "feedback": "Benar! Beliau memimpin Uni Soviet menuju kemenangan dalam perang."
   },
   {
@@ -157,6 +172,7 @@
     "question": "Apa nama ibu kota Kekaisaran Romawi Timur (Bizantium)?",
     "type": "text_input",
     "answer": "Konstantinopel",
+    "points": 7,
     "feedback": "Tepat! Sekarang dikenal sebagai Istanbul, Turki."
   },
   {
@@ -170,6 +186,7 @@
       "Rusia"
     ],
     "answer": "Inggris",
+    "points": 6,
     "feedback": "Ya, terjadi pada pertengahan abad ke-19 terkait perdagangan opium."
   },
   {
@@ -177,6 +194,7 @@
     "question": "Siapakah tokoh yang terkenal dengan reformasi gereja Protestan di Jerman?",
     "type": "text_input",
     "answer": "Martin Luther",
+    "points": 8,
     "feedback": "Benar! Beliau memicu Reformasi Protestan dengan 95 Tesisnya."
   },
   {
@@ -190,6 +208,7 @@
       "Peradaban Yunani Kuno"
     ],
     "answer": "Peradaban Mesir Kuno",
+    "points": 6,
     "feedback": "Tepat! Hieroglif adalah sistem tulisan gambar yang kompleks."
   },
   {
@@ -197,6 +216,7 @@
     "question": "Apa nama organisasi yang didirikan oleh Ir. Soekarno pada tahun 1927 untuk mencapai kemerdekaan Indonesia?",
     "type": "text_input",
     "answer": "Partai Nasional Indonesia (PNI)",
+    "points": 8,
     "feedback": "Ya, PNI adalah salah satu partai politik pergerakan nasional yang penting."
   },
   {
@@ -210,6 +230,7 @@
       "2 Mei"
     ],
     "answer": "10 November",
+    "points": 5,
     "feedback": "Tepat! Untuk memperingati Pertempuran Surabaya."
   },
   {
@@ -217,6 +238,7 @@
     "question": "Siapakah pendiri Kekaisaran Mongol?",
     "type": "text_input",
     "answer": "Genghis Khan",
+    "points": 7,
     "feedback": "Benar! Beliau adalah salah satu penakluk terbesar dalam sejarah."
   },
   {
@@ -230,6 +252,7 @@
       "17"
     ],
     "answer": "16",
+    "points": 7,
     "feedback": "Ya, dimulai pada awal abad ke-16 dengan Martin Luther."
   },
   {
@@ -237,6 +260,7 @@
     "question": "Apa nama kota yang menjadi pusat Kekaisaran Inca kuno?",
     "type": "text_input",
     "answer": "Cusco",
+    "points": 8,
     "feedback": "Tepat! Terletak di pegunungan Andes, Peru."
   },
   {
@@ -250,6 +274,7 @@
       "Athena"
     ],
     "answer": "Yerusalem",
+    "points": 7,
     "feedback": "Benar! Perebutan Tanah Suci adalah motif utama Perang Salib."
   },
   {
@@ -257,7 +282,8 @@
     "question": "Siapakah penemu mesin uap yang menjadi pendorong Revolusi Industri?",
     "type": "text_input",
     "answer": "James Watt",
-    "feedback": "Ya, penemuan James Watt sangat vital."
+    "points": 8,
+    "feedback": "Ya, penyempurnaan mesin uap oleh James Watt sangat vital."
   },
   {
     "id": "q_sejarah_027",
@@ -270,6 +296,7 @@
       "Gerakan pemuda"
     ],
     "answer": "Perkumpulan dagang",
+    "points": 8,
     "feedback": "Tepat! Awalnya bernama Sarekat Dagang Islam."
   },
   {
@@ -277,6 +304,7 @@
     "question": "Perang Dunia I dimulai pada tahun...",
     "type": "text_input",
     "answer": "1914",
+    "points": 6,
     "feedback": "Benar! Dipicu oleh pembunuhan Archduke Franz Ferdinand."
   },
   {
@@ -290,6 +318,7 @@
       "Renaisans"
     ],
     "answer": "Abad Pertengahan Eropa",
+    "points": 7,
     "feedback": "Ya, feodalisme adalah sistem sosial-politik dominan saat itu."
   },
   {
@@ -297,6 +326,7 @@
     "question": "Siapakah tokoh yang memimpin Gerakan Non-Blok bersama Soekarno dan Tito?",
     "type": "text_input",
     "answer": "Jawaharlal Nehru",
+    "points": 9,
     "feedback": "Tepat! Nehru dari India, Nasser dari Mesir, dan Nkrumah dari Ghana juga merupakan pendiri."
   },
   {
@@ -304,6 +334,7 @@
     "question": "Invasi Jerman ke Polandia pada tahun 1939 memicu dimulainya Perang Dunia...",
     "type": "text_input",
     "answer": "II",
+    "points": 7,
     "feedback": "Benar! Invasi ini menyebabkan Inggris dan Prancis menyatakan perang."
   },
   {
@@ -317,6 +348,7 @@
       "Amerika Serikat"
     ],
     "answer": "Belanda",
+    "points": 6,
     "feedback": "Tepat! Salah satu perjanjian penting dalam perjuangan kemerdekaan Indonesia."
   },
   {
@@ -324,6 +356,7 @@
     "question": "Apa nama jalur perdagangan kuno yang menghubungkan Tiongkok dengan Eropa?",
     "type": "text_input",
     "answer": "Jalur Sutra",
+    "points": 6,
     "feedback": "Ya, jalur ini memfasilitasi pertukaran barang dan budaya."
   },
   {
@@ -337,6 +370,7 @@
       "Max Weber"
     ],
     "answer": "Karl Marx",
+    "points": 9,
     "feedback": "Benar! 'Das Kapital' adalah karya fundamental dalam teori komunisme."
   },
   {
@@ -344,6 +378,7 @@
     "question": "Peristiwa Pemberontakan Boxer terjadi di negara...",
     "type": "text_input",
     "answer": "Tiongkok",
+    "points": 8,
     "feedback": "Tepat! Pemberontakan anti-asing dan anti-Kristen pada akhir abad ke-19."
   },
   {
@@ -357,6 +392,7 @@
       "Athena"
     ],
     "answer": "Pompeii",
+    "points": 7,
     "feedback": "Ya, Pompeii dan Herculaneum terkubur oleh abu vulkanik."
   },
   {
@@ -364,6 +400,7 @@
     "question": "Siapakah tokoh yang dikenal sebagai 'Bapak Sejarah'?",
     "type": "text_input",
     "answer": "Herodotus",
+    "points": 9,
     "feedback": "Benar! Herodotus adalah sejarawan Yunani kuno."
   },
   {
@@ -377,14 +414,16 @@
       "Kurdi"
     ],
     "answer": "Yahudi",
+    "points": 8,
     "feedback": "Tepat! Gerakan ini mengarah pada pembentukan negara Israel."
   },
   {
     "id": "q_sejarah_039",
     "question": "Apa nama ibu kota Kekaisaran Ottoman?",
     "type": "text_input",
-    "answer": "Istanbul (sebelumnya Konstantinopel)",
-    "feedback": "Ya, setelah penaklukan oleh Mehmet II."
+    "answer": "Istanbul",
+    "points": 7,
+    "feedback": "Ya, setelah penaklukan Konstantinopel oleh Mehmet II, namanya diubah menjadi Istanbul."
   },
   {
     "id": "q_sejarah_040",
@@ -397,6 +436,7 @@
       "Marco Polo"
     ],
     "answer": "Christopher Columbus",
+    "points": 6,
     "feedback": "Benar! Meskipun Viking mungkin tiba lebih dulu, Columbus yang membuka jalan bagi penjelajahan Eropa."
   },
   {
@@ -404,6 +444,7 @@
     "question": "Piagam Magna Carta ditandatangani di Inggris pada tahun...",
     "type": "text_input",
     "answer": "1215",
+    "points": 9,
     "feedback": "Tepat! Merupakan dokumen penting dalam sejarah hak asasi manusia."
   },
   {
@@ -412,11 +453,12 @@
     "type": "multiple_choice",
     "options": [
       "Menyusun teks proklamasi",
-      "Mendesak Soekarno-Hatta untuk segera memproklamirkan kemerdekaan",
+      "Mendesak Soekarno-Hatta untuk segera memproklamasikan kemerdekaan",
       "Merumuskan dasar negara",
       "Menyusun kabinet pertama"
     ],
-    "answer": "Mendesak Soekarno-Hatta untuk segera memproklamirkan kemerdekaan",
+    "answer": "Mendesak Soekarno-Hatta untuk segera memproklamasikan kemerdekaan",
+    "points": 8,
     "feedback": "Ya, oleh golongan muda."
   },
   {
@@ -425,6 +467,7 @@
     "type": "true_false",
     "options": ["Benar", "Salah"],
     "answer": "Benar",
+    "points": 5,
     "feedback": "Tepat! Perang Dingin berlangsung selama beberapa dekade setelah PD II."
   },
   {
@@ -432,6 +475,7 @@
     "question": "Siapakah Kaisar Romawi pertama?",
     "type": "text_input",
     "answer": "Augustus",
+    "points": 8,
     "feedback": "Benar! Sebelumnya dikenal sebagai Octavianus."
   },
   {
@@ -445,6 +489,7 @@
       "Tugu Selamat Datang"
     ],
     "answer": "Tugu Proklamasi",
+    "points": 6,
     "feedback": "Ya, di Jalan Proklamasi, Jakarta Pusat."
   },
   {
@@ -452,6 +497,7 @@
     "question": "Pencetus teori evolusi melalui seleksi alam adalah...",
     "type": "text_input",
     "answer": "Charles Darwin",
+    "points": 7,
     "feedback": "Benar! Dengan bukunya 'On the Origin of Species'."
   },
   {
@@ -465,6 +511,7 @@
       "Korea Utara"
     ],
     "answer": "Tiongkok",
+    "points": 8,
     "feedback": "Tepat! Dipimpin oleh Mao Zedong."
   },
   {
@@ -472,6 +519,7 @@
     "question": "Apa nama perjanjian yang mengakhiri Perang Vietnam?",
     "type": "text_input",
     "answer": "Perjanjian Damai Paris (Paris Peace Accords)",
+    "points": 9,
     "feedback": "Benar! Ditandatangani pada tahun 1973."
   },
   {
@@ -485,6 +533,7 @@
       "Arab Saudi"
     ],
     "answer": "Amerika Serikat",
+    "points": 6,
     "feedback": "Ya, serangan teroris terhadap World Trade Center dan Pentagon."
   },
   {
@@ -492,6 +541,7 @@
     "question": "Siapakah tokoh yang memimpin Revolusi Bolshevik di Rusia?",
     "type": "text_input",
     "answer": "Vladimir Lenin",
+    "points": 8,
     "feedback": "Benar! Beliau adalah pemimpin utama Revolusi Oktober 1917."
   },
   {
@@ -499,6 +549,7 @@
     "question": "Apa nama patung raksasa yang merupakan salah satu keajaiban dunia kuno di Rhodes?",
     "type": "text_input",
     "answer": "Kolosus Rhodes",
+    "points": 9,
     "feedback": "Tepat! Patung dewa Helios yang sangat besar."
   },
   {
@@ -512,6 +563,7 @@
       "2015"
     ],
     "answer": "2006",
+    "points": 7,
     "feedback": "Ya, keputusan ini dikeluarkan oleh International Astronomical Union (IAU)."
   },
   {
@@ -519,6 +571,7 @@
     "question": "Apa nama organisasi yang dibentuk pada tahun 1967 untuk kerjasama ekonomi dan politik di Asia Tenggara?",
     "type": "text_input",
     "answer": "ASEAN (Association of Southeast Asian Nations)",
+    "points": 6,
     "feedback": "Benar! ASEAN adalah organisasi regional yang penting."
   },
   {
@@ -532,6 +585,7 @@
       "1989"
     ],
     "answer": "1961",
+    "points": 7,
     "feedback": "Tepat! Dibangun oleh Jerman Timur untuk mencegah warganya melarikan diri ke Barat."
   },
   {
@@ -539,6 +593,7 @@
     "question": "Siapakah tokoh yang memimpin perjuangan kemerdekaan India tanpa kekerasan?",
     "type": "text_input",
     "answer": "Mahatma Gandhi",
+    "points": 8,
     "feedback": "Benar! Beliau adalah salah satu ikon gerakan non-kekerasan dunia."
   },
   {
@@ -552,6 +607,7 @@
       "2 Mei 1949"
     ],
     "answer": "28 Oktober 1928",
+    "points": 6,
     "feedback": "Ya, momen penting persatuan pemuda Indonesia."
   },
   {
@@ -559,6 +615,7 @@
     "question": "Apa nama jalur pelayaran yang menghubungkan Laut Mediterania dengan Laut Merah?",
     "type": "text_input",
     "answer": "Terusan Suez",
+    "points": 7,
     "feedback": "Tepat! Dibuka pada tahun 1869, mempersingkat jalur pelayaran."
   },
   {
@@ -572,6 +629,7 @@
       "Uni Soviet"
     ],
     "answer": "Perang Dingin",
+    "points": 8,
     "feedback": "Benar! Menjadi simbol berakhirnya Perang Dingin dan penyatuan Jerman."
   },
   {
@@ -579,6 +637,7 @@
     "question": "Siapakah tokoh yang menulis 'The Communist Manifesto' bersama Karl Marx?",
     "type": "text_input",
     "answer": "Friedrich Engels",
+    "points": 9,
     "feedback": "Ya, keduanya adalah pendiri Marxisme."
   },
   {
@@ -592,14 +651,16 @@
       "Peradaban Inca"
     ],
     "answer": "Peradaban Bali Kuno",
+    "points": 10,
     "feedback": "Tepat! Subak adalah sistem irigasi tradisional yang diakui UNESCO."
   },
   {
     "id": "q_sejarah_061",
     "question": "Perang Dunia I melibatkan dua aliansi utama, yaitu Triple Entente dan...",
     "type": "text_input",
-    "answer": "Triple Alliance (atau Blok Sentral)",
-    "feedback": "Benar! Triple Entente terdiri dari Inggris, Prancis, dan Rusia."
+    "answer": "Blok Sentral",
+    "points": 8,
+    "feedback": "Benar! Triple Entente terdiri dari Inggris, Prancis, dan Rusia, sedangkan Blok Sentral dipimpin oleh Jerman dan Austria-Hongaria."
   },
   {
     "id": "q_sejarah_062",
@@ -612,6 +673,7 @@
       "Akta Kapitulasi Jepang"
     ],
     "answer": "Akta Kapitulasi Jepang",
+    "points": 8,
     "feedback": "Ya, ditandatangani di atas kapal USS Missouri."
   },
   {
@@ -619,6 +681,7 @@
     "question": "Peristiwa G30S/PKI di Indonesia terjadi pada tahun...",
     "type": "text_input",
     "answer": "1965",
+    "points": 7,
     "feedback": "Benar! Peristiwa penting dalam sejarah Indonesia modern."
   },
   {
@@ -632,6 +695,7 @@
       "Bartolomeu Dias"
     ],
     "answer": "Vasco da Gama",
+    "points": 8,
     "feedback": "Tepat! Membuka jalur laut langsung dari Eropa ke Asia."
   },
   {
@@ -639,6 +703,7 @@
     "question": "Peradaban Mesopotamia berkembang di antara dua sungai besar, yaitu Sungai Tigris dan Sungai...",
     "type": "text_input",
     "answer": "Eufrat",
+    "points": 6,
     "feedback": "Benar! Dikenal sebagai 'Tanah di antara dua sungai'."
   },
   {
@@ -646,7 +711,8 @@
     "question": "Siapakah yang dikenal sebagai 'Bapak Proklamator' Indonesia?",
     "type": "text_input",
     "answer": "Soekarno",
-    "feedback": "Ya, beliau adalah Presiden pertama Indonesia."
+    "points": 5,
+    "feedback": "Ya, beliau adalah Presiden pertama Indonesia dan salah satu proklamator."
   },
   {
     "id": "q_sejarah_067",
@@ -659,6 +725,7 @@
       "Alexandria"
     ],
     "answer": "Roma",
+    "points": 6,
     "feedback": "Tepat! Keruntuhan Roma pada 476 M sering dianggap sebagai akhir Abad Kuno."
   },
   {
@@ -672,6 +739,7 @@
       "Theokrasi dan Sekulerisme"
     ],
     "answer": "Kapitalisme dan Sosialisme",
+    "points": 7,
     "feedback": "Ya, Jerman Barat adalah kapitalis dan Jerman Timur adalah sosialis-komunis."
   },
   {
@@ -679,6 +747,7 @@
     "question": "Siapakah pendiri agama Buddha?",
     "type": "text_input",
     "answer": "Siddhartha Gautama",
+    "points": 7,
     "feedback": "Benar! Dikenal juga sebagai Buddha."
   },
   {
@@ -692,6 +761,7 @@
       "20"
     ],
     "answer": "19",
+    "points": 7,
     "feedback": "Tepat! Terjadi pada pertengahan abad ke-19 antara Tiongkok dan Inggris."
   }
 ]

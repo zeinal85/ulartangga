@@ -30,7 +30,7 @@ const materialConfigs = {
         name: 'Literasi Digital',
         //questions_url: './soal/questions_etika.json', // Path relatif ke folder 'soal'
         //ethics_url: './pesan/pesan_etika.json'       // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/c89e79fedc82e926c0f7af87781a1dd4d1fcdfcf/questions_etika.json',
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/0b3249e8d4ce99fa4275825938104717/raw/ad72c429de8de3d74ca1095babadd8b71d7aade9/questions_etika.json',
         ethics_url: 'https://gist.githubusercontent.com/zeinal85/ef639b2b58b3d283e18e88d3b66b5dd6/raw/c359737f4eb9c86e0e2c98c9f0eb0d91628635ba/pesan_etika.json'
 
     },
@@ -38,15 +38,15 @@ const materialConfigs = {
         name: 'Sejarah',
         //questions_url: './soal/questions_sejarah.json', // Path relatif ke folder 'soal'
         //ethics_url: './pesan/pesan_sejarah.json'       // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/335a9858ec9eb005ea6aaef6a0ae6204227dc394/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
-        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/9677f8fc278fe51d7b5654fe99bd485b449d8c78/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/1677a4fcc262bcc2d99ca50129a65fdd/raw/7565a2a04ba66fbfff234204bf29b81d6ac4c363/questions_sejarah.json', // GANTI DENGAN URL GIST ANDA
+        ethics_url: 'https://gist.githubusercontent.com/zeinal85/d8ad6fa9b090a7aad29e3dc94e32cc46/raw/f2b1ed2cd4fb7e5face1a65ee330a38ae901a4ed/pesan_sejarah.json' // GANTI DENGAN URL GIST ANDA
 
     },
 	'sains': {
 		name: 'Sains',
 		//questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
 		//ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'
-		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/6204328a3c721dd0ab20af708fee010c6b7de0e2/questions_sains.json',
+		questions_url: 'https://gist.githubusercontent.com/zeinal85/f362d8552cecf3fdcb6947f25b6fc085/raw/91e88a0c3b86e8c4e80cc4c367d704964ef2d096/questions_sains.json',
 		ethics_url: 'https://gist.githubusercontent.com/zeinal85/0d63740f50edbb2470e6d617648a32e9/raw/7cbf19aaa4592893f63fdce545c876764b3086ba/pesan_sains.json'
 
     },
@@ -59,6 +59,7 @@ let selectedMaterialKey = 'literasi_digital';
 
 // State (kondisi) permainan
 let playerPositions;
+let playerScores; // Variabel baru untuk melacak skor pemain
 let currentPlayer;
 let gameActive;
 let diceType = 'digital'; // Default ke dadu digital
@@ -147,6 +148,9 @@ const cancelRollBtn = document.getElementById('cancel-roll-btn');
 // Referensi elemen tombol fullscreen
 const fullscreenBtn = document.getElementById('fullscreen-btn');
 
+// Referensi elemen untuk menampilkan skor pemain (BARU)
+const playerScoresDisplay = document.getElementById('player-scores-display');
+
 
 // --- FUNGSI UTAMA PERMAINAN ---
 
@@ -174,6 +178,7 @@ async function initGame() {
 
     // Reset state permainan
     playerPositions = Array(PLAYER_COUNT).fill(0); // Posisi 0 = start
+    playerScores = Array(PLAYER_COUNT).fill(0); // Inisialisasi skor pemain (BARU)
     currentPlayer = 0;
     gameActive = true;
     waitingForAnswer = false; // Pastikan ini direset
@@ -200,6 +205,7 @@ async function initGame() {
     // Update UI ke kondisi awal setelah konten dimuat dan game siap
     updateAllPlayerPositionsUI();
     updateTurnInfo(); // Ini akan mengontrol visibilitas tombol batal dan menampilkan giliran pemain
+    updateScoresUI(); // Perbarui tampilan skor (BARU)
     rollDiceBtn.disabled = false;
     physicalDiceResultInput.disabled = false;
     submitPhysicalRollBtn.disabled = false;
@@ -534,6 +540,7 @@ async function movePlayer(steps) {
 function switchPlayer() {
     currentPlayer = (currentPlayer + 1) % PLAYER_COUNT;
     updateTurnInfo();
+    updateScoresUI(); // Perbarui tampilan skor saat giliran berganti
 }
 
 /**
@@ -681,6 +688,20 @@ function updateDiceUI() {
     }
 }
 
+/**
+ * Memperbarui tampilan skor pemain di UI. (BARU)
+ */
+function updateScoresUI() {
+    if (playerScoresDisplay) {
+        let scoreText = '';
+        for (let i = 0; i < PLAYER_COUNT; i++) {
+            scoreText += `P${i + 1}: ${playerScores[i]} Poin${i < PLAYER_COUNT - 1 ? ' | ' : ''}`;
+        }
+        playerScoresDisplay.textContent = scoreText;
+    }
+}
+
+
 // --- FUNGSI MODAL PERTANYAAN ---
 
 /**
@@ -786,6 +807,15 @@ submitAnswerBtn.addEventListener('click', async () => {
     if (isCorrect) {
         feedbackMessageText = "Benar! " + (currentQuestion.feedback || "") + " Anda maju 1 langkah!";
         pendingQuestionMoveSteps = 1; // Simpan langkah maju
+        
+        // --- BAGIAN BARU UNTUK MENAMBAH POIN ---
+        if (currentQuestion.points) { // Pastikan properti points ada di data pertanyaan
+            playerScores[currentPlayer] += currentQuestion.points;
+            feedbackMessageText += ` Anda mendapatkan ${currentQuestion.points} poin!`;
+            updateScoresUI(); // Perbarui tampilan skor
+        }
+        // --- AKHIR BAGIAN BARU ---
+
     } else {
         feedbackMessageText = `Salah. Jawaban yang benar adalah: ${Array.isArray(currentQuestion.answer) ? currentQuestion.answer.join(" / ") : currentQuestion.answer}. ` + (currentQuestion.feedback || "") + " Anda mundur 1 langkah!";
         pendingQuestionMoveSteps = -1; // Simpan langkah mundur
@@ -1071,6 +1101,7 @@ startGameBtn.addEventListener('click', async () => {
         PLAYER_COUNT = desiredPlayers;
         selectedMaterialKey = selectedMaterial; // Simpan materi yang dipilih
         initGame(); // Memulai game dengan pengaturan baru
+        toggleFullscreen(); // Memanggil fungsi fullscreen setelah game dimulai
     } else {
         displayMessage("Input Tidak Valid!", "Jumlah pemain harus antara 2 dan 4.");
     }
