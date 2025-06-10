@@ -1,0 +1,352 @@
+<style>
+        /* Menggunakan box-sizing: border-box untuk semua elemen agar padding dan border tidak menambah ukuran elemen */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            touch-action: manipulation;
+            background-color: #f0f4f8; /* Warna latar belakang umum */
+            padding: 0; /* Menghilangkan padding pada body secara default (mobile) */
+        }
+
+        /* Menyesuaikan padding body untuk layar yang lebih besar */
+        @media (min-width: 640px) { /* sm breakpoint */
+            body {
+                padding: 1rem; /* Tambahkan padding untuk layar sm ke atas */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            body {
+                padding: 2rem; /* Tambahkan padding untuk layar lg ke atas */
+            }
+        }
+        
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            border: 4px solid #94A3B8;
+            aspect-ratio: 1 / 1;
+            background-image: url('ulartangga.jpeg'); /* Pastikan gambar ini ada di folder yang sama */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-radius: 15px; /* Tetap pertahankan sudut membulat */
+            overflow: hidden; /* Penting untuk menjaga sudut membulat */
+            position: relative; /* Untuk penempatan bidak */
+            width: 100%; /* Memastikan papan mengambil lebar penuh dari parent-nya */
+            max-width: 100%; /* Memastikan tidak melebihi lebar kontainer */
+        }
+
+        .cell {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            font-size: 0.75rem; /* Ukuran font default untuk mobile */
+            font-weight: 600;
+            color: #64748b;
+            padding: 2px;
+            position: relative;
+            border: 1px solid #cbd5e1;
+            box-sizing: border-box;
+            background-color: transparent; 
+        }
+
+        /* Responsivitas untuk nomor sel */
+        @media (min-width: 480px) { /* Extra small devices / small mobile */
+            .cell {
+                font-size: 0.75rem; /* text-xs */
+            }
+        }
+        @media (min-width: 640px) { /* sm (small screens / large mobile) */
+            .cell {
+                font-size: 0.875rem; /* text-sm */
+            }
+        }
+        @media (min-width: 768px) { /* md (medium screens / tablet) */
+            .cell {
+                font-size: 1rem; /* text-base */
+            }
+        }
+        @media (min-width: 1024px) { /* lg (large screens / desktop) */
+            .cell {
+                font-size: 1.125rem; /* text-lg */
+            }
+        }
+        
+        .player-piece {
+            position: absolute;
+            width: 6%;
+            height: 6%;
+            border-radius: 9999px;
+            transition: all 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+            border: 2px solid white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transform-origin: center center;
+            font-size: 0.9rem; /* Ukuran font bidak default untuk mobile */
+        }
+
+        @media (max-width: 768px) {
+            .player-piece {
+                font-size: 0.7rem;
+            }
+        }
+        /* Tambahkan responsivitas untuk ukuran bidak */
+        @media (min-width: 640px) { /* sm */
+            .player-piece {
+                width: 30px;
+                height: 30px;
+                font-size: 0.875rem; /* text-sm */
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .player-piece {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem; /* text-base */
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .player-piece {
+                width: 40px;
+                height: 40px;
+                font-size: 1.125rem; /* text-lg */
+            }
+        }
+
+        #snakes-ladders-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        #dice-face {
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease;
+        }
+        
+        #dice-face.rolling {
+            /* Animasi putar yang lebih cepat */
+            animation: spin 1.5s linear infinite; 
+        }
+
+        /* Animasi Dadu Berputar */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1rem;
+        }
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            max-width: 500px;
+            width: 95%; /* Fleksibel width untuk modal */
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-options label {
+            display: block;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            background-color: #f0f4f8;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .modal-options label:hover {
+            background-color: #e2e8f0;
+        }
+        .modal-options input[type="radio"]:checked + span {
+            font-weight: bold;
+            color: #2563eb;
+        }
+        /* Style for selected checkbox option */
+        .modal-options input[type="checkbox"]:checked + span {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+
+        /* Responsive styling for the question mark icon */
+        .question-cell-indicator span {
+            position: absolute;
+            top: 2px; /* Small offset from the top */
+            left: 2px; /* Small offset from the left */
+            font-size: 1.2rem; /* Default size for larger screens */
+            opacity: 0.75;
+            /* Adjust size for smaller screens */
+            @media (max-width: 768px) { /* For tablets and smaller */
+                font-size: 1rem;
+            }
+            @media (max-width: 640px) { /* For mobile phones */
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Menyesuaikan layout utama */
+        .main-game-wrapper {
+            display: flex;
+            flex-direction: column; /* Stacked by default on mobile */
+            gap: 0; /* Menghilangkan gap di mobile */
+            width: 100%; /* Memastikan lebar penuh di mobile */
+            max-width: 100%; /* Memastikan tidak melebihi lebar kontainer */
+            margin: auto; /* Pusatkan */
+            /* Menghapus padding default dari div ini untuk mobile */
+            padding: 0; 
+            border-radius: 0; /* Menghilangkan border-radius untuk tampilan tanpa margin di tepi layar */
+            box-shadow: none; /* Menghilangkan shadow untuk tampilan tanpa margin di tepi layar */
+            background-color: transparent; /* Menghilangkan warna latar belakang putih untuk full width */
+        }
+
+        @media (min-width: 640px) { /* sm breakpoint */
+            .main-game-wrapper {
+                padding: 1rem; /* Tambahkan padding dan style untuk tablet ke atas */
+                border-radius: 1rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                background-color: white;
+                max-width: 768px; /* Contoh max-width untuk tablet */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint for desktop layout */
+            .main-game-wrapper {
+                flex-direction: row; /* Two columns on desktop */
+                gap: 2rem; /* Jarak antar kolom di desktop */
+                width: 90vw; /* Mengambil 90% dari lebar viewport di desktop */
+                max-width: none; /* Hapus max-width agar bisa membentang 90vw */
+                padding: 2rem; /* Padding di desktop */
+            }
+        }
+
+        /* Sesuaikan lebar kolom untuk mobile agar papan mendapat ruang lebih */
+        .board-column {
+            width: 100%;
+            padding: 0; /* Menghilangkan padding pada board-column secara default (mobile) */
+        }
+        @media (min-width: 640px) { /* sm */
+            .board-column {
+                padding: 1rem; /* Tambahkan padding untuk layar sm ke atas */
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .board-column {
+                flex: 3; /* Papan akan 3 kali lebih lebar dari kontrol panel di desktop */
+                padding: 1.5rem; /* Padding di desktop */
+            }
+        }
+
+        .control-column {
+            width: 100%;
+            padding: 1rem; /* Padding default */
+        }
+        @media (min-width: 1024px) { /* lg */
+            flex: 1; /* Kontrol panel akan 1 bagian dari total 4 bagian di desktop */
+        }
+
+        /* Penyesuaian untuk game-container agar selalu mengisi ruang yang tersedia */
+        #game-container {
+            width: 100%;
+            height: auto; /* Biarkan tinggi menyesuaikan aspek rasio */
+            display: block; /* Memastikan mengambil lebar penuh */
+        }
+
+        /* Memastikan elemen-elemen di modal responsif */
+        .modal-content h2, .modal-content p {
+            font-size: 1rem; /* Default font size for mobile modals */
+        }
+        @media (min-width: 640px) {
+            .modal-content h2 {
+                font-size: 1.5rem; /* sm:text-2xl */
+            }
+            .modal-content p {
+                font-size: 1.125rem; /* sm:text-lg */
+            }
+        }
+        @media (min-width: 768px) {
+            .modal-content h2 {
+                font-size: 1.875rem; /* md:text-3xl */
+            }
+            .modal-content p {
+                font-size: 1.25rem; /* md:text-xl */
+            }
+        }
+
+        /* Penyesuaian umum untuk tombol di dalam modal */
+        .modal-content button {
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+        }
+        @media (max-width: 639px) { /* Untuk ukuran hp kecil, sedikit perkecil padding tombol */
+            .modal-content button {
+                padding: 0.625rem 1.25rem; /* py-2.5 px-5 */
+            }
+        }
+
+        /* Penyesuaian untuk input dan tombol di control-column */
+        #player-count-input, #physical-dice-result, .control-column button {
+            font-size: 1rem; /* Ukuran font standar */
+            padding: 0.75rem 1rem; /* Padding standar */
+        }
+        @media (max-width: 639px) { /* Untuk ukuran hp kecil */
+            #player-count-input, #physical-dice-result {
+                padding: 0.5rem 0.75rem; /* Sedikit perkecil padding */
+                font-size: 0.9rem;
+            }
+            .control-column button {
+                padding: 0.625rem 1rem; /* py-2.5 px-4 */
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Info panel */
+        #info-panel h2 {
+            font-size: 1.125rem; /* text-lg */
+        }
+        #info-panel p {
+            font-size: 0.875rem; /* text-sm */
+        }
+        @media (max-width: 639px) {
+             #info-panel h2 {
+                font-size: 1rem; /* text-base */
+            }
+            #info-panel p {
+                font-size: 0.75rem; /* text-xs */
+            }
+        }
+    </style>
