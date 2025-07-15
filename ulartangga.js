@@ -52,7 +52,11 @@ const materialConfigs = {
 	questions_url: './soal/questions_sains.json',  // Path relatif ke folder 'soal'
 	ethics_url: './pesan/pesan_sains.json'        // Path relatif ke folder 'pesan'		
     },
-	
+    'adabdigital': {
+	name: 'Keadaban Digital',
+	questions_url: './soal/questions_keadabandigital.json',  // Path relatif ke folder 'soal'
+	ethics_url: './pesan/pesan_keadabandigital.json'        // Path relatif ke folder 'pesan'		
+    },
     // Tambahkan materi lain di sini sesuai kebutuhan
 };
 
