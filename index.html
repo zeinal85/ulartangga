@@ -18,7 +18,7 @@
 <body class="bg-slate-100 flex flex-col items-center justify-center min-h-screen">
 
     <!-- Judul utama game: Diperkecil menjadi sekitar 9pt (menggunakan text-xs) -->
-    <h1 class="text-xs font-bold text-slate-700 text-center mb-4 mt-4 sm:text-sm md:text-base">Game Ular Tangga - Jelajah Ilmu</h1>
+    <h1 class="text-xs font-bold text-slate-700 text-center mb-2 mt-2 sm:text-sm md:text-base">Game Ular Tangga - Jelajah Ilmu</h1>
 
     <!-- Layar Pengaturan Game (Awal) -->
     <div id="game-setup-screen" class="bg-white rounded-3xl shadow-xl w-full mx-auto p-6 md:p-8 max-w-md text-center">
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col items-center flex-grow">
+            <div class="flex flex-col flex-grow w-full items-center">
                 <div class="flex justify-center my-4">
                     <div id="dice-face" class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg shadow-md flex items-center justify-center">
                          <span class="text-3xl sm:text-4xl font-bold text-slate-700">🎲</span>
@@ -106,13 +106,16 @@
                     </button>
                 </div>
                 
-                <button id="fullscreen-btn" class="w-full max-w-xs bg-purple-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 transition-all duration-300 shadow-md mt-4">
-                    Layar Penuh
-                </button>
+                <!-- Pembungkus baru untuk menyelaraskan tombol Layar Penuh dan Mulai Ulang -->
+                <div class="w-full max-w-xs flex flex-col items-center">
+                    <button id="fullscreen-btn" class="w-full bg-purple-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 transition-all duration-300 shadow-md mt-4">
+                        Layar Penuh
+                    </button>
 
-                <button id="restart-btn" class="w-full max-w-xs bg-slate-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-300 shadow-md mt-2">
-                    Mulai Ulang
-                </button>
+                    <button id="restart-btn" class="w-full bg-slate-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-300 shadow-md mt-2">
+                        Mulai Ulang
+                    </button>
+                </div>
             </div>
         </div>
     </div>
